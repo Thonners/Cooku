@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Kookü</string>
+
+    <!-- Home Page -->
+    <string name="home_page_message">Fresh food in your community\nDelivered to your door</string>
+    <string name="get_started">Get Started!</string>
+
+    <!-- Search Page -->
+    <string name="search_chef_hint">Search Chefs</string>
+    <string name="eta_suffix">" mins"</string>
+    <string name="currency_icon">£</string>
 </resources>
