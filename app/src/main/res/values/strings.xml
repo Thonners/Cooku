@@ -9,4 +9,6 @@
     <string name="search_chef_hint">Search Chefs</string>
     <string name="eta_suffix">" mins"</string>
     <string name="currency_icon">£</string>
+    <string name="asap">A.S.A.P.</string>
+    <string name="location">Location</string>
 </resources>

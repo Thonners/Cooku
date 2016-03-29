@@ -15,7 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity">
+            android:windowSoftInputMode="stateHidden"
+        </activity>
+        <activity android:name=".ChefMenuPage"></activity>
     </application>
 
 </manifest>

@@ -3,21 +3,26 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Default dimensions for reuse -->
+    <dimen name="footer_button_height">48dp</dimen>
+
     <!-- Dimensions for the home page -->
     <dimen name="home_logo_text">64dp</dimen>
     <dimen name="start_button_v_size">48dp</dimen>
     <dimen name="start_text_size">32dp</dimen>
 
     <!-- Dimensions for the search page -->
-    <dimen name="search_logo_text">32dp</dimen>
+    <dimen name="search_logo_text">32sp</dimen>
     <dimen name="search_bar_h_size">256dp</dimen>
     <dimen name="search_bar_v_size">48dp</dimen>
     <dimen name="search_bar_ic_size">32dp</dimen>
-    <dimen name="search_bar_ic_margin">8dp</dimen> <!-- margin should be ((bar_v_size) - (ic_size))/2 -->
-    <dimen name="search_bar_text_size">24dp</dimen>
+    <dimen name="search_bar_ic_margin">8dp</dimen>    <!-- margin should be ((bar_v_size) - (ic_size))/2 -->
+    <dimen name="search_bar_text_size">24sp</dimen>
     <dimen name="card_corner_radius">4dp</dimen>
     <dimen name="result_card_height">128dp</dimen>
-    <dimen name="result_text_size">18dp</dimen>
+    <dimen name="result_card_margin">4dp</dimen>
+    <dimen name="result_card_elevation">4dp</dimen>
+    <dimen name="result_text_size">18sp</dimen> <!-- TODO: Move these to the style XML -->
     <dimen name="result_text_padding">8dp</dimen>
 
 </resources>
