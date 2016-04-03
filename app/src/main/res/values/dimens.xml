@@ -25,4 +25,7 @@
     <dimen name="result_text_size">18sp</dimen> <!-- TODO: Move these to the style XML -->
     <dimen name="result_text_padding">8dp</dimen>
 
+    <!-- Dimensions for the chef page -->
+    <dimen name="chef_appbar_height">300dp</dimen>
+
 </resources>

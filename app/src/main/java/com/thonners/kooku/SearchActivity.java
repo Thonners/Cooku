@@ -50,7 +50,7 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(rcLayoutManager);
 
         // Set the adapter
-        SearchResultsRVAdapter adapter = new SearchResultsRVAdapter(getChefs());
+        SearchResultsRVAdapter adapter = new SearchResultsRVAdapter(this, getChefs());
         recyclerView.setAdapter(adapter);
 
     }
@@ -72,9 +72,10 @@ public class SearchActivity extends AppCompatActivity {
     public void locationClicked(View view) {
         Log.d(LOG_TAG, "Location button clicked.");
     }
+
     /**
      * Method to begin the search for results.
-     * In practice, will call an AsyncTask to find the results, then populat the view.
+     * In practice, will call an AsyncTask to find the results, then populate the view.
      * Initially based on location, then updated if any search terms are added.
      *
      * Currently chefs results are hard-programmed for demonstration purposes.

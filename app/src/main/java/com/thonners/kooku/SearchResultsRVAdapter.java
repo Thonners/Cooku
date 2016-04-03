@@ -1,6 +1,9 @@
 package com.thonners.kooku;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,9 @@ import java.util.ArrayList;
 
 public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRVAdapter.ViewHolder> {
 
+    private final String LOG_TAG = "SearchResultsRVAdapter" ;
+
+    private Context context ;
     private ArrayList<Chef> chefs = new ArrayList<>();
 
     // Provide a reference to the views for each data item
@@ -49,8 +55,11 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
 
     /**
      * Constructor.
+     * @param context The application context. Required for launching a new intent.
+     * @param chefs An ArrayList of the chefs.
      */
-    public SearchResultsRVAdapter(ArrayList<Chef> chefs) {
+    public SearchResultsRVAdapter(Context context, ArrayList<Chef> chefs) {
+        this.context = context ;
         this.chefs = chefs ;
     }
 
@@ -66,9 +75,9 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
 
     // Populate views
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position){
+    public void onBindViewHolder(final ViewHolder viewHolder, int position){
         // Get Chef
-        Chef chef = chefs.get(position);
+        final Chef chef = chefs.get(position);
         // Populate details
         viewHolder.tvChefName.setText(chef.getChefName());
         viewHolder.tvChefStyle.setText(chef.getChefStyle());
@@ -77,7 +86,21 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
         // Set background
         viewHolder.imageView.setAdjustViewBounds(false);
         viewHolder.imageView.setImageDrawable(chef.getChefImage());
-        //viewHolder.layout.setBackground(chef.getChefImage());
+
+        // Set onClickListener
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "Card of " + chef.getChefName() + " clicked." ;
+                Log.d(LOG_TAG, message );
+                Intent chefPageIntent = new Intent(context, ChefActivity.class);
+                chefPageIntent.putExtra("CHEF_NAME", chef.getChefName());
+
+                //chefPageIntent.putExtras(extras);
+
+                context.startActivity(chefPageIntent);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
