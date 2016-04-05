@@ -13,7 +13,7 @@ import android.location.Location;
 
 public class Chef {
 
-    private int chefNo ;
+    private int chefID ;
     private String chefName ;
     private String chefStyle ;
     private int chefPriceBracket ;
@@ -23,10 +23,13 @@ public class Chef {
     private Drawable chefImage ;
     private Bitmap chefImageBM;
 
+    public static final String CHEF_ID = "CHEF_ID" ;
+
     /**
      * Constructor.
      */
-    public Chef(String name, String style, int price, int eta, Drawable image) {
+    public Chef(int chefID, String name, String style, int price, int eta, Drawable image) {
+        this.chefID = chefID ;
         this.chefName = name ;
         this.chefStyle = style ;
         this.chefPriceBracket = price ;
@@ -34,9 +37,13 @@ public class Chef {
         this.chefImage = image ;
     }
 
-
-
     //---------------------- Public Methods -----------------------------
+    public int getChefID() {
+        return chefID ;
+    }
+    public String getChefIDString() {
+        return ("" + chefID);
+    }
     public String getChefName() {
         return chefName ;
     }

@@ -1,15 +1,18 @@
 package com.thonners.kooku;
 
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-
-import java.util.ArrayList;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Activity to get and display the results of the available chefs.
@@ -25,19 +28,25 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView.Adapter rcAdapter;
     private RecyclerView.LayoutManager rcLayoutManager;
 
-    /**
-     * Standard onCreate override.
-     * Sets up the RecyclerView with a layout manager and SearchResultsRVAdapter.
-     * Currently populates results with fakes for the purposes of demonstration. TODO: Get proper results and delete this line!
-     * @param savedInstanceState
-     */
-    @Override
+    private ChefManager chefManager;
+
+    private SearchResultsRVAdapter.OnItemClickListener onItemClickListener = new SearchResultsRVAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            launchChefPage(view) ;
+        }
+    };
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set the layout
         setContentView(R.layout.activity_search);
         // Stop the keyboard from popping up
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        // Initialise the chefManager
+        chefManager  = new ChefManager(this);
+
         // Get the instance of the view
         recyclerView = (RecyclerView) findViewById(R.id.search_results_recycler_view) ;
 
@@ -45,13 +54,16 @@ public class SearchActivity extends AppCompatActivity {
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
-        // Use a linear layout manager
-        rcLayoutManager = new LinearLayoutManager(this);
+        // Use a StaggeredGridLayoutManager - set span to 1, to make it just a vertical list, but maintains possibility to increase number of rows later (tablet?)
+        rcLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(rcLayoutManager);
 
         // Set the adapter
-        SearchResultsRVAdapter adapter = new SearchResultsRVAdapter(this, getChefs());
+        SearchResultsRVAdapter adapter = new SearchResultsRVAdapter(this, chefManager.getChefs());
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(onItemClickListener);
+
+
 
     }
 
@@ -74,25 +86,27 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     /**
-     * Method to begin the search for results.
-     * In practice, will call an AsyncTask to find the results, then populate the view.
-     * Initially based on location, then updated if any search terms are added.
-     *
-     * Currently chefs results are hard-programmed for demonstration purposes.
+     * Method to launch the new intent of the chef's page.
+     * @param resultsCardView The card containing the chef's results.
      */
-    private ArrayList<Chef> getChefs() {
-        ArrayList<Chef> chefs = new ArrayList<>();
-        // Create some demo chefs
-        Chef chef1 = new Chef("Pablo", "Danish Pastries", 3, 45, getResources().getDrawable(R.drawable.demo_chef_danish));
-        Chef chef2 = new Chef("MC Thomma$", "Welsh Rarebit", 4, 25, getResources().getDrawable(R.drawable.demo_chef_rarebit));
-        Chef chef3 = new Chef("Mary Berry", "Cake", 5, 60, getResources().getDrawable(R.drawable.demo_chef_cake_1));
-        Chef chef4 = new Chef("Marjory Dawes", "CAKE", 1, 20, getResources().getDrawable(R.drawable.demo_chef_cake_2));
-        // Add to array list
-        chefs.add(chef1) ;
-        chefs.add(chef2);
-        chefs.add(chef3);
-        chefs.add(chef4);
-        // Return list
-        return chefs ;
+    private void launchChefPage(View resultsCardView) {
+        Log.d(LOG_TAG, "Launch chef page of: " + ((TextView) resultsCardView.findViewById(R.id.chef_name)).getText());
+        // Get view for the transition
+        ImageView chefImage = (ImageView) resultsCardView.findViewById(R.id.chef_image);
+        // Define the pairs
+        Pair<View, String> imagePair = Pair.create((View) chefImage, "tImage") ;
+        // Define the transition options
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imagePair) ;
+        // Define the intent of the ChefActivity
+        Intent chefPageIntent = new Intent(this, ChefActivity.class);
+        // Add chef id
+        TextView tvID = (TextView) resultsCardView.findViewById(R.id.chef_id) ;
+        chefPageIntent.putExtra(Chef.CHEF_ID,Integer.parseInt(tvID.getText() + ""));
+        // Start the activity, with the transition
+        ActivityCompat.startActivity(this, chefPageIntent,options.toBundle());
     }
+
+
+
+
 }

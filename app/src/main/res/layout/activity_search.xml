@@ -38,7 +38,8 @@
         android:textSize="@dimen/search_bar_text_size"
         android:textAlignment="center"
         android:hint="@string/search_chef_hint"
-        android:imeOptions="actionSearch" />
+        android:imeOptions="actionSearch"
+        android:singleLine="true"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/search_results_recycler_view"
