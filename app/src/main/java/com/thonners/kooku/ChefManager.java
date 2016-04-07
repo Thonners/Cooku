@@ -69,14 +69,47 @@ public class ChefManager {
      */
     private void populateDemoChefs() {
         // Create some demo chefs
-        Chef chef1 = new Chef(1, "Pablo", "Danish Pastries", 3, 45, context.getResources().getDrawable(R.drawable.demo_chef_danish));
-        Chef chef2 = new Chef(2, "MC Thomma$", "Welsh Rarebit", 4, 25, context.getResources().getDrawable(R.drawable.demo_chef_rarebit));
-        Chef chef3 = new Chef(3, "Mary Berry", "Cake", 5, 60, context.getResources().getDrawable(R.drawable.demo_chef_cake_1));
-        Chef chef4 = new Chef(4, "Marjory Dawes", "CAKE", 1, 20, context.getResources().getDrawable(R.drawable.demo_chef_cake_2));
+        Chef chef1 = new Chef(1, "Pablo", "Danish Pastries", 3, 45, context.getResources().getDrawable(R.drawable.demo_chef_danish), getDemoMenu(1));
+        Chef chef2 = new Chef(2, "MC Thomma$", "Welsh Rarebit", 4, 25, context.getResources().getDrawable(R.drawable.demo_chef_rarebit),getDemoMenu(2));
+        Chef chef3 = new Chef(3, "Mary Berry", "Cake", 5, 60, context.getResources().getDrawable(R.drawable.demo_chef_cake_1), getDemoMenu(3));
+        Chef chef4 = new Chef(4, "Marjory Dawes", "CAKE", 1, 20, context.getResources().getDrawable(R.drawable.demo_chef_cake_2), getDemoMenu(4));
         // Add to array list
         chefs.put(chef1.getChefID(), chef1) ;
         chefs.put(chef2.getChefID(), chef2);
         chefs.put(chef3.getChefID(),chef3);
         chefs.put(chef4.getChefID(), chef4);
+    }
+
+    /**
+     * Method to populate a demo menu for the demo chefs
+     * @param chefNo Chef ID number
+     * @return The ChefMenu instance
+     */
+    private ChefMenu getDemoMenu(int chefNo) {
+        ChefMenu menu = new ChefMenu() ;
+        switch (chefNo) {
+            case 1:
+                menu.addMenuItem("Pete's Danish Pastries", "Mixed pastries", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }});
+                menu.addMenuItem("Pete's Croissants", "12 Fresh Croissants", "", 5.0, new ArrayList<String>() {{add("Pastry"); add("Butter"); }});
+                break;
+            case 2:
+                menu.addMenuItem("Welsh Rarebit", "Cheese on toast with Mustard", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }});
+                menu.addMenuItem("Spag Bol", "", "", 5.0, new ArrayList<String>() {{add("Pasta"); add("Beef"); add("Tomato"); add("Oregano"); }});
+                menu.addMenuItem("Bangers and mash", "Organic sausages with creamy, cheesy mash", "", 7.5, new ArrayList<String>() {{add("Sausage"); add("Potato"); add("Milk"); }});
+                menu.addMenuItem("Brownies", "", "", 6.0, new ArrayList<String>() {{add("Chocolate"); add("Butter"); add("Flour"); }});
+                break;
+            case 3:
+                menu.addMenuItem("Victoria Sponge Cake", "Springy", "", 7.5, new ArrayList<String>() {{add("Flour"); add("Sugar"); }});
+                menu.addMenuItem("Coffee and Walnut Cake", "Perfect for afternoon tea", "", 8.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Coffee"); add("Walnut"); }});
+                menu.addMenuItem("Lemon Drizzle Cake", "Bake-off Classic", "", 12.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Lemon"); add("Drizzle"); }});
+                break;
+            case 4:
+                menu.addMenuItem("CAKE", "Full fat", "", 10, new ArrayList<String>() {{add("Flour"); add("Sugar"); }});
+                menu.addMenuItem("Fat-fighters cake", "Half the calories (when cut in half)", "", 20.0, new ArrayList<String>() {{add("Flour"); add("Sweetener"); }});
+                break;
+
+        }
+
+        return menu ;
     }
 }

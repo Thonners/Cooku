@@ -14,15 +14,25 @@ public class ChefMenu {
     private final ArrayList<ChefMenuItem> menuItems = new ArrayList<>();
 
     /**
+     * Constructor.
+     */
+    public ChefMenu() {
+    }
+
+    /**
      * Method to add a new item to the menu.
      * @param title Name of the dish
      * @param description   Description of the dish
      * @param price Price of the dish
      * @param ingredients   List of ingredients in the dish.
      */
-    public void addMenuItem(String title, String description, double price, ArrayList<String> ingredients) {
-        ChefMenuItem newItem = new ChefMenuItem(title, description, price, ingredients);
+    public void addMenuItem(String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
+        ChefMenuItem newItem = new ChefMenuItem(title, subtitle, description, price, ingredients);
         menuItems.add(newItem);
+    }
+
+    public ArrayList<ChefMenuItem> getMenuItems() {
+        return menuItems ;
     }
 
     /**
@@ -30,20 +40,23 @@ public class ChefMenu {
      */
     public static class ChefMenuItem {
 
-        String title ;
-        String description ;
-        double price ;
-        ArrayList<String> ingredients = new ArrayList<>() ;
+        private String title ;
+        private String subtitle ;
+        private String description ;
+        private double price ;
+        private ArrayList<String> ingredients = new ArrayList<>() ;
 
         /**
          * Menu item constructor.
          * @param title Name of the dish
+         * @param subtitle Accompaniments
          * @param description   Description of the dish
          * @param price Price of the dish
          * @param ingredients   List of ingredients in the dish.
          */
-        public ChefMenuItem(String title, String description, double price, ArrayList<String> ingredients) {
+        public ChefMenuItem(String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
             this.title = title;
+            this.subtitle = subtitle ;
             this.description = description;
             this.price = price ;
             this.ingredients = ingredients;
@@ -52,6 +65,9 @@ public class ChefMenu {
         // Getter methods
         public String getTitle() {
             return title;
+        }
+        public String getSubtitle() {
+            return subtitle;
         }
         public String getDescription() {
             return description;

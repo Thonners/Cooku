@@ -5,25 +5,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 /**
- * Class to manage the RecyclerView. Extends the RecyclerView.Adapter class
+ * Class to manage the RecyclerView on the chef's menu page.
  *
  * @author M Thomas
- * @since 24/03/16.
+ * @since 07/04/16.
  */
+public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder> {
 
-public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRVAdapter.ViewHolder> {
-
-    private final String LOG_TAG = "SearchResultsRVAdapter" ;
+    private final String LOG_TAG = "MenuRVAdapter" ;
 
     private Context context ;
-    private ArrayList<Chef> chefs = new ArrayList<>();
+    private ArrayList<ChefMenu.ChefMenuItem> menuItems = new ArrayList<>();
 
     private OnItemClickListener onItemClickListener ;
 
@@ -35,22 +33,18 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
         // All the views
         public View cardView;
         protected RelativeLayout layout ;
-        protected ImageView imageView ;
-        protected TextView tvChefID ;
-        protected TextView tvChefName ;
-        protected TextView tvChefStyle ;
-        protected TextView tvChefPrice ;
-        protected TextView tvChefETA ;
+        protected TextView tvItemTitle;
+        protected TextView tvItemSubtitle;
+        protected TextView tvItemPrice;
+        // The item instance
+        protected ChefMenu.ChefMenuItem item ;
         public ViewHolder(View view) {
             super(view);
             cardView = view;
-            layout      = (RelativeLayout) view.findViewById(R.id.result_relative_layout) ;
-            imageView   = (ImageView) view.findViewById(R.id.chef_image);
-            tvChefID    = (TextView) view.findViewById(R.id.chef_id) ;
-            tvChefName  = (TextView) view.findViewById(R.id.chef_name) ;
-            tvChefStyle = (TextView) view.findViewById(R.id.chef_style) ;
-            tvChefPrice = (TextView) view.findViewById(R.id.chef_price) ;
-            tvChefETA   = (TextView) view.findViewById(R.id.chef_eta) ;
+            layout      = (RelativeLayout) view.findViewById(R.id.menu_item_layout) ;
+            tvItemTitle = (TextView) view.findViewById(R.id.menu_item_title) ;
+            tvItemSubtitle = (TextView) view.findViewById(R.id.menu_item_subtitle) ;
+            tvItemPrice = (TextView) view.findViewById(R.id.menu_item_price) ;
 
             cardView.setOnClickListener(this);
         }
@@ -62,8 +56,21 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
         @Override
         public void onClick(View view){
             if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(itemView, getPosition());
+                onItemClickListener.onItemClick(item);
             }
+        }
+
+        /**
+         * Setter method for the item instance
+         */
+        public void setItem(ChefMenu.ChefMenuItem item) {
+            this.item = item ;
+        }
+        /**
+         * Getter method for the item instance
+         */
+        public ChefMenu.ChefMenuItem getItem() {
+            return item ;
         }
     }
 
@@ -71,7 +78,7 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
      * Interface for the OnClickListener of the card in the ViewHolder.
      */
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(ChefMenu.ChefMenuItem item);
     }
 
     /**
@@ -81,22 +88,23 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
     public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
         this.onItemClickListener = mItemClickListener;
     }
+
     /**
      * Constructor.
      * @param context The application context. No longer required. Remove this.
-     * @param chefs An ArrayList of the chefs.
+     * @param menuItems An ArrayList of the chefs.
      */
-    public SearchResultsRVAdapter(Context context, ArrayList<Chef> chefs) {
+    public MenuRVAdapter(Context context, ArrayList<ChefMenu.ChefMenuItem> menuItems) {
         this.context = context ;
-        this.chefs = chefs ;
+        this.menuItems = menuItems ;
     }
 
     // Create new views (invoked by layout manager)
     @Override
-    public SearchResultsRVAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public MenuRVAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.card_chef_search_result, viewGroup, false);
+                inflate(R.layout.card_menu_item, viewGroup, false);
 
         return new ViewHolder(itemView);
     }
@@ -105,22 +113,19 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int position){
         // Get Chef
-        final Chef chef = chefs.get(position);
+        final ChefMenu.ChefMenuItem menuItem = menuItems.get(position) ;
         // Populate details
-        viewHolder.tvChefID.setText(chef.getChefIDString());
-        viewHolder.tvChefName.setText(chef.getChefName());
-        viewHolder.tvChefStyle.setText(chef.getChefStyle());
-        viewHolder.tvChefPrice.setText(chef.getChefPrice());
-        viewHolder.tvChefETA.setText(chef.getChefETA() + "\nmins");
-        // Set background
-        viewHolder.imageView.setAdjustViewBounds(false);
-        viewHolder.imageView.setImageDrawable(chef.getChefImage());
-
+        viewHolder.tvItemTitle.setText(menuItem.getTitle());
+        viewHolder.tvItemSubtitle.setText(menuItem.getSubtitle());
+        viewHolder.tvItemPrice.setText(context.getText(R.string.currency_icon) + " " + menuItem.getPrice());
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    /**
+     * Returns the size of the dataset - i.e. the number of menu items.
+     * @return The number of menu items.
+     */
     @Override
     public int getItemCount() {
-        return chefs.size();
+        return menuItems.size();
     }
 }

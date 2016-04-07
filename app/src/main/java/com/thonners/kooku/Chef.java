@@ -28,13 +28,14 @@ public class Chef {
     /**
      * Constructor.
      */
-    public Chef(int chefID, String name, String style, int price, int eta, Drawable image) {
+    public Chef(int chefID, String name, String style, int price, int eta, Drawable image, ChefMenu menu) {
         this.chefID = chefID ;
         this.chefName = name ;
         this.chefStyle = style ;
         this.chefPriceBracket = price ;
         this.chefETA = eta ;
         this.chefImage = image ;
+        this.menu = menu ;
     }
 
     //---------------------- Public Methods -----------------------------
@@ -69,6 +70,8 @@ public class Chef {
     public Bitmap getChefImageBM() {
         return chefImageBM;
     }
-
+    public ChefMenu getMenu() {
+        return menu ;
+    }
 
 }
