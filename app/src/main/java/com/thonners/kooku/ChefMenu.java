@@ -28,7 +28,7 @@ public class ChefMenu {
     /**
      * Class to hold individual menu items and their relevant details.
      */
-    private static class ChefMenuItem {
+    public static class ChefMenuItem {
 
         String title ;
         String description ;
