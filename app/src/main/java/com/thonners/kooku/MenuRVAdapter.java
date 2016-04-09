@@ -33,6 +33,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
         // All the views
         public View cardView;
         protected RelativeLayout layout ;
+        protected TextView tvItemID;
         protected TextView tvItemTitle;
         protected TextView tvItemSubtitle;
         protected TextView tvItemPrice;
@@ -42,6 +43,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
             super(view);
             cardView = view;
             layout      = (RelativeLayout) view.findViewById(R.id.menu_item_layout) ;
+            tvItemID    = (TextView) view.findViewById(R.id.menu_item_id) ;
             tvItemTitle = (TextView) view.findViewById(R.id.menu_item_title) ;
             tvItemSubtitle = (TextView) view.findViewById(R.id.menu_item_subtitle) ;
             tvItemPrice = (TextView) view.findViewById(R.id.menu_item_price) ;
@@ -56,7 +58,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
         @Override
         public void onClick(View view){
             if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(item);
+                onItemClickListener.onItemClick(view, getLayoutPosition());
             }
         }
 
@@ -78,7 +80,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
      * Interface for the OnClickListener of the card in the ViewHolder.
      */
     public interface OnItemClickListener {
-        void onItemClick(ChefMenu.ChefMenuItem item);
+        void onItemClick(View view, int position);
     }
 
     /**
@@ -115,6 +117,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
         // Get Chef
         final ChefMenu.ChefMenuItem menuItem = menuItems.get(position) ;
         // Populate details
+        viewHolder.tvItemID.setText(menuItem.getItemID() + "");
         viewHolder.tvItemTitle.setText(menuItem.getTitle());
         viewHolder.tvItemSubtitle.setText(menuItem.getSubtitle());
         viewHolder.tvItemPrice.setText(context.getText(R.string.currency_icon) + " " + menuItem.getPrice());

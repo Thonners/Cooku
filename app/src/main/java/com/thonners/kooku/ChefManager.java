@@ -89,23 +89,23 @@ public class ChefManager {
         ChefMenu menu = new ChefMenu() ;
         switch (chefNo) {
             case 1:
-                menu.addMenuItem("Pete's Danish Pastries", "Mixed pastries", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }});
-                menu.addMenuItem("Pete's Croissants", "12 Fresh Croissants", "", 5.0, new ArrayList<String>() {{add("Pastry"); add("Butter"); }});
+                menu.addMenuItem(1, "Pete's Danish Pastries", "Mixed pastries", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }});
+                menu.addMenuItem(2, "Pete's Croissants", "12 Fresh Croissants", "", 5.0, new ArrayList<String>() {{add("Pastry"); add("Butter"); }});
                 break;
             case 2:
-                menu.addMenuItem("Welsh Rarebit", "Cheese on toast with Mustard", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }});
-                menu.addMenuItem("Spag Bol", "", "", 5.0, new ArrayList<String>() {{add("Pasta"); add("Beef"); add("Tomato"); add("Oregano"); }});
-                menu.addMenuItem("Bangers and mash", "Organic sausages with creamy, cheesy mash", "", 7.5, new ArrayList<String>() {{add("Sausage"); add("Potato"); add("Milk"); }});
-                menu.addMenuItem("Brownies", "", "", 6.0, new ArrayList<String>() {{add("Chocolate"); add("Butter"); add("Flour"); }});
+                menu.addMenuItem(1, "Welsh Rarebit", "Cheese on toast with Mustard", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }});
+                menu.addMenuItem(2, "Spag Bol", "", "", 5.0, new ArrayList<String>() {{add("Pasta"); add("Beef"); add("Tomato"); add("Oregano"); }});
+                menu.addMenuItem(3, "Bangers and mash", "Organic sausages with creamy, cheesy mash", "", 7.5, new ArrayList<String>() {{add("Sausage"); add("Potato"); add("Milk"); }});
+                menu.addMenuItem(4, "Brownies", "", "", 6.0, new ArrayList<String>() {{add("Chocolate"); add("Butter"); add("Flour"); }});
                 break;
             case 3:
-                menu.addMenuItem("Victoria Sponge Cake", "Springy", "", 7.5, new ArrayList<String>() {{add("Flour"); add("Sugar"); }});
-                menu.addMenuItem("Coffee and Walnut Cake", "Perfect for afternoon tea", "", 8.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Coffee"); add("Walnut"); }});
-                menu.addMenuItem("Lemon Drizzle Cake", "Bake-off Classic", "", 12.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Lemon"); add("Drizzle"); }});
+                menu.addMenuItem(1, "Victoria Sponge Cake", "Springy", "", 7.5, new ArrayList<String>() {{add("Flour"); add("Sugar"); }});
+                menu.addMenuItem(2, "Coffee and Walnut Cake", "Perfect for afternoon tea", "", 8.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Coffee"); add("Walnut"); }});
+                menu.addMenuItem(3, "Lemon Drizzle Cake", "Bake-off Classic", "", 12.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Lemon"); add("Drizzle"); }});
                 break;
             case 4:
-                menu.addMenuItem("CAKE", "Full fat", "", 10, new ArrayList<String>() {{add("Flour"); add("Sugar"); }});
-                menu.addMenuItem("Fat-fighters cake", "Half the calories (when cut in half)", "", 20.0, new ArrayList<String>() {{add("Flour"); add("Sweetener"); }});
+                menu.addMenuItem(1, "CAKE", "Full fat", "", 10, new ArrayList<String>() {{add("Flour"); add("Sugar"); }});
+                menu.addMenuItem(2, "Fat-fighters cake", "Half the calories (when cut in half)", "", 20.0, new ArrayList<String>() {{add("Flour"); add("Sweetener"); }});
                 break;
 
         }

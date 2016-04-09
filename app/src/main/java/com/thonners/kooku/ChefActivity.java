@@ -1,5 +1,10 @@
 package com.thonners.kooku;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +12,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Activity to display a chef's home page.
@@ -21,13 +27,18 @@ public class ChefActivity extends AppCompatActivity {
     private ChefManager chefManager;
     private Chef chef ;
     private ChefMenu menu ;
+    private CoordinatorLayout coordinatorLayout ;
     private RecyclerView recyclerView ;
     private RecyclerView.LayoutManager rcLayoutManager;
+    private Basket basket = new Basket() ;
 
     private MenuRVAdapter.OnItemClickListener onItemClickListener = new MenuRVAdapter.OnItemClickListener() {
         @Override
-        public void onItemClick(ChefMenu.ChefMenuItem item) {
-            addItemToBasket(item);
+        public void onItemClick(View view, int position) {
+            // Get the item ID
+            int itemID = Integer.parseInt(((TextView) view.findViewById(R.id.menu_item_id)).getText().toString()) ;
+            // Add the item to the basket
+            addItemToBasket(menu.getMenuItem(itemID));
         }
     };
 
@@ -35,7 +46,13 @@ public class ChefActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef);
-        setTitle(getIntent().getStringExtra("CHEF_NAME")); // This shouldn't work
+        // Get the coorindator layout
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.chef_coordinator_layout);
+
+        // Set colour of trolley
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_basket) ;
+        Drawable fabBasketDrawable = fab.getDrawable() ;
+        fabBasketDrawable.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
         // Initialise chefManager
         chefManager  = new ChefManager(this);
@@ -52,7 +69,8 @@ public class ChefActivity extends AppCompatActivity {
 
         // Use this setting to improve performance given that changes
         // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
+        recyclerView.setNestedScrollingEnabled(true);
 
         // Use a StaggeredGridLayoutManager - set span to 1, to make it just a vertical list, but maintains possibility to increase number of rows later (tablet?)
         rcLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
@@ -68,8 +86,33 @@ public class ChefActivity extends AppCompatActivity {
         chefImage.setImageDrawable(chef.getChefImage());
     }
 
-    private void addItemToBasket(ChefMenu.ChefMenuItem item) {
+    private void addItemToBasket(final ChefMenu.ChefMenuItem item) {
         Log.d(LOG_TAG, "Adding item: " + item.getTitle() + " to basket.");
+        // Add item to the basket
+        basket.addItem(item);
+        // Show snackbar
+        String snackbarMessage = String.format(getString(R.string.snackbar_message), item.getTitle()) ;
+        Snackbar snackbar = Snackbar
+                .make(coordinatorLayout, snackbarMessage, Snackbar.LENGTH_LONG)
+                .setAction(getString(R.string.snackbar_action_message), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Remove the item from the basket.
+                        basket.removeItem(item);
+                        // Show confirmation that it's been removed.
+                        String itemRemovedSnackbarMessage = String.format(getString(R.string.snackbar_item_removed), item.getTitle());
+                        Snackbar itemRemovedSnackbar = Snackbar.make(coordinatorLayout,itemRemovedSnackbarMessage,Snackbar.LENGTH_SHORT) ;
+                        itemRemovedSnackbar.show();
+                    }
+                });
+        snackbar.setActionTextColor(getResources().getColor(R.color.colorAccent));
+        // Show it
+        snackbar.show();
+    }
+
+    public void fabClicked(View view) {
+        Log.d(LOG_TAG, "Floating Action Button Clicked. Checking out...") ;
+        // TODO: Add intent to move onto checkout page.
     }
 
 }

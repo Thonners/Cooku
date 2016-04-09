@@ -1,6 +1,7 @@
 package com.thonners.kooku;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Class to hold a chef's menu.
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public class ChefMenu {
 
-    private final ArrayList<ChefMenuItem> menuItems = new ArrayList<>();
+    private final HashMap<Integer, ChefMenuItem> menuItems = new HashMap<>();
 
     /**
      * Constructor.
@@ -26,13 +27,30 @@ public class ChefMenu {
      * @param price Price of the dish
      * @param ingredients   List of ingredients in the dish.
      */
-    public void addMenuItem(String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
-        ChefMenuItem newItem = new ChefMenuItem(title, subtitle, description, price, ingredients);
-        menuItems.add(newItem);
+    public void addMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
+        ChefMenuItem newItem = new ChefMenuItem(itemID, title, subtitle, description, price, ingredients);
+        menuItems.put(itemID, newItem);
     }
 
+    /**
+     * Returns an array list of the menu items.
+     * @return ArrayList of menu items
+     */
     public ArrayList<ChefMenuItem> getMenuItems() {
-        return menuItems ;
+        return new ArrayList<>(menuItems.values()) ;
+    }
+
+    /**
+     * Method to return an item instance corresponding to the item's ID number
+     * @param itemID Item ID number
+     * @return The ChefMenuItem instance.
+     */
+    public ChefMenuItem getMenuItem(int itemID) {
+        if (menuItems.containsKey(itemID)){
+            return menuItems.get(itemID);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -40,6 +58,7 @@ public class ChefMenu {
      */
     public static class ChefMenuItem {
 
+        private int itemID ;
         private String title ;
         private String subtitle ;
         private String description ;
@@ -54,7 +73,8 @@ public class ChefMenu {
          * @param price Price of the dish
          * @param ingredients   List of ingredients in the dish.
          */
-        public ChefMenuItem(String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
+        public ChefMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
+            this.itemID = itemID ;
             this.title = title;
             this.subtitle = subtitle ;
             this.description = description;
@@ -63,6 +83,10 @@ public class ChefMenu {
         }
 
         // Getter methods
+
+        public int getItemID() {
+            return itemID;
+        }
         public String getTitle() {
             return title;
         }
