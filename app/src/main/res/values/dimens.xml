@@ -27,5 +27,10 @@
 
     <!-- Dimensions for the chef page -->
     <dimen name="chef_appbar_height">300dp</dimen>
+    <dimen name="chef_bio_text_size">18sp</dimen>
+    <dimen name="chef_bio_prompt_text_size">12sp</dimen>
+    <dimen name="menu_item_title_text_size">18sp</dimen>
+    <dimen name="menu_item_subtitle_text_size">12sp</dimen>
+
 
 </resources>

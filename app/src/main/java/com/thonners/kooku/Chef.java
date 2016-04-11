@@ -16,6 +16,8 @@ public class Chef {
     private int chefID ;
     private String chefName ;
     private String chefStyle ;
+    private String chefBioShort ;
+    private String chefBioLong ;
     private int chefPriceBracket ;
     private int chefETA ;
     private Location chefLocation ;
@@ -28,10 +30,12 @@ public class Chef {
     /**
      * Constructor.
      */
-    public Chef(int chefID, String name, String style, int price, int eta, Drawable image, ChefMenu menu) {
+    public Chef(int chefID, String name, String style, String[] bios, int price, int eta, Drawable image, ChefMenu menu) {
         this.chefID = chefID ;
         this.chefName = name ;
         this.chefStyle = style ;
+        this.chefBioShort = bios[0] ;
+        this.chefBioLong = bios[1] ;
         this.chefPriceBracket = price ;
         this.chefETA = eta ;
         this.chefImage = image ;
@@ -50,6 +54,12 @@ public class Chef {
     }
     public String getChefStyle() {
         return chefStyle ;
+    }
+    public String getChefBioShort() {
+        return chefBioShort;
+    }
+    public String getChefBioLong() {
+        return chefBioLong;
     }
     public int getChefPriceBracket() {
         return chefPriceBracket ;

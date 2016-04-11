@@ -6,7 +6,32 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">18dp</item>
-        <item name="android:textSize">8dp</item>
+        <item name="android:textSize">8sp</item>
     </style>
 
+    <style name="menu_item_text_view">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:textSize">8sp</item>
+    </style>
+
+    <style name="chef_bio_text_view">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:textSize">@dimen/chef_bio_text_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="chef_bio_prompt_text_view">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">@dimen/chef_bio_prompt_text_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>

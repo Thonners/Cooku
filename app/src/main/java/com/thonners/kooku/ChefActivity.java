@@ -35,10 +35,14 @@ public class ChefActivity extends AppCompatActivity {
     private MenuRVAdapter.OnItemClickListener onItemClickListener = new MenuRVAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            // Get the item ID
-            int itemID = Integer.parseInt(((TextView) view.findViewById(R.id.menu_item_id)).getText().toString()) ;
-            // Add the item to the basket
-            addItemToBasket(menu.getMenuItem(itemID));
+            if (position == 0) {
+                Log.d(LOG_TAG, "Expanding bio");
+            } else {
+                // Get the item ID
+                int itemID = Integer.parseInt(((TextView) view.findViewById(R.id.menu_item_id)).getText().toString());
+                // Add the item to the basket
+                addItemToBasket(menu.getMenuItem(itemID));
+            }
         }
     };
 
@@ -46,7 +50,7 @@ public class ChefActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef);
-        // Get the coorindator layout
+        // Get the coordinator layout
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.chef_coordinator_layout);
 
         // Set colour of trolley
@@ -69,7 +73,7 @@ public class ChefActivity extends AppCompatActivity {
 
         // Use this setting to improve performance given that changes
         // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(false);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(true);
 
         // Use a StaggeredGridLayoutManager - set span to 1, to make it just a vertical list, but maintains possibility to increase number of rows later (tablet?)
@@ -113,6 +117,8 @@ public class ChefActivity extends AppCompatActivity {
     public void fabClicked(View view) {
         Log.d(LOG_TAG, "Floating Action Button Clicked. Checking out...") ;
         // TODO: Add intent to move onto checkout page.
+        Snackbar snackbar = Snackbar.make(coordinatorLayout,"Current Basket Total = £ " + basket.getTotalPrice(),Snackbar.LENGTH_LONG) ;
+        snackbar.show();
     }
 
 }

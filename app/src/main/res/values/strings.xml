@@ -13,6 +13,7 @@
     <string name="location">Location</string>
 
     <!-- Chef Menu Page -->
+    <string name="chef_bio_prompt">Touch to read more...</string>
     <string name="snackbar_message">%1$s added to your basket.</string>
     <string name="snackbar_action_message">REMOVE</string>
     <string name="snackbar_item_removed">%1$s removed from basket.</string>

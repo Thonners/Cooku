@@ -20,6 +20,9 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
 
     private final String LOG_TAG = "MenuRVAdapter" ;
 
+    private final int TYPE_ITEM = Integer.MIN_VALUE ;
+    private final int TYPE_HEADER = Integer.MIN_VALUE + 1 ;
+
     private Context context ;
     private ArrayList<ChefMenu.ChefMenuItem> menuItems = new ArrayList<>();
 
@@ -28,25 +31,14 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is a chef in our case
         // All the views
         public View cardView;
-        protected RelativeLayout layout ;
-        protected TextView tvItemID;
-        protected TextView tvItemTitle;
-        protected TextView tvItemSubtitle;
-        protected TextView tvItemPrice;
-        // The item instance
-        protected ChefMenu.ChefMenuItem item ;
+
         public ViewHolder(View view) {
             super(view);
             cardView = view;
-            layout      = (RelativeLayout) view.findViewById(R.id.menu_item_layout) ;
-            tvItemID    = (TextView) view.findViewById(R.id.menu_item_id) ;
-            tvItemTitle = (TextView) view.findViewById(R.id.menu_item_title) ;
-            tvItemSubtitle = (TextView) view.findViewById(R.id.menu_item_subtitle) ;
-            tvItemPrice = (TextView) view.findViewById(R.id.menu_item_price) ;
 
             cardView.setOnClickListener(this);
         }
@@ -62,18 +54,6 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
             }
         }
 
-        /**
-         * Setter method for the item instance
-         */
-        public void setItem(ChefMenu.ChefMenuItem item) {
-            this.item = item ;
-        }
-        /**
-         * Getter method for the item instance
-         */
-        public ChefMenu.ChefMenuItem getItem() {
-            return item ;
-        }
     }
 
     /**
@@ -103,24 +83,39 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
 
     // Create new views (invoked by layout manager)
     @Override
-    public MenuRVAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.
-                from(viewGroup.getContext()).
-                inflate(R.layout.card_menu_item, viewGroup, false);
+    public MenuRVAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View itemView ;
+        if (viewType == TYPE_HEADER) {
+            itemView = LayoutInflater.
+                    from(viewGroup.getContext()).
+                    inflate(R.layout.card_chef_bio, viewGroup, false);
+            return new VHHeader(itemView) ;
+        } else if (viewType == TYPE_ITEM) {
+            itemView = LayoutInflater.
+                    from(viewGroup.getContext()).
+                    inflate(R.layout.card_menu_item, viewGroup, false);
+            return new VHItem(itemView) ;
+        }
 
-        return new ViewHolder(itemView);
+        throw new RuntimeException("Bad viewType used: " + viewType) ;
     }
 
     // Populate views
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int position){
-        // Get Chef
-        final ChefMenu.ChefMenuItem menuItem = menuItems.get(position) ;
-        // Populate details
-        viewHolder.tvItemID.setText(menuItem.getItemID() + "");
-        viewHolder.tvItemTitle.setText(menuItem.getTitle());
-        viewHolder.tvItemSubtitle.setText(menuItem.getSubtitle());
-        viewHolder.tvItemPrice.setText(context.getText(R.string.currency_icon) + " " + menuItem.getPrice());
+        if (viewHolder instanceof VHHeader) {
+            VHHeader vH = (VHHeader) viewHolder ;
+            vH.tvChefBio.setText("Dummy Text");
+        } else {
+            VHItem vH = (VHItem) viewHolder ;
+            // Get Menu
+            final ChefMenu.ChefMenuItem menuItem = menuItems.get(position-1);
+            // Populate details
+            vH.tvItemID.setText(menuItem.getItemID() + "");
+            vH.tvItemTitle.setText(menuItem.getTitle());
+            vH.tvItemSubtitle.setText(menuItem.getSubtitle());
+            vH.tvItemPrice.setText(context.getText(R.string.currency_icon) + " " + menuItem.getPrice());
+        }
     }
 
     /**
@@ -129,6 +124,45 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
      */
     @Override
     public int getItemCount() {
-        return menuItems.size();
+        return menuItems.size() + 1;
     }
+    @Override
+    public int getItemViewType(int position) {
+        if (isPositionHeader(position))
+            return TYPE_HEADER;
+
+        return TYPE_ITEM;
+    }
+
+    private boolean isPositionHeader(int position) {
+        return position == 0 ;
+    }
+
+    class VHItem extends MenuRVAdapter.ViewHolder {
+        public View cardView;
+        protected RelativeLayout layout ;
+        protected TextView tvItemID;
+        protected TextView tvItemTitle;
+        protected TextView tvItemSubtitle;
+        protected TextView tvItemPrice;
+
+        public VHItem(View view) {
+            super(view);
+            layout      = (RelativeLayout) view.findViewById(R.id.menu_item_layout) ;
+            tvItemID    = (TextView) view.findViewById(R.id.menu_item_id) ;
+            tvItemTitle = (TextView) view.findViewById(R.id.menu_item_title) ;
+            tvItemSubtitle = (TextView) view.findViewById(R.id.menu_item_subtitle) ;
+            tvItemPrice = (TextView) view.findViewById(R.id.menu_item_price) ;
+        }
+    }
+
+    class VHHeader extends MenuRVAdapter.ViewHolder {
+
+        protected TextView tvChefBio ;
+        public VHHeader(View view) {
+            super(view);
+            tvChefBio   = (TextView) view.findViewById(R.id.chef_bio);
+        }
+    }
+
 }
