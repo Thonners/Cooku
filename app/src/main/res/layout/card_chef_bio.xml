@@ -11,15 +11,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/chef_bio"
-        style="@style/chef_bio_text_view"/>
 
-    <TextView
-        android:id="@+id/chef_bio_prompt"
-        android:text="@string/chef_bio_prompt"
-        style="@style/chef_bio_prompt_text_view"/>
+        <TextView
+            android:id="@+id/chef_bio_short"
+            style="@style/chef_bio_text_view"/>
+
+
+        <TextView
+            android:id="@+id/chef_bio_long"
+            style="@style/chef_bio_text_view"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/chef_bio_prompt"
+            android:text="@string/chef_bio_prompt"
+            style="@style/chef_bio_prompt_text_view"/>
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

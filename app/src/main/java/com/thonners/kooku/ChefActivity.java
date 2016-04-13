@@ -31,12 +31,13 @@ public class ChefActivity extends AppCompatActivity {
     private RecyclerView recyclerView ;
     private RecyclerView.LayoutManager rcLayoutManager;
     private Basket basket = new Basket() ;
+    private boolean showFullBio = false ;
 
     private MenuRVAdapter.OnItemClickListener onItemClickListener = new MenuRVAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
             if (position == 0) {
-                Log.d(LOG_TAG, "Expanding bio");
+                toggleBio(view);
             } else {
                 // Get the item ID
                 int itemID = Integer.parseInt(((TextView) view.findViewById(R.id.menu_item_id)).getText().toString());
@@ -81,7 +82,7 @@ public class ChefActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(rcLayoutManager);
 
         // Set the adapter
-        MenuRVAdapter adapter = new MenuRVAdapter(this, menu.getMenuItems());
+        MenuRVAdapter adapter = new MenuRVAdapter(this, menu);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
 
@@ -119,6 +120,23 @@ public class ChefActivity extends AppCompatActivity {
         // TODO: Add intent to move onto checkout page.
         Snackbar snackbar = Snackbar.make(coordinatorLayout,"Current Basket Total = £ " + basket.getTotalPrice(),Snackbar.LENGTH_LONG) ;
         snackbar.show();
+    }
+
+    private void toggleBio(View cardView) {
+        // Toggle whether to show full bio
+        showFullBio = !showFullBio ;
+        // Get text views
+        TextView tvBioPrompt = (TextView) cardView.findViewById(R.id.chef_bio_prompt) ;
+        TextView tvBioLong = (TextView) cardView.findViewById(R.id.chef_bio_long) ;
+        if (showFullBio) {
+            Log.d(LOG_TAG, "Expanding bio");
+            tvBioPrompt.setText(getString(R.string.chef_bio_prompt_2));
+            tvBioLong.setVisibility(View.VISIBLE);
+        } else {
+            Log.d(LOG_TAG, "Shrinking bio");
+            tvBioPrompt.setText(getString(R.string.chef_bio_prompt));
+            tvBioLong.setVisibility(View.GONE);
+        }
     }
 
 }

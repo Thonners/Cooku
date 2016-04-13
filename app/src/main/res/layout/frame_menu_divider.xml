@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_divider_frame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/menu_divider_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/menu_divider_tv"
+            style="@style/menu_divider_text_view"
+            android:text="@string/menu_divider"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/menu_divier_image_lh"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/menu_divider_swirl_size"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/menu_divider_tv"
+            android:tint="@color/colorPrimaryDark"
+            android:src="@drawable/ic_menu_divider_swirl"/>
+
+        <ImageView
+            android:id="@+id/menu_divier_image_rh"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/menu_divider_swirl_size"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/menu_divider_tv"
+            android:tint="@color/colorPrimaryDark"
+            android:src="@drawable/ic_menu_divider_swirl_rh"/>
+    </RelativeLayout>
+
+</FrameLayout>

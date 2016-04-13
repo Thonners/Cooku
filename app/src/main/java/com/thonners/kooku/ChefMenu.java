@@ -14,6 +14,9 @@ public class ChefMenu {
 
     private final HashMap<Integer, ChefMenuItem> menuItems = new HashMap<>();
 
+    private String chefBioShort ;
+    private String chefBioLong ;
+
     /**
      * Constructor.
      */
@@ -30,6 +33,11 @@ public class ChefMenu {
     public void addMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
         ChefMenuItem newItem = new ChefMenuItem(itemID, title, subtitle, description, price, ingredients);
         menuItems.put(itemID, newItem);
+    }
+
+    public void addChefBios(String shortBio, String longBio) {
+        this.chefBioShort = shortBio ;
+        this.chefBioLong = longBio ;
     }
 
     /**
@@ -51,6 +59,21 @@ public class ChefMenu {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Method to return the chef's short (single line) bio
+     * @return Chef's short bio
+     */
+    public String getChefBioShort() {
+        return chefBioShort ;
+    }
+    /**
+     * Method to return the chef's long (multi-line) bio
+     * @return Chef's extended bio
+     */
+    public String getChefBioLong() {
+        return chefBioLong ;
     }
 
     /**
