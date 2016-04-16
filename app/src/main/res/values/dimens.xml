@@ -5,6 +5,10 @@
 
     <!-- Default dimensions for reuse -->
     <dimen name="footer_button_height">48dp</dimen>
+    <dimen name="footer_button_elevation">8dp</dimen>
+    <dimen name="footer_button_icon_size">36dp</dimen>
+    <dimen name="footer_button_text_size">18sp</dimen>
+    <dimen name="footer_button_padding">8dp</dimen>
 
     <!-- Dimensions for the home page -->
     <dimen name="home_logo_text">64dp</dimen>
@@ -29,6 +33,8 @@
     <dimen name="chef_appbar_height">300dp</dimen>
     <dimen name="chef_bio_text_size">18sp</dimen>
     <dimen name="chef_bio_prompt_text_size">12sp</dimen>
+    <dimen name="menu_divider_text_size">18sp</dimen>
+    <dimen name="menu_divider_swirl_size">12dp</dimen>
     <dimen name="menu_item_title_text_size">18sp</dimen>
     <dimen name="menu_item_subtitle_text_size">12sp</dimen>
 

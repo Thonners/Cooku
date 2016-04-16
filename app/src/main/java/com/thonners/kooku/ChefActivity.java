@@ -2,11 +2,13 @@ package com.thonners.kooku;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -31,12 +33,16 @@ public class ChefActivity extends AppCompatActivity {
     private RecyclerView recyclerView ;
     private RecyclerView.LayoutManager rcLayoutManager;
     private Basket basket = new Basket() ;
+    private boolean showFullBio = false ;
+    // Basket footer button values
+    private CardView basketFooterButton ;
+    private TextView basketFooterButtonTV ;
 
     private MenuRVAdapter.OnItemClickListener onItemClickListener = new MenuRVAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
             if (position == 0) {
-                Log.d(LOG_TAG, "Expanding bio");
+                toggleBio(view);
             } else {
                 // Get the item ID
                 int itemID = Integer.parseInt(((TextView) view.findViewById(R.id.menu_item_id)).getText().toString());
@@ -52,12 +58,12 @@ public class ChefActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chef);
         // Get the coordinator layout
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.chef_coordinator_layout);
-
+/*
         // Set colour of trolley
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_basket) ;
         Drawable fabBasketDrawable = fab.getDrawable() ;
         fabBasketDrawable.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
-
+*/
         // Initialise chefManager
         chefManager  = new ChefManager(this);
 
@@ -81,13 +87,25 @@ public class ChefActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(rcLayoutManager);
 
         // Set the adapter
-        MenuRVAdapter adapter = new MenuRVAdapter(this, menu.getMenuItems());
+        MenuRVAdapter adapter = new MenuRVAdapter(this, menu);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
 
         // Set the Chef background image
         ImageView chefImage = (ImageView) findViewById(R.id.chef_image);
         chefImage.setImageDrawable(chef.getChefImage());
+
+        // Set the Chef's name in the title
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar) ;
+        collapsingToolbarLayout.setTitle(chef.getChefName());
+
+        // Get the basket & its views, and hide it
+        basketFooterButton = (CardView) findViewById(R.id.footer_button_basket) ;
+        basketFooterButtonTV = (TextView) basketFooterButton.findViewById(R.id.basket_value) ;
+        // Hide the basket if it's empty
+        if (basket.isEmpty()) {
+            basketFooterButton.setVisibility(View.GONE);
+        }
     }
 
     private void addItemToBasket(final ChefMenu.ChefMenuItem item) {
@@ -107,11 +125,16 @@ public class ChefActivity extends AppCompatActivity {
                         String itemRemovedSnackbarMessage = String.format(getString(R.string.snackbar_item_removed), item.getTitle());
                         Snackbar itemRemovedSnackbar = Snackbar.make(coordinatorLayout,itemRemovedSnackbarMessage,Snackbar.LENGTH_SHORT) ;
                         itemRemovedSnackbar.show();
+                        // Update footer button
+                        updateFooterButtonBasket();
                     }
                 });
         snackbar.setActionTextColor(getResources().getColor(R.color.colorAccent));
         // Show it
         snackbar.show();
+
+        // Update footer button
+        updateFooterButtonBasket();
     }
 
     public void fabClicked(View view) {
@@ -119,6 +142,33 @@ public class ChefActivity extends AppCompatActivity {
         // TODO: Add intent to move onto checkout page.
         Snackbar snackbar = Snackbar.make(coordinatorLayout,"Current Basket Total = £ " + basket.getTotalPrice(),Snackbar.LENGTH_LONG) ;
         snackbar.show();
+    }
+
+    private void toggleBio(View cardView) {
+        // Toggle whether to show full bio
+        showFullBio = !showFullBio ;
+        // Get text views
+        TextView tvBioPrompt = (TextView) cardView.findViewById(R.id.chef_bio_prompt) ;
+        TextView tvBioLong = (TextView) cardView.findViewById(R.id.chef_bio_long) ;
+        if (showFullBio) {
+            Log.d(LOG_TAG, "Expanding bio");
+            tvBioPrompt.setText(getString(R.string.chef_bio_prompt_2));
+            tvBioLong.setVisibility(View.VISIBLE);
+        } else {
+            Log.d(LOG_TAG, "Shrinking bio");
+            tvBioPrompt.setText(getString(R.string.chef_bio_prompt));
+            tvBioLong.setVisibility(View.GONE);
+        }
+    }
+
+    private void updateFooterButtonBasket() {
+        // Hide the footer button if the basket is empty, otherwise force visible and refresh value
+        if (basket.isEmpty()) {
+            basketFooterButton.setVisibility(View.GONE);
+        } else {
+            basketFooterButton.setVisibility(View.VISIBLE);
+            basketFooterButtonTV.setText("£ " + basket.getTotalPrice());
+        }
     }
 
 }

@@ -14,7 +14,12 @@
 
     <!-- Chef Menu Page -->
     <string name="chef_bio_prompt">Touch to read more...</string>
+    <string name="chef_bio_prompt_2">Touch again to close...</string>
+    <string name="menu_divider">Menu</string>
     <string name="snackbar_message">%1$s added to your basket.</string>
     <string name="snackbar_action_message">REMOVE</string>
     <string name="snackbar_item_removed">%1$s removed from basket.</string>
+
+    <!-- Basket Footer Button -->
+    <string name="basket_text">"Current Basket Value: "</string>
 </resources>
