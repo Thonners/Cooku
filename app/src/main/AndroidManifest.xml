@@ -15,10 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name=".ChefActivity"
-            android:parentActivityName=".SearchActivity"></activity>
+        <activity
+            android:name=".SearchActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".MenuActivity"
+            android:parentActivityName=".SearchActivity" />
+        <activity android:name=".BasketActivity"></activity>
     </application>
 
 </manifest>

@@ -38,7 +38,7 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:padding">@dimen/card_primary_text_padding</item>
         <item name="android:textSize">@dimen/chef_bio_prompt_text_size</item>
         <item name="android:textAlignment">center</item>
     </style>
@@ -49,6 +49,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">8dp</item>
         <item name="android:textSize">@dimen/menu_divider_text_size</item>
+    </style>
+
+    <style name="basket_item_text_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/card_primary_text_size</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:padding">@dimen/card_primary_text_padding</item>
     </style>
 
     <!-- Footer Button Styles -->

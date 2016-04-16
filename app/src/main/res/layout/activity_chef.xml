@@ -6,10 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/footer_button_basket"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        layout="@layout/footer_basket"
+        />
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/chef_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/footer_button_basket"
         android:background="@android:color/background_light"
         android:fitsSystemWindows="true"
         >
@@ -59,15 +66,11 @@
             android:id="@+id/chef_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:scrollbars="vertical">
         </android.support.v7.widget.RecyclerView>
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <include
-        android:id="@+id/footer_button_basket"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        layout="@layout/footer_basket"
-        />
 
 </RelativeLayout>

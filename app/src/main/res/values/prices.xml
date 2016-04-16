@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- File to store double values - for standard pricing -->
+    <item name="minimum_order_value" format="float" type="dimen">15.0</item>
+
+</resources>

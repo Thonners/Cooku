@@ -1,10 +1,8 @@
 package com.thonners.kooku;
 
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,9 +20,9 @@ import android.widget.TextView;
  * @author M Thomas
  * @since 25/03/16
  */
-public class ChefActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
-    private final String LOG_TAG = "ChefActivity" ;
+    private final String LOG_TAG = "MenuActivity" ;
 
     private ChefManager chefManager;
     private Chef chef ;
@@ -101,11 +99,16 @@ public class ChefActivity extends AppCompatActivity {
 
         // Get the basket & its views, and hide it
         basketFooterButton = (CardView) findViewById(R.id.footer_button_basket) ;
+        basketFooterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                basketButtonClicked() ;
+            }
+        });
         basketFooterButtonTV = (TextView) basketFooterButton.findViewById(R.id.basket_value) ;
-        // Hide the basket if it's empty
-        if (basket.isEmpty()) {
-            basketFooterButton.setVisibility(View.GONE);
-        }
+
+        // Set/hide the basket footer button as appropriate
+        updateFooterButtonBasket();
     }
 
     private void addItemToBasket(final ChefMenu.ChefMenuItem item) {
@@ -169,6 +172,15 @@ public class ChefActivity extends AppCompatActivity {
             basketFooterButton.setVisibility(View.VISIBLE);
             basketFooterButtonTV.setText("£ " + basket.getTotalPrice());
         }
+    }
+
+    private void basketButtonClicked() {
+        // Launch new intent
+        Log.d(LOG_TAG, "Basket footer button clicked. Launching BasketActivity...");
+        Intent basketActivity = new Intent(this, BasketActivity.class) ;
+        basketActivity.putExtra(Basket.BASKET_CHEF_EXTRA, chef.getChefID()) ;
+        basketActivity.putExtra(Basket.BASKET_ORDERS_EXTRA, basket.getIntentPassableOrders()) ;
+        startActivity(basketActivity);
     }
 
 }

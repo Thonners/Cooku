@@ -1,6 +1,7 @@
 package com.thonners.kooku;
 
 import android.util.Log;
+import android.view.MenuItem;
 
 import java.util.HashMap;
 
@@ -15,6 +16,8 @@ import java.util.HashMap;
 public class Basket {
 
     private final String LOG_TAG = "Basket" ;
+	public static final String BASKET_CHEF_EXTRA = "com.thonners.kooku.basketChefExtra" ;
+	public static final String BASKET_ORDERS_EXTRA = "com.thonners.kooku.basketOrdersExtra" ;
 
 	private double totalPrice = 0.0 ;
 	private HashMap<ChefMenu.ChefMenuItem, Integer> orders = new HashMap<>() ;
@@ -75,7 +78,10 @@ public class Basket {
 		Log.d(LOG_TAG,"Total cost = " + totalPrice) ;
 	}
 
-    private void updateTotalPrice() {
+	/**
+	*    Method to calculate and update the total value of the basket.
+	*/
+	private void updateTotalPrice() {
         double price = 0.0 ;
         for (ChefMenu.ChefMenuItem item : orders.keySet()) {
             double itemPrice = item.getPrice() * orders.get(item) ;
@@ -86,13 +92,33 @@ public class Basket {
     }
 
 	/**
-	*    Method to calculate the total value of the basket
+	*    Method to return the total value of the basket
 	*    @return totalPrice The total value of the basket.
 	*/
 	public double getTotalPrice() {
 		return totalPrice ;
 	}
 
+	/**
+	 * Method to return a hashmap of the orders which can be passed over an intent.
+	 * @return The order's item IDs and their respective quantities
+     */
+	public HashMap<Integer, Integer> getIntentPassableOrders() {
+		HashMap<Integer, Integer> passableOrders = new HashMap<>() ;
+
+		// Loop through all order items, and add the item ID and the quantity to the passable orders HM
+		for (ChefMenu.ChefMenuItem item : orders.keySet()) {
+			passableOrders.put(item.getItemID(), orders.get(item)) ;
+		}
+
+		return passableOrders;
+	}
+
+    /**
+     * Method to return whether the basket is empty or not.
+     * Used, for example, in determining whether to show the basket footer button.
+     * @return Whether basket total is zero.
+     */
 	public boolean isEmpty() {
 		return totalPrice == 0.0 ;
 	}

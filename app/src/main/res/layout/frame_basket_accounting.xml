@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/basket_accounting_padding">
+
+        <TextView
+            android:id="@+id/basket_accounting_text"
+            style="@style/basket_item_text_view"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+        <TextView
+            android:id="@+id/basket_accounting_value"
+            style="@style/basket_item_text_view"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true" />
+
+        <!-- Try using this as a basic framework, and populating the details programatically
+        <TextView
+            android:id="@+id/basket_subtotal_text"
+            style="@style/basket_item_text_view"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+        <TextView
+            android:id="@+id/basket_subtotal_value"
+            style="@style/basket_item_text_view"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/basket_delivery_text"
+            style="@style/basket_item_text_view"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/basket_subtotal_text"/>
+        <TextView
+            android:id="@+id/basket_delivery_value"
+            style="@style/basket_item_text_view"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBaseline="@+id/basket_delivery_text"/>
+        <TextView
+            android:id="@+id/basket_surcharge_text"
+            style="@style/basket_item_text_view"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/basket_delivery_text"/>
+        <TextView
+            android:id="@+id/basket_surcharge_value"
+            style="@style/basket_item_text_view"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBaseline="@+id/basket_surcharge_text"/>
+
+        -->
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -97,8 +97,8 @@ public class SearchActivity extends AppCompatActivity {
         Pair<View, String> imagePair = Pair.create((View) chefImage, "tImage") ;
         // Define the transition options
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imagePair) ;
-        // Define the intent of the ChefActivity
-        Intent chefPageIntent = new Intent(this, ChefActivity.class);
+        // Define the intent of the MenuActivity
+        Intent chefPageIntent = new Intent(this, MenuActivity.class);
         // Add chef id
         TextView tvID = (TextView) resultsCardView.findViewById(R.id.chef_id) ;
         chefPageIntent.putExtra(Chef.CHEF_ID,Integer.parseInt(tvID.getText() + ""));
