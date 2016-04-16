@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -22,14 +23,35 @@ public class Basket implements Parcelable {
 	public static final String BASKET_CHEF_EXTRA = "com.thonners.kooku.basketChefExtra" ;
 	public static final String BASKET_ORDERS_EXTRA = "com.thonners.kooku.basketOrdersExtra" ;
 
-	private double totalPrice = 0.0 ;
+    public static final double MINIMUM_ORDER_VALUE = 15.0 ;
+    public static final double DELIVERY_CHARGE = 2.5 ;
+    public static final double SURCHARGE_VALUE = 2.5 ;
+
+
+    private double totalPrice = 0.0 ;
 	private HashMap<ChefMenu.ChefMenuItem, Integer> orders = new HashMap<>() ;
+    private ArrayList<ChefMenu.ChefMenuItem> menuItems ;
 
 	/**
 	*    Constructor
 	*/
 	public Basket() {
 	}
+
+    /**
+     * Method to extract the menu items, so that they can be pulled out by an index number when creating the views.
+     */
+    private void populateMenuItems() {
+        // Clear the list to ensure there are no duplicates
+        menuItems = new ArrayList<>() ;
+        for (ChefMenu.ChefMenuItem item : orders.keySet()) {
+            menuItems.add(item) ;
+        }
+    }
+    public ArrayList<ChefMenu.ChefMenuItem> getMenuItems() {
+        populateMenuItems();
+        return menuItems ;
+    }
 
     /**
      * Method to increment item count by 1
@@ -98,7 +120,7 @@ public class Basket implements Parcelable {
 	*    Method to return the total value of the basket
 	*    @return totalPrice The total value of the basket.
 	*/
-	public double getTotalPrice() {
+	public double getSubtotalPrice() {
         updateTotalPrice();
 		return totalPrice ;
 	}

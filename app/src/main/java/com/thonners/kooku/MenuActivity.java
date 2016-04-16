@@ -10,6 +10,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,14 +55,12 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef);
+        // Show the back/up button. Will be intercepted and forced to behave like back button in onMenuItemSelected.
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Get the coordinator layout
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.chef_coordinator_layout);
-/*
-        // Set colour of trolley
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_basket) ;
-        Drawable fabBasketDrawable = fab.getDrawable() ;
-        fabBasketDrawable.setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
-*/
+
         // Initialise chefManager
         chefManager  = new ChefManager(this);
 
@@ -111,6 +110,23 @@ public class MenuActivity extends AppCompatActivity {
         updateFooterButtonBasket();
     }
 
+    /**
+     * Method to handle item menu clicks.
+     * Includes intercepting the up button to force it to behave like the back button
+     * @param item The menu item selected
+     * @return Whether this method has handled the click
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case android.R.id.home:
+            onBackPressed();
+            return true;
+    }
+
+    return(super.onOptionsItemSelected(item));
+}
+
     private void addItemToBasket(final ChefMenu.ChefMenuItem item) {
         Log.d(LOG_TAG, "Adding item: " + item.getTitle() + " to basket.");
         // Add item to the basket
@@ -143,7 +159,7 @@ public class MenuActivity extends AppCompatActivity {
     public void fabClicked(View view) {
         Log.d(LOG_TAG, "Floating Action Button Clicked. Checking out...") ;
         // TODO: Add intent to move onto checkout page.
-        Snackbar snackbar = Snackbar.make(coordinatorLayout,"Current Basket Total = £ " + basket.getTotalPrice(),Snackbar.LENGTH_LONG) ;
+        Snackbar snackbar = Snackbar.make(coordinatorLayout,"Current Basket Total = £ " + basket.getSubtotalPrice(),Snackbar.LENGTH_LONG) ;
         snackbar.show();
     }
 
@@ -170,7 +186,7 @@ public class MenuActivity extends AppCompatActivity {
             basketFooterButton.setVisibility(View.GONE);
         } else {
             basketFooterButton.setVisibility(View.VISIBLE);
-            basketFooterButtonTV.setText("£ " + basket.getTotalPrice());
+            basketFooterButtonTV.setText("£ " + basket.getSubtotalPrice());
         }
     }
 

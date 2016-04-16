@@ -1,5 +1,8 @@
 <resources>
+    <!-- Universal Strings -->
     <string name="app_name">Kookü</string>
+    <string name="price">£ %1$f.2</string>
+
 
     <!-- Home Page -->
     <string name="home_page_message">Fresh food in your community\nDelivered to your door</string>
@@ -19,6 +22,12 @@
     <string name="snackbar_message">%1$s added to your basket.</string>
     <string name="snackbar_action_message">REMOVE</string>
     <string name="snackbar_item_removed">%1$s removed from basket.</string>
+
+    <!-- Basket Page -->
+    <string name="subtotal">Subtotal:</string>
+    <string name="delivery_charge">Delivery Charge:</string>
+    <string name="surcharge">Surcharge for order under %1$s :</string>
+    <string name="quantity_suffix">%1$d x</string>
 
     <!-- Basket Footer Button -->
     <string name="basket_text">"Current Basket Value: "</string>

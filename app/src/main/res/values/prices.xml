@@ -2,5 +2,7 @@
 <resources>
     <!-- File to store double values - for standard pricing -->
     <item name="minimum_order_value" format="float" type="dimen">15.0</item>
+    <item name="delivery_charge" format="float" type="dimen">2.5</item>
+    <item name="surcharge_value" format="float" type="dimen">2.5</item>
 
 </resources>
