@@ -93,4 +93,8 @@ public class Basket {
 		return totalPrice ;
 	}
 
+	public boolean isEmpty() {
+		return totalPrice == 0.0 ;
+	}
+
 }

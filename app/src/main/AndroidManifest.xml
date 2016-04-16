@@ -16,7 +16,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchActivity"
-            android:parentActivityName=".HomeActivity"
             android:windowSoftInputMode="stateHidden"></activity>
         <activity android:name=".ChefActivity"
             android:parentActivityName=".SearchActivity"></activity>

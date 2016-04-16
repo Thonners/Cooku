@@ -25,6 +25,7 @@
         android:clickable="true"
         android:onClick="getStartedClicked"
         card_view:cardBackgroundColor="@color/colorPrimaryDark"
+        card_view:cardCornerRadius="0dp"
         android:minHeight="@dimen/start_button_v_size"
         android:minWidth="0dp" >
         <TextView
