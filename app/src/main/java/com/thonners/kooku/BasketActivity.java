@@ -2,15 +2,24 @@ package com.thonners.kooku;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
 
 public class BasketActivity extends AppCompatActivity {
+
+    private final String LOG_TAG = "BasketActivity" ;
 
     Basket basket ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set layout
         setContentView(R.layout.activity_basket);
+
+        // Get Intent extras
+        basket = getIntent().getExtras().getParcelable(Basket.BASKET_ORDERS_EXTRA) ;
+
     }
 
     /**

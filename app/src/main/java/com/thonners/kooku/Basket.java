@@ -1,5 +1,8 @@
 package com.thonners.kooku;
 
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -13,7 +16,7 @@ import java.util.HashMap;
 */
 
 
-public class Basket {
+public class Basket implements Parcelable {
 
     private final String LOG_TAG = "Basket" ;
 	public static final String BASKET_CHEF_EXTRA = "com.thonners.kooku.basketChefExtra" ;
@@ -96,23 +99,19 @@ public class Basket {
 	*    @return totalPrice The total value of the basket.
 	*/
 	public double getTotalPrice() {
+        updateTotalPrice();
 		return totalPrice ;
 	}
 
-	/**
-	 * Method to return a hashmap of the orders which can be passed over an intent.
-	 * @return The order's item IDs and their respective quantities
+    /**
+     * Method to return the HashMap of the orders.
+     * As ChefMenuItems are parcelable, this can be passed over an intent.
+     * @return HashMap of basket's orders, with the quantity (value) of each ChefMenuItem (key).
      */
-	public HashMap<Integer, Integer> getIntentPassableOrders() {
-		HashMap<Integer, Integer> passableOrders = new HashMap<>() ;
+    public HashMap<ChefMenu.ChefMenuItem, Integer> getOrders() {
+        return orders ;
+    }
 
-		// Loop through all order items, and add the item ID and the quantity to the passable orders HM
-		for (ChefMenu.ChefMenuItem item : orders.keySet()) {
-			passableOrders.put(item.getItemID(), orders.get(item)) ;
-		}
-
-		return passableOrders;
-	}
 
     /**
      * Method to return whether the basket is empty or not.
@@ -123,4 +122,30 @@ public class Basket {
 		return totalPrice == 0.0 ;
 	}
 
+
+
+        // Parcelable Stuff
+
+        public int describeContents() {
+            return 0;
+        }
+
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeMap(orders);
+        }
+
+        public static final Parcelable.Creator<Basket> CREATOR
+                = new Parcelable.Creator<Basket>() {
+            public Basket createFromParcel(Parcel in) {
+                return new Basket(in);
+            }
+
+            public Basket[] newArray(int size) {
+                return new Basket[size];
+            }
+        };
+
+        private Basket(Parcel in) {
+            orders = in.readHashMap(ChefMenu.ChefMenuItem.class.getClassLoader());
+        }
 }

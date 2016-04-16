@@ -178,8 +178,8 @@ public class MenuActivity extends AppCompatActivity {
         // Launch new intent
         Log.d(LOG_TAG, "Basket footer button clicked. Launching BasketActivity...");
         Intent basketActivity = new Intent(this, BasketActivity.class) ;
-        basketActivity.putExtra(Basket.BASKET_CHEF_EXTRA, chef.getChefID()) ;
-        basketActivity.putExtra(Basket.BASKET_ORDERS_EXTRA, basket.getIntentPassableOrders()) ;
+        basketActivity.putExtra(Basket.BASKET_CHEF_EXTRA, chef.getChefName()) ;
+        basketActivity.putExtra(Basket.BASKET_ORDERS_EXTRA, basket) ;
         startActivity(basketActivity);
     }
 
