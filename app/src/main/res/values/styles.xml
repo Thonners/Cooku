@@ -9,16 +9,8 @@
         <item name="android:textSize">8sp</item>
     </style>
 
-    <style name="chef_name_title">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">8dp</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-
     <style name="menu_item_text_view">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">18dp</item>
@@ -42,30 +34,4 @@
         <item name="android:textSize">@dimen/chef_bio_prompt_text_size</item>
         <item name="android:textAlignment">center</item>
     </style>
-
-    <style name="menu_divider_text_view">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">8dp</item>
-        <item name="android:textSize">@dimen/menu_divider_text_size</item>
-    </style>
-
-    <!-- Footer Button Styles -->
-    <style name="footer_button_basket">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/footer_button_height</item>
-        <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:elevation">@dimen/footer_button_elevation</item>
-    </style>
-
-    <style name="footer_button_basket_text">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_margin">@dimen/footer_button_padding</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/footer_button_text_size</item>
-    </style>
-
 </resources>
