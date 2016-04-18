@@ -2,6 +2,8 @@
     <!-- Universal Strings -->
     <string name="app_name">Kookü</string>
     <string name="price">£ %1$f.2</string>
+    <string name="days">days</string>
+    <string name="mins">mins</string>
 
 
     <!-- Home Page -->
@@ -18,7 +20,7 @@
     <!-- Chef Menu Page -->
     <string name="chef_bio_prompt">Touch to read more...</string>
     <string name="chef_bio_prompt_2">Touch again to close...</string>
-    <string name="menu_divider">Menu</string>
+    <string name="menu_divider">Menü</string>
     <string name="snackbar_message">%1$s added to your basket.</string>
     <string name="snackbar_action_message">REMOVE</string>
     <string name="snackbar_item_removed">%1$s removed from basket.</string>
@@ -28,7 +30,9 @@
     <string name="delivery_charge">Delivery Charge:</string>
     <string name="surcharge">Surcharge for order under %1$s :</string>
     <string name="quantity_suffix">%1$d x</string>
+    <string name="total_price">Total:</string>
 
-    <!-- Basket Footer Button -->
-    <string name="basket_text">"Current Basket Value: "</string>
+    <!-- Footer Button Texts -->
+    <string name="basket_text">View Basket</string>
+    <string name="go_to_checkout">Go To Checkout</string>
 </resources>

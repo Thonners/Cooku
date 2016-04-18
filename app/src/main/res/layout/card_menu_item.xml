@@ -30,7 +30,8 @@
             android:textSize="@dimen/result_text_size"
             android:textColor="@color/colorAccent"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/menu_item_price"/>
 
         <TextView
             android:id="@+id/menu_item_subtitle"
@@ -40,7 +41,8 @@
             android:textSize="@dimen/result_text_size"
             android:textColor="@color/colorAccent"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/menu_item_title"/>
+            android:layout_below="@+id/menu_item_title"
+            android:layout_toLeftOf="@+id/menu_item_price"/>
 
         <TextView
             android:id="@+id/menu_item_price"

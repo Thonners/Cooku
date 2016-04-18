@@ -1,10 +1,8 @@
 package com.thonners.kooku;
 
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,11 +22,12 @@ public class Basket implements Parcelable {
 	public static final String BASKET_ORDERS_EXTRA = "com.thonners.kooku.basketOrdersExtra" ;
 
     public static final double MINIMUM_ORDER_VALUE = 15.0 ;
-    public static final double DELIVERY_CHARGE = 2.5 ;
     public static final double SURCHARGE_VALUE = 2.5 ;
 
 
+    private double subtotalPrice = 0.0 ;
     private double totalPrice = 0.0 ;
+    private DeliveryManager.DeliveryMethod deliveryMethod ;
 	private HashMap<ChefMenu.ChefMenuItem, Integer> orders = new HashMap<>() ;
     private ArrayList<ChefMenu.ChefMenuItem> menuItems ;
 
@@ -99,31 +98,61 @@ public class Basket implements Parcelable {
 		// Update the price
 		double newItemCost = newItem.getPrice() * quantity ;
  		Log.d(LOG_TAG, "New item's cost = " + newItemCost + ". This is for " + quantity + " dishes.") ;
-		updateTotalPrice();
-		Log.d(LOG_TAG,"Total cost = " + totalPrice) ;
+		updateSubtotalPrice();
+		Log.d(LOG_TAG,"Total cost = " + subtotalPrice) ;
 	}
 
 	/**
 	*    Method to calculate and update the total value of the basket.
 	*/
-	private void updateTotalPrice() {
+	private void updateSubtotalPrice() {
         double price = 0.0 ;
         for (ChefMenu.ChefMenuItem item : orders.keySet()) {
             double itemPrice = item.getPrice() * orders.get(item) ;
             price += itemPrice ;
         }
 
-        totalPrice = price ;
+        subtotalPrice = price ;
     }
 
+    private void updateTotalPrice() {
+        // Ensure subtotal price is up to date
+        updateSubtotalPrice();
+        // Initialise to subtotal price
+        totalPrice = subtotalPrice ;
+        // Add surcharge if required
+        if (isSurchargeRequired()) {
+            totalPrice += SURCHARGE_VALUE ;
+        }
+        // Add delivery
+        totalPrice += deliveryMethod.getPrice() ;
+    }
+
+    /**
+     * Method to determine whether a surcharge is required or not, based on its value compared to
+     * the minimum threshold value (set at the head of this class).
+     * @return Whether a surcharge is required or not
+     */
+    public boolean isSurchargeRequired() {
+        return subtotalPrice < MINIMUM_ORDER_VALUE  ;
+    }
 	/**
-	*    Method to return the total value of the basket
-	*    @return totalPrice The total value of the basket.
+	*    Method to return the total value of the items in a basket
+	*    @return subtotalPrice The total value of the basket.
 	*/
 	public double getSubtotalPrice() {
-        updateTotalPrice();
-		return totalPrice ;
+        updateSubtotalPrice();
+		return subtotalPrice;
 	}
+
+    /**
+     * Method to return the whole amount payable, including delivery and any surcharges.
+     * @return totalPrice The total amount payable for the order
+     */
+    public double getTotalPrice() {
+        updateTotalPrice() ;
+        return totalPrice ;
+    }
 
     /**
      * Method to return the HashMap of the orders.
@@ -134,6 +163,21 @@ public class Basket implements Parcelable {
         return orders ;
     }
 
+    /**
+     * Method to set the delivery method.
+     * @param selectedMethod The chosen delivery method
+     */
+    public void setDeliveryMethod(DeliveryManager.DeliveryMethod selectedMethod) {
+        this.deliveryMethod = selectedMethod ;
+    }
+
+    /**
+     * Method to return the delivery method currently selected
+     * @return Instance of the selected delivery method
+     */
+    public DeliveryManager.DeliveryMethod getDeliveryMethod() {
+        return deliveryMethod;
+    }
 
     /**
      * Method to return whether the basket is empty or not.
@@ -141,33 +185,33 @@ public class Basket implements Parcelable {
      * @return Whether basket total is zero.
      */
 	public boolean isEmpty() {
-		return totalPrice == 0.0 ;
+		return subtotalPrice == 0.0 ;
 	}
 
 
 
-        // Parcelable Stuff
+    // --------------------------------- Parcelable Stuff ------------------------------------------
 
-        public int describeContents() {
-            return 0;
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeMap(orders);
+    }
+
+    public static final Parcelable.Creator<Basket> CREATOR
+            = new Parcelable.Creator<Basket>() {
+        public Basket createFromParcel(Parcel in) {
+            return new Basket(in);
         }
 
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeMap(orders);
+        public Basket[] newArray(int size) {
+            return new Basket[size];
         }
+    };
 
-        public static final Parcelable.Creator<Basket> CREATOR
-                = new Parcelable.Creator<Basket>() {
-            public Basket createFromParcel(Parcel in) {
-                return new Basket(in);
-            }
-
-            public Basket[] newArray(int size) {
-                return new Basket[size];
-            }
-        };
-
-        private Basket(Parcel in) {
-            orders = in.readHashMap(ChefMenu.ChefMenuItem.class.getClassLoader());
-        }
+    private Basket(Parcel in) {
+        orders = in.readHashMap(ChefMenu.ChefMenuItem.class.getClassLoader());
+    }
 }

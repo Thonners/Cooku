@@ -60,20 +60,28 @@
     </style>
 
     <!-- Footer Button Styles -->
-    <style name="footer_button_basket">
+    <style name="footer_button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/footer_button_height</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:elevation">@dimen/footer_button_elevation</item>
     </style>
 
-    <style name="footer_button_basket_text">
+    <style name="footer_button_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_margin">@dimen/footer_button_padding</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/footer_button_text_size</item>
+    </style>
+
+    <!-- Card Styles -->
+    <style name="default_card_item">
+        <item name="android:layout_height">@dimen/card_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
 
 </resources>

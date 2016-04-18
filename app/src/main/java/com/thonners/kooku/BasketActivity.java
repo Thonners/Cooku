@@ -2,14 +2,22 @@ package com.thonners.kooku;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import java.text.FieldPosition;
+import java.text.Format;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.HashMap;
+import java.util.StringTokenizer;
 
 
 public class BasketActivity extends AppCompatActivity {
@@ -19,8 +27,14 @@ public class BasketActivity extends AppCompatActivity {
     private Basket basket ;
     private HashMap<ChefMenu.ChefMenuItem, Integer> orders ;
     private ArrayList<ChefMenu.ChefMenuItem> menuItems ;
+    private DeliveryManager deliveryManager ;
+
     private RecyclerView recyclerView ;
     private RecyclerView.LayoutManager rcLayoutManager;
+
+    private CardView totalPriceCard ;
+    private TextView tvDeliveryTime ;
+    private TextView tvTotalPrice ;
 
     private BasketRVAdapter.OnItemClickListener onItemClickListener = new BasketRVAdapter.OnItemClickListener() {
         @Override
@@ -42,6 +56,9 @@ public class BasketActivity extends AppCompatActivity {
         orders = basket.getOrders() ;
         menuItems = basket.getMenuItems() ;
 
+        // Get the DeliveryManager
+        deliveryManager = new DeliveryManager(this, basket) ;
+
         // Get the instance of the view
         recyclerView = (RecyclerView) findViewById(R.id.basket_recycler) ;
 
@@ -50,16 +67,39 @@ public class BasketActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(true);
 
-        // Use a StaggeredGridLayoutManager - set span to 1, to make it just a vertical list, but maintains possibility to increase number of rows later (tablet?)
+        // Use a StaggeredGridLayoutManager - set span to 1, to make it just a vertical list, and keep consistency with other recyclerviews in the app. Can't see much potential for multiple columns on this occasion.
         rcLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(rcLayoutManager);
 
         // Set the adapter
-        BasketRVAdapter adapter = new BasketRVAdapter(this, basket, isSurchargeRequired());
+        BasketRVAdapter adapter = new BasketRVAdapter(this, basket);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
 
+        // Get the 'total price' card views
+        totalPriceCard = (CardView) findViewById(R.id.card_total_price) ;
+        tvDeliveryTime = (TextView) totalPriceCard.findViewById(R.id.tv_delivery_time) ;
+        tvTotalPrice = (TextView) totalPriceCard.findViewById(R.id.tv_total_price_value) ;
+
+        // Set the initial values
+        updateValues() ;
+
     }
+
+    /**
+     * Method to update the values of the delivery price, total price, etc. and update the display.
+     */
+    private void updateValues() {
+        // Get the selected delivery method
+        DeliveryManager.DeliveryMethod method = deliveryManager.getSelectedMethod() ;
+        // Set the lead time
+        tvDeliveryTime.setText(method.getLeadTimeRangeTwoLines());
+        // Set the total price
+        NumberFormat format = NumberFormat.getCurrencyInstance() ;
+        String totalPriceString = format.format(basket.getTotalPrice()) ;
+        tvTotalPrice.setText(totalPriceString);
+    }
+
 
     /**
      * Method to handle item menu clicks.
@@ -78,14 +118,5 @@ public class BasketActivity extends AppCompatActivity {
     return(super.onOptionsItemSelected(item));
 }
 
-    /**
-     * Method to determine whether a surcharge is required or not, based on its value compared to
-     * the minimum threshold value (set in the prices.xml values resource).
-     * @return Whether a surcharge is required or not
-     */
-    private boolean isSurchargeRequired() {
-        double orderThreshold = Basket.MINIMUM_ORDER_VALUE ;
-        Log.d(LOG_TAG, "Testing whether surcharge required: Min order value = " + orderThreshold + " and current basket value = " + basket.getSubtotalPrice()) ;
-        return basket.getSubtotalPrice() < orderThreshold ;
-    }
+
 }

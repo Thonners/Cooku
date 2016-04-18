@@ -32,24 +32,28 @@ public class BasketRVAdapter extends RecyclerView.Adapter<BasketRVAdapter.ViewHo
     private final int TYPE_ITEM = Integer.MIN_VALUE ;
     private final int TYPE_FOOTER = Integer.MIN_VALUE + 1 ;
     // Position index for accounting items, after main items list
-    private final int SUBTOTAL_POSITION = 0 ;
-    private final int DELIVERY_POSITION = 1 ;
-    private final int SURCHARGE_POSITION = 2 ;
+    public final int SUBTOTAL_POSITION = 0 ;
+    public final int DELIVERY_POSITION = 1 ;
+    public final int SURCHARGE_POSITION = 2 ;
 
     private Context context ;
     private Basket basket ;
     private HashMap<ChefMenu.ChefMenuItem, Integer> orders ;
     private ArrayList<ChefMenu.ChefMenuItem> menuItems ;
     private boolean surchargeRequired = false;
+    private double deliveryCharge ;
+
+    private TextView deliveryChargeView ;
 
     private OnItemClickListener onItemClickListener ;
 
 
-    public BasketRVAdapter(Context context, Basket basket, boolean surchargeRequired) {
+    public BasketRVAdapter(Context context, Basket basket) {
         this.context = context ;
         this.basket = basket ;
         orders = basket.getOrders() ;
-        this.surchargeRequired = surchargeRequired ;
+        this.surchargeRequired = basket.isSurchargeRequired() ;
+        this.deliveryCharge = basket.getDeliveryMethod().getPrice() ;
         menuItems = basket.getMenuItems() ;
     }
 
@@ -132,7 +136,7 @@ public class BasketRVAdapter extends RecyclerView.Adapter<BasketRVAdapter.ViewHo
                 vH.tvValue.setText(format.format(basket.getSubtotalPrice()));
             } else if (position == (startIndex + DELIVERY_POSITION)) {
                 vH.tvText.setText(context.getString(R.string.delivery_charge));
-                vH.tvValue.setText(format.format(Basket.DELIVERY_CHARGE));
+                vH.tvValue.setText(format.format(deliveryCharge));
             } else if (position == (startIndex + SURCHARGE_POSITION)) {
                 String surchargeText = String.format(context.getString(R.string.surcharge), format.format(Basket.MINIMUM_ORDER_VALUE)) ;
                 vH.tvText.setText(surchargeText);
