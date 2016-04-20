@@ -1,7 +1,9 @@
 package com.thonners.kooku;
 
 import android.content.Context;
+import android.util.Log;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 /**
@@ -11,6 +13,8 @@ import java.util.ArrayList;
  * @since 18/06/2016
  */
 public class DeliveryManager {
+
+    private final static String LOG_TAG = "DeliveryManager" ;
 
     private Context context ;
     private final ArrayList<DeliveryMethod> deliveryMethods = new ArrayList<>();
@@ -129,7 +133,8 @@ public class DeliveryManager {
          * @return String representation of the range of the lead time and the appropriate time units.
          */
         public String getLeadTimeRangeOneLine() {
-            return getLeadTimeRange() + " " + getLeadTimeUnits() ;
+            String leadTimeRange = getLeadTimeRange() ;
+            return leadTimeRange + " " + getLeadTimeUnits(leadTimeRange) ;
         }
 
         /**
@@ -138,7 +143,8 @@ public class DeliveryManager {
          * @return Formatted string with lead time on the first line, and the units on the second
          */
         public String getLeadTimeRangeTwoLines() {
-            return getLeadTimeRange() + "\n" + getLeadTimeUnits() ;
+            String leadTimeRange = getLeadTimeRange() ;
+            return leadTimeRange + "\n" + getLeadTimeUnits(leadTimeRange) ;
         }
 
         /**
@@ -149,7 +155,7 @@ public class DeliveryManager {
             // Initialise the lead time to the minimum time
             String leadTimeRange = leadTimeLowerBound + "";
             // Add a range if required
-            if (leadTimeLowerBound == leadTimeUpperBound) {
+            if (leadTimeLowerBound < leadTimeUpperBound) {
                 leadTimeRange += "-" + leadTimeUpperBound;
             }
             return leadTimeRange;
@@ -159,11 +165,22 @@ public class DeliveryManager {
          * Method to return a string representation of the lead time units
          * @return The lead time units as a string
          */
-        private String getLeadTimeUnits() {
+        private String getLeadTimeUnits(String leadTimeRange) {
+            // leadTime integer required to conjugate the number of days correctly (i.e. 1 day, 2 days)
+            // Initialise to 2 to default the conjugation to plural, in the case of a range
+            int leadTime = 2 ;
+            // If the string contains a hyphen, assume it's a range, and so the inital 2 value will ensure correct conjugation.
+            if (!leadTimeRange.contains("-")){
+                try {
+                    leadTime = Integer.parseInt(leadTimeRange);
+                } catch (NumberFormatException e) {
+                    Log.d(LOG_TAG, "Unable to parse lead time: " + leadTimeRange) ;
+                }
+            }
             // Get the correct units
             String leadTimeUnits ;
             if (leadTimeIsDays) {
-                leadTimeUnits = context.getResources().getString(R.string.days);
+                leadTimeUnits = context.getResources().getQuantityString(R.plurals.days, leadTime);
             } else {
                 leadTimeUnits = context.getResources().getString(R.string.mins);
             }

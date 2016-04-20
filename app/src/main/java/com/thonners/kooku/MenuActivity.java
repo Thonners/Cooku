@@ -12,6 +12,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -169,14 +170,20 @@ public class MenuActivity extends AppCompatActivity {
         // Get text views
         TextView tvBioPrompt = (TextView) cardView.findViewById(R.id.chef_bio_prompt) ;
         TextView tvBioLong = (TextView) cardView.findViewById(R.id.chef_bio_long) ;
+        ViewGroup.LayoutParams params = cardView.getLayoutParams() ;
         if (showFullBio) {
             Log.d(LOG_TAG, "Expanding bio");
             tvBioPrompt.setText(getString(R.string.chef_bio_prompt_2));
             tvBioLong.setVisibility(View.VISIBLE);
+            /*params.height = ViewGroup.LayoutParams.WRAP_CONTENT ;
+            cardView.setLayoutParams(params);*/
+
         } else {
             Log.d(LOG_TAG, "Shrinking bio");
             tvBioPrompt.setText(getString(R.string.chef_bio_prompt));
             tvBioLong.setVisibility(View.GONE);
+            /*params.height = getResources().getDimensionPixelOffset(R.dimen.card_height_big);
+            cardView.setLayoutParams(params);*/
         }
     }
 

@@ -21,7 +21,9 @@
         <activity
             android:name=".MenuActivity"
             android:parentActivityName=".SearchActivity" />
-        <activity android:name=".BasketActivity"></activity>
+        <activity android:name=".BasketActivity" />
+        <activity android:name=".ItemActivity" />
+        <activity android:name=".CheckoutActivity"></activity>
     </application>
 
 </manifest>

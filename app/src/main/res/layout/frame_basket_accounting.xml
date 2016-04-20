@@ -13,7 +13,32 @@
             style="@style/basket_item_text_view"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/basket_accounting_value"/>
+            android:paddingBottom="0dp"
+            android:layout_toStartOf="@+id/basket_accounting_value"/>
+        <RelativeLayout
+            android:id="@+id/basket_accounting_subtext_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/basket_accounting_text"
+            android:layout_toStartOf="@+id/basket_accounting_value"
+            android:orientation="horizontal"
+            android:paddingTop="0dp"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/basket_accounting_subtext"
+                style="@style/basket_item_text_view"
+                android:textSize="@dimen/card_secondary_text_size"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"/>
+            <ImageView
+                android:layout_width="@dimen/basket_delivery_drop_down_icon_size"
+                android:layout_height="@dimen/basket_delivery_drop_down_icon_size"
+                android:layout_toEndOf="@+id/basket_accounting_subtext"
+                android:layout_centerVertical="true"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_drop_down"/>
+        </RelativeLayout>
         <TextView
             android:id="@+id/basket_accounting_value"
             style="@style/basket_item_text_view"

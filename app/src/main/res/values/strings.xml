@@ -2,7 +2,10 @@
     <!-- Universal Strings -->
     <string name="app_name">Kookü</string>
     <string name="price">£ %1$f.2</string>
-    <string name="days">days</string>
+    <plurals name="days">
+        <item quantity="one">day</item>
+        <item quantity="other">days</item>
+    </plurals>
     <string name="mins">mins</string>
 
 
@@ -11,7 +14,7 @@
     <string name="get_started">Get Started!</string>
 
     <!-- Search Page -->
-    <string name="search_chef_hint">Search Chefs</string>
+    <string name="search_chef_hint">Search for Items or Chefs</string>
     <string name="eta_suffix">" mins"</string>
     <string name="currency_icon">£</string>
     <string name="asap">A.S.A.P.</string>

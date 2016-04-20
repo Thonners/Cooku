@@ -1,5 +1,6 @@
 package com.thonners.kooku;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -118,5 +119,12 @@ public class BasketActivity extends AppCompatActivity {
     return(super.onOptionsItemSelected(item));
 }
 
+    public void checkoutClicked(View view) {
+        // Launch CheckoutActivity
+        Log.d(LOG_TAG, "Checkout clicked, launching CheckoutActivity...");
+        Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
+        //checkoutActivity.putExtra();
+        startActivity(checkoutActivity);
+    }
 
 }

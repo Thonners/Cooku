@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -136,6 +138,10 @@ public class BasketRVAdapter extends RecyclerView.Adapter<BasketRVAdapter.ViewHo
                 vH.tvValue.setText(format.format(basket.getSubtotalPrice()));
             } else if (position == (startIndex + DELIVERY_POSITION)) {
                 vH.tvText.setText(context.getString(R.string.delivery_charge));
+                // Subtext the delivery method name, and set the view to visible
+                vH.tvSubtext.setText(basket.getDeliveryMethod().getTitle());
+                vH.llSubtext.setVisibility(View.VISIBLE);
+                // Set the price
                 vH.tvValue.setText(format.format(deliveryCharge));
             } else if (position == (startIndex + SURCHARGE_POSITION)) {
                 String surchargeText = String.format(context.getString(R.string.surcharge), format.format(Basket.MINIMUM_ORDER_VALUE)) ;
@@ -229,6 +235,8 @@ public class BasketRVAdapter extends RecyclerView.Adapter<BasketRVAdapter.ViewHo
     class VHFooter extends BasketRVAdapter.ViewHolder {
         protected TextView tvText;
         protected TextView tvValue;
+        protected TextView tvSubtext;
+        protected RelativeLayout llSubtext ;
         /**
          * Constructor
          * @param view The view to be held.
@@ -236,6 +244,8 @@ public class BasketRVAdapter extends RecyclerView.Adapter<BasketRVAdapter.ViewHo
         public VHFooter(View view) {
             super(view);
             tvText = (TextView) view.findViewById(R.id.basket_accounting_text);
+            tvSubtext = (TextView) view.findViewById(R.id.basket_accounting_subtext);
+            llSubtext = (RelativeLayout) view.findViewById(R.id.basket_accounting_subtext_layout);
             tvValue = (TextView) view.findViewById(R.id.basket_accounting_value);
         }
     }

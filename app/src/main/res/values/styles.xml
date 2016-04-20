@@ -60,11 +60,12 @@
     </style>
 
     <!-- Footer Button Styles -->
-    <style name="footer_button">
+    <style name="footer_button" parent="CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/footer_button_height</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:elevation">@dimen/footer_button_elevation</item>
+        <item name="cardCornerRadius">0dp</item>
     </style>
 
     <style name="footer_button_text">
@@ -78,7 +79,7 @@
 
     <!-- Card Styles -->
     <style name="default_card_item">
-        <item name="android:layout_height">@dimen/card_height</item>
+        <item name="android:layout_height">@dimen/card_height_regular</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_margin">@dimen/card_margin</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
