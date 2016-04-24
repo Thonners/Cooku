@@ -24,6 +24,9 @@ import android.widget.TextView;
  */
 public class MenuActivity extends AppCompatActivity {
 
+    public static final String ITEM_EXTRA = "com.thonners.kooku.itemExtra";
+    public static final String BASKET_EXTRA = "com.thonners.kooku.basketExtra";
+
     private final String LOG_TAG = "MenuActivity" ;
 
     private ChefManager chefManager;
@@ -46,8 +49,10 @@ public class MenuActivity extends AppCompatActivity {
             } else {
                 // Get the item ID
                 int itemID = Integer.parseInt(((TextView) view.findViewById(R.id.menu_item_id)).getText().toString());
-                // Add the item to the basket
-                addItemToBasket(menu.getMenuItem(itemID));
+                // Launch ItemActivity
+                launchItemActivity(menu.getMenuItem(itemID));
+                // Add the item to the basket - Removed this functionality, swapped for launching ItemActivity onClick
+                //addItemToBasket(menu.getMenuItem(itemID));
             }
         }
     };
@@ -197,6 +202,9 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method to respond to a user clicking on the basket footer button. Launches BasketActivity.
+     */
     private void basketButtonClicked() {
         // Launch new intent
         Log.d(LOG_TAG, "Basket footer button clicked. Launching BasketActivity...");
@@ -206,4 +214,15 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(basketActivity);
     }
 
+    /**
+     * Method to respond to a user clicking on a ChefMenuItem. Opens an ItemActivity to display
+     * more info about the item clicked.
+     * @param item The item for which to launch the ItemActivity.
+     */
+    private void launchItemActivity(ChefMenu.ChefMenuItem item){
+        Intent itemActivity = new Intent(this, ItemActivity.class) ;
+        itemActivity.putExtra(ITEM_EXTRA, item) ;
+        itemActivity.putExtra(BASKET_EXTRA, basket);
+        startActivity(itemActivity);
+    }
 }

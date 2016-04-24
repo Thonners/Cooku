@@ -5,7 +5,9 @@ import android.os.Parcelable;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
 *	Class to store purchase orders in the Basket.
@@ -134,7 +136,7 @@ public class Basket implements Parcelable {
      * @return Whether a surcharge is required or not
      */
     public boolean isSurchargeRequired() {
-        return subtotalPrice < MINIMUM_ORDER_VALUE  ;
+        return getSubtotalPrice() < MINIMUM_ORDER_VALUE  ;
     }
 	/**
 	*    Method to return the total value of the items in a basket
@@ -146,6 +148,16 @@ public class Basket implements Parcelable {
 	}
 
     /**
+     * Method to return the subtotal price in a formatted String with the appropriate currency icon.
+     * @return The subtotal price as a String
+     */
+    public String getSubtotalPriceString(){
+        Currency currency = Currency.getInstance(Locale.getDefault());
+        String currencySymbol = currency.getSymbol() ;
+        return String.format(currencySymbol + " %1$.1f",getSubtotalPrice()) ;
+    }
+
+    /**
      * Method to return the whole amount payable, including delivery and any surcharges.
      * @return totalPrice The total amount payable for the order
      */
@@ -153,7 +165,15 @@ public class Basket implements Parcelable {
         updateTotalPrice() ;
         return totalPrice ;
     }
-
+    /**
+     * Method to return the total price in a formatted String with the appropriate currency icon.
+     * @return The total price as a string.
+     */
+    public String getTotalPriceString(){
+        Currency currency = Currency.getInstance(Locale.getDefault());
+        String currencySymbol = currency.getSymbol() ;
+        return String.format(currencySymbol + " %1$.1f",getTotalPrice()) ;
+    }
     /**
      * Method to return the HashMap of the orders.
      * As ChefMenuItems are parcelable, this can be passed over an intent.

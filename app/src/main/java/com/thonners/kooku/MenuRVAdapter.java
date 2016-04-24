@@ -48,8 +48,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
         public ViewHolder(View view) {
             super(view);
             if (view instanceof CardView) {
-                View cardView = view;
-                cardView.setOnClickListener(this);
+                view.setOnClickListener(this);
             }
         }
 
@@ -142,7 +141,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
             vH.tvItemID.setText(menuItem.getItemID() + "");
             vH.tvItemTitle.setText(menuItem.getTitle());
             vH.tvItemSubtitle.setText(menuItem.getSubtitle());
-            vH.tvItemPrice.setText(context.getText(R.string.currency_icon) + " " + menuItem.getPrice());
+            vH.tvItemPrice.setText(menuItem.getPriceString());
         }
     }
 

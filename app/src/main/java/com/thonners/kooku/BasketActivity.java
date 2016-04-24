@@ -96,9 +96,9 @@ public class BasketActivity extends AppCompatActivity {
         // Set the lead time
         tvDeliveryTime.setText(method.getLeadTimeRangeTwoLines());
         // Set the total price
-        NumberFormat format = NumberFormat.getCurrencyInstance() ;
-        String totalPriceString = format.format(basket.getTotalPrice()) ;
-        tvTotalPrice.setText(totalPriceString);
+        //NumberFormat format = NumberFormat.getCurrencyInstance() ;    // Remove these lines if getTotalPriceString works as desired.
+        //String totalPriceString = format.format(basket.getTotalPrice()) ;
+        tvTotalPrice.setText(basket.getTotalPriceString());
     }
 
 

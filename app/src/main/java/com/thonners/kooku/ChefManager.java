@@ -38,7 +38,7 @@ public class ChefManager {
      */
     public void addChef(int chefID, Chef chef) {
         if (chefs.containsKey(chefID)) {
-            Toast.makeText(context, "An error occurred.", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "An error occurred.", Toast.LENGTH_SHORT).show();
             Log.e(LOG_TAG, "Error occurred adding chefID: " + chefID + " for chef named: " + chef.getChefName() + ". ChefID already found in chefs HashMap for chef: " + chefs.get(chefID).getChefName());
         } else {
             Log.d(LOG_TAG, "Adding chef with id: " + chefID + ", name: " + chef.getChefName());
@@ -90,32 +90,32 @@ public class ChefManager {
         String bioShort , bioLong ;
         switch (chefNo) {
             case 1:
-                menu.addMenuItem(1, "Pete's Danish Pastries", "Mixed pastries", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }});
-                menu.addMenuItem(2, "Pete's Croissants", "12 Fresh Croissants", "", 5.0, new ArrayList<String>() {{add("Pastry"); add("Butter"); }});
+                menu.addMenuItem(1, "Pete's Danish Pastries", "Mixed pastries", "Delectable selection of danish pastries. Hand-made with a secret family recipe.", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }},true,false,false,false,false);
+                menu.addMenuItem(2, "Pete's Croissants", "12 Fresh Croissants", "Crispy, flaky and soft inside, these freshly made croissants are the perfect vehicle for Pete's homemade Jam.\nAdd a healthy dollop of butter to really get the best out of them.", 5.0, new ArrayList<String>() {{add("Pastry"); add("Butter"); }},true,false,false,false,false);
                 bioShort = "Pastries are my passion. I am a professional chef baking my favourite foods in my spare time with sumptuous ingredients." ;
                 bioLong = "I started cooking when I was 3 months old and made my first pastry before I said my first word. Baking has been in my family for two centuries, so in many ways, I feel like I belong when I bake.\n\nMy particular twist is a secret - but it lies somewhere in the crispy subtlety of my cinnamon bun.\n\nIngredients are key. I always buy organic, high quality ingredients and you'll taste this right through to the smallest crumbs of my baking.\n\nWhen I'm not rustling up food on Kooku, I am baking for friends and family or [behind my desk at a management consultancy]/[prepping food at a Soho restaurant].";
                 menu.addChefBios(bioShort, bioLong);
                 break;
             case 2:
-                menu.addMenuItem(1, "Welsh Rarebit", "Cheese on toast with Mustard", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }});
-                menu.addMenuItem(2, "Spag Bol", "", "", 5.0, new ArrayList<String>() {{add("Pasta"); add("Beef"); add("Tomato"); add("Oregano"); }});
-                menu.addMenuItem(3, "Bangers and mash", "Organic sausages with creamy, cheesy mash", "", 7.5, new ArrayList<String>() {{add("Sausage"); add("Potato"); add("Milk"); }});
-                menu.addMenuItem(4, "Brownies", "", "", 6.0, new ArrayList<String>() {{add("Chocolate"); add("Butter"); add("Flour"); }});
+                menu.addMenuItem(1, "Welsh Rarebit", "Cheese on toast with Mustard", "", 3.5, new ArrayList<String>() {{add("Pastry"); add("Sugar"); }},true,false,false,false,true);
+                menu.addMenuItem(2, "Spag Bol", "", "", 5.0, new ArrayList<String>() {{add("Pasta"); add("Beef"); add("Tomato"); add("Oregano"); }},true,false,false,true,false);
+                menu.addMenuItem(3, "Bangers and mash", "Organic sausages with creamy, cheesy mash", "", 7.5, new ArrayList<String>() {{add("Sausage"); add("Potato"); add("Milk"); }},true,false,false,false,true);
+                menu.addMenuItem(4, "Brownies", "", "", 6.0, new ArrayList<String>() {{add("Chocolate"); add("Butter"); add("Flour"); }},true,false,true,false,false);
                 bioShort = "Lovingly prepared in a brand new kitchen.";
                 bioLong = "MC Thomma$ first started cooking properly after leaving university. Since then, he's always to be found in the kitchen trying a new combination of chili powder and paprika. You might have thought that there would only be a couple of ways to combine these ingredients, but MC Thomma$ regularly proves this wrong!";
                 menu.addChefBios(bioShort, bioLong);
                 break;
             case 3:
-                menu.addMenuItem(1, "Victoria Sponge Cake", "Springy", "", 7.5, new ArrayList<String>() {{add("Flour"); add("Sugar"); }});
-                menu.addMenuItem(2, "Coffee and Walnut Cake", "Perfect for afternoon tea", "", 8.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Coffee"); add("Walnut"); }});
-                menu.addMenuItem(3, "Lemon Drizzle Cake", "Bake-off Classic", "", 12.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Lemon"); add("Drizzle"); }});
+                menu.addMenuItem(1, "Victoria Sponge Cake", "Springy", "", 7.5, new ArrayList<String>() {{add("Flour"); add("Sugar"); }},true,false,false,false,true);
+                menu.addMenuItem(2, "Coffee and Walnut Cake", "Perfect for afternoon tea", "", 8.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Coffee"); add("Walnut"); }},true,false,false,false,false);
+                menu.addMenuItem(3, "Lemon Drizzle Cake", "Bake-off Classic", "", 12.0, new ArrayList<String>() {{add("Flour"); add("Butter"); add("Lemon"); add("Drizzle"); }},true,false,false,false,false);
                 bioShort = "Bake Off Queen";
                 bioLong = "Older than the sun, and better at cooking than you, Mary Berry is a national treasure. You can be sure that the base of your cake will not be soggy!";
                 menu.addChefBios(bioShort, bioLong);
                 break;
             case 4:
-                menu.addMenuItem(1, "CAKE", "Full fat", "", 10, new ArrayList<String>() {{add("Flour"); add("Sugar"); }});
-                menu.addMenuItem(2, "Fat-fighters cake", "Half the calories (when cut in half)", "", 20.0, new ArrayList<String>() {{add("Flour"); add("Sweetener"); }});
+                menu.addMenuItem(1, "CAKE", "Full fat", "", 10, new ArrayList<String>() {{add("Flour"); add("Sugar"); }},true,false,false,false,false);
+                menu.addMenuItem(2, "Fat-fighters cake", "Half the calories (when cut in half)", "", 20.0, new ArrayList<String>() {{add("Flour"); add("Sweetener"); }},true,false,false,false,false);
                 bioShort = "Fat-fighters inspirational leader";
                 bioLong = "When not helping fellow fatties to get thin, Marjory is almost certainly to be found in the cake store, eating. She hasn't much flair in the kitchen, but does love a bit of cake.";
                 menu.addChefBios(bioShort, bioLong);

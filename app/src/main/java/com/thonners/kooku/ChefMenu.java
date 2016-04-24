@@ -1,10 +1,15 @@
 package com.thonners.kooku;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * Class to hold a chef's menu.
@@ -33,8 +38,8 @@ public class ChefMenu {
      * @param price Price of the dish
      * @param ingredients   List of ingredients in the dish.
      */
-    public void addMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
-        ChefMenuItem newItem = new ChefMenuItem(itemID, title, subtitle, description, price, ingredients);
+    public void addMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients, boolean isVegetarian, boolean isVegan, boolean containsNuts, boolean containsAlcohol, boolean containsLactose) {
+        ChefMenuItem newItem = new ChefMenuItem(itemID, title, subtitle, description, price, ingredients, isVegetarian, isVegan, containsNuts, containsAlcohol, containsLactose);
         menuItems.put(itemID, newItem);
     }
 
@@ -90,6 +95,11 @@ public class ChefMenu {
         private String description;
         private double price;
         private ArrayList<String> ingredients = new ArrayList<>();
+        private boolean isVegetarian = false ;
+        private boolean isVegan = false ;
+        private boolean containsNuts = false ;
+        private boolean containsAlcohol = false ;
+        private boolean containsLactose = false ;
 
         /**
          * Menu item constructor.
@@ -100,13 +110,18 @@ public class ChefMenu {
          * @param price       Price of the dish
          * @param ingredients List of ingredients in the dish.
          */
-        public ChefMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients) {
+        public ChefMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients, boolean isVegetarian, boolean isVegan, boolean containsNuts, boolean containsAlcohol, boolean containsLactose) {
             this.itemID = itemID;
             this.title = title;
             this.subtitle = subtitle;
             this.description = description;
             this.price = price;
             this.ingredients = ingredients;
+            this.isVegetarian = isVegetarian;
+            this.isVegan = isVegan;
+            this.containsNuts = containsNuts;
+            this.containsAlcohol = containsAlcohol;
+            this.containsLactose = containsLactose ;
         }
 
         // Getter methods
@@ -131,10 +146,49 @@ public class ChefMenu {
             return price;
         }
 
+        /**
+         * Method to return a string with the appropriate currency, and the price formatted to 1d.p.
+         * @return
+         */
+        public String getPriceString() {
+            Currency currency = Currency.getInstance(Locale.getDefault());
+            String currencySymbol = currency.getSymbol() ;
+            return String.format(currencySymbol + "%1$.1f",price) ;
+        }
+
         public ArrayList<String> getIngredients() {
             return ingredients;
         }
 
+        public String getIngredientsString() {
+            // Initialise string to be returned
+            String ing = "Ingredients:\n" ;
+            for (String ingredient : ingredients) {
+                ing += ingredient + ", " ;
+            }
+            // Return a substring 2 characters shorter than the full length to remove the trailing ", " from the final ingredient
+            return ing.substring(0,ing.length() - 2) + ".";
+        }
+
+        /**
+         * Returns a string detailing whether the item contains nuts, alcohol, etc.
+         * @param context The activity context - used to get the String resources
+         * @return A string with details of what the item contains
+         */
+        public String getContains(Context context) {
+            String contains = "" ;
+            if (containsNuts) {
+                contains += context.getString(R.string.contains_nuts) + "\n";
+            }
+            if (containsAlcohol) {
+                contains += context.getString(R.string.contains_alcohol) + "\n";
+            }
+            if (containsLactose) {
+                contains += context.getString(R.string.contains_lactose) + "\n";
+            }
+
+            return contains ;
+        }
 
         // Parcelable Stuff
 
@@ -148,6 +202,10 @@ public class ChefMenu {
             dest.writeString(subtitle);
             dest.writeString(description);
             dest.writeDouble(price);
+            dest.writeByte((byte) (isVegetarian ? 1 : 0));     //if isVegetarian == true, byte == 1
+            dest.writeByte((byte) (isVegan ? 1 : 0));
+            dest.writeByte((byte) (containsNuts ? 1 : 0));
+            dest.writeByte((byte) (containsAlcohol ? 1 : 0));
             dest.writeList(ingredients);
         }
 
@@ -168,6 +226,10 @@ public class ChefMenu {
             subtitle = in.readString();
             description = in.readString();
             price = in.readDouble() ;
+            isVegetarian = in.readByte() != 0;     //isVegetarian == true if byte != 0
+            isVegan = in.readByte() != 0;
+            containsNuts = in.readByte() != 0;
+            containsAlcohol = in.readByte() != 0;
             ingredients = new ArrayList<>() ;
             in.readList(ingredients, String.class.getClassLoader());
         }

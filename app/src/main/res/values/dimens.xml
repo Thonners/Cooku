@@ -27,8 +27,7 @@
     <dimen name="search_bar_h_size">256dp</dimen>
     <dimen name="search_bar_v_size">48dp</dimen>
     <dimen name="search_bar_ic_size">32dp</dimen>
-    <dimen name="search_bar_ic_margin">8dp
-    </dimen>    <!-- margin should be ((bar_v_size) - (ic_size))/2 -->
+    <dimen name="search_bar_ic_margin">8dp</dimen>    <!-- margin should be ((bar_v_size) - (ic_size))/2 -->
     <dimen name="search_bar_text_size">18sp</dimen>
     <dimen name="card_corner_radius">4dp</dimen>
     <dimen name="result_text_size">18sp</dimen> <!-- TODO: Move these to the style XML -->
@@ -42,6 +41,10 @@
     <dimen name="menu_divider_swirl_size">12dp</dimen>
     <dimen name="menu_item_title_text_size">18sp</dimen>
     <dimen name="menu_item_subtitle_text_size">12sp</dimen>
+
+    <!-- Dimensions for item page -->
+    <dimen name="item_awards_height">32dp</dimen>
+
 
     <!-- Dimensions for basket page -->
     <dimen name="basket_accounting_padding">18dp</dimen>
