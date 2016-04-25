@@ -5,6 +5,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <!-- Home page text colours -->
+    <!-- Item award background colours -->
+    <color name="veggie_green">#00B200</color>
+    <color name="vegan_purple">#CC33BB</color>
+    <color name="organic_green">#007700</color>
 
 </resources>

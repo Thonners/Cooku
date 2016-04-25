@@ -10,6 +10,7 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -49,6 +50,10 @@ public class ItemActivity extends AppCompatActivity {
         // Set the Chef's name in the title
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.item_collapsing_toolbar) ;
         collapsingToolbarLayout.setTitle(item.getTitle());
+        // Populate the awards
+        LinearLayout awardsLayout = (LinearLayout) findViewById(R.id.item_awards_layout) ;
+        ItemAwardsManager awardsManager = new ItemAwardsManager() ;
+        awardsManager.addAwardIconsToView(awardsLayout,item.getAwards());
         // Fill the info
         ((TextView) findViewById(R.id.item_price)).setText(item.getPriceString());
         ((TextView) findViewById(R.id.item_description_tv)).setText(item.getDescription());

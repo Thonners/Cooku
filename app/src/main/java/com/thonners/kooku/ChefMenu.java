@@ -38,8 +38,8 @@ public class ChefMenu {
      * @param price Price of the dish
      * @param ingredients   List of ingredients in the dish.
      */
-    public void addMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients, boolean isVegetarian, boolean isVegan, boolean containsNuts, boolean containsAlcohol, boolean containsLactose) {
-        ChefMenuItem newItem = new ChefMenuItem(itemID, title, subtitle, description, price, ingredients, isVegetarian, isVegan, containsNuts, containsAlcohol, containsLactose);
+    public void addMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients, boolean isVegetarian, boolean isVegan, boolean isOrganic, boolean containsNuts, boolean containsAlcohol, boolean containsLactose) {
+        ChefMenuItem newItem = new ChefMenuItem(itemID, title, subtitle, description, price, ingredients, isVegetarian, isVegan, isOrganic, containsNuts, containsAlcohol, containsLactose);
         menuItems.put(itemID, newItem);
     }
 
@@ -95,8 +95,11 @@ public class ChefMenu {
         private String description;
         private double price;
         private ArrayList<String> ingredients = new ArrayList<>();
+        private ItemAwardsManager.ItemAwards awards ;
+
         private boolean isVegetarian = false ;
         private boolean isVegan = false ;
+        private boolean isOrganic = false ;
         private boolean containsNuts = false ;
         private boolean containsAlcohol = false ;
         private boolean containsLactose = false ;
@@ -110,15 +113,18 @@ public class ChefMenu {
          * @param price       Price of the dish
          * @param ingredients List of ingredients in the dish.
          */
-        public ChefMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients, boolean isVegetarian, boolean isVegan, boolean containsNuts, boolean containsAlcohol, boolean containsLactose) {
+        public ChefMenuItem(int itemID, String title, String subtitle, String description, double price, ArrayList<String> ingredients, boolean isVegetarian, boolean isVegan, boolean isOrganic, boolean containsNuts, boolean containsAlcohol, boolean containsLactose) {
             this.itemID = itemID;
             this.title = title;
             this.subtitle = subtitle;
             this.description = description;
             this.price = price;
             this.ingredients = ingredients;
+            this.awards = new ItemAwardsManager.ItemAwards(isVegetarian,isVegan,isOrganic) ;
+            /*
             this.isVegetarian = isVegetarian;
             this.isVegan = isVegan;
+            this.isOrganic = isOrganic; */
             this.containsNuts = containsNuts;
             this.containsAlcohol = containsAlcohol;
             this.containsLactose = containsLactose ;
@@ -144,6 +150,10 @@ public class ChefMenu {
 
         public double getPrice() {
             return price;
+        }
+
+        public ItemAwardsManager.ItemAwards getAwards() {
+            return awards;
         }
 
         /**
@@ -204,9 +214,11 @@ public class ChefMenu {
             dest.writeDouble(price);
             dest.writeByte((byte) (isVegetarian ? 1 : 0));     //if isVegetarian == true, byte == 1
             dest.writeByte((byte) (isVegan ? 1 : 0));
+            dest.writeByte((byte) (isOrganic ? 1 : 0));
             dest.writeByte((byte) (containsNuts ? 1 : 0));
             dest.writeByte((byte) (containsAlcohol ? 1 : 0));
             dest.writeList(ingredients);
+            dest.writeParcelable(awards, flags);
         }
 
         public static final Parcelable.Creator<ChefMenuItem> CREATOR
@@ -228,10 +240,12 @@ public class ChefMenu {
             price = in.readDouble() ;
             isVegetarian = in.readByte() != 0;     //isVegetarian == true if byte != 0
             isVegan = in.readByte() != 0;
+            isOrganic = in.readByte() != 0;
             containsNuts = in.readByte() != 0;
             containsAlcohol = in.readByte() != 0;
             ingredients = new ArrayList<>() ;
             in.readList(ingredients, String.class.getClassLoader());
+            awards = in.readParcelable(ItemAwardsManager.ItemAwards.class.getClassLoader()) ;
         }
     }
 }

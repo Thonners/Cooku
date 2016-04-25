@@ -9,9 +9,9 @@
     <string name="mins">mins</string>
 
     <!-- Warnings -->
-    <string name="contains_nuts">Warning: this item contains nuts or nut traces.</string>
-    <string name="contains_alcohol">This item contains alcohol.</string>
-    <string name="contains_lactose">This item contains lactose.</string>
+    <string name="contains_nuts">Warning: this dish contains nuts or nut traces.</string>
+    <string name="contains_alcohol">This dish contains alcohol.</string>
+    <string name="contains_lactose">This dish contains lactose.</string>
 
     <!-- Home Page -->
     <string name="home_page_message">Fresh food in your community\nDelivered to your door</string>
@@ -31,6 +31,9 @@
     <string name="snackbar_message">%1$s added to your basket.</string>
     <string name="snackbar_action_message">REMOVE</string>
     <string name="snackbar_item_removed">%1$s removed from basket.</string>
+
+    <!-- Item Page -->
+    <string name="item_award_info">This dish is %1$s.</string>
 
     <!-- Basket Page -->
     <string name="subtotal">Subtotal:</string>

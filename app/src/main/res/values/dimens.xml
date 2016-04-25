@@ -43,7 +43,9 @@
     <dimen name="menu_item_subtitle_text_size">12sp</dimen>
 
     <!-- Dimensions for item page -->
+    <dimen name="item_awards_padding">4dp</dimen>
     <dimen name="item_awards_height">32dp</dimen>
+    <dimen name="item_awards_radius">16dp</dimen> <!-- NOTE: This should be half the height -->
 
 
     <!-- Dimensions for basket page -->

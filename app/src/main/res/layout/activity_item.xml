@@ -79,8 +79,10 @@
                 <LinearLayout
                     android:id="@+id/item_awards_layout"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/item_awards_height"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:padding="@dimen/item_awards_padding"
+                    android:dividerPadding="@dimen/item_awards_padding"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:layout_toLeftOf="@+id/item_price">
