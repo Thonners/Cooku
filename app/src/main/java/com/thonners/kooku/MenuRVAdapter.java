@@ -3,9 +3,11 @@ package com.thonners.kooku;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,11 +38,12 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
     private ArrayList<ChefMenu.ChefMenuItem> menuItems = new ArrayList<>();
 
     private OnItemClickListener onItemClickListener ;
+    private OnItemLongClickListener onItemLongClickListener ;
 
     /**
      * Wrapper class that provides the OnClickListener interface for the CardViews.
      */
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         /**
          * Constructor.
          * @param view The view being created/inflated/held. (Not actually sure!)
@@ -49,6 +52,8 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
             super(view);
             if (view instanceof CardView) {
                 view.setOnClickListener(this);
+                view.setOnLongClickListener(this);
+
             }
         }
 
@@ -63,6 +68,19 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
             }
         }
 
+        /**
+         * Override the onLongClick method to implement the onLongClickListener interface. Put the callback in here.
+         * @param view  The view which has been clicked.
+         */
+        @Override
+        public boolean onLongClick(View view) {
+            if (onItemLongClickListener != null) {
+                onItemLongClickListener.onItemLongClick(view, getLayoutPosition());
+                return true;
+            }
+            return false ;
+        }
+
     }
 
     /**
@@ -73,12 +91,27 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
     }
 
     /**
+     * Interface for the OnLongClickListener of the card in the ViewHolder.
+     */
+    public interface OnItemLongClickListener {
+        void onItemLongClick(View view, int position);
+    }
+
+    /**
      * 'Setter' method for the OnItemClickListener
      * @param mItemClickListener The ItemClickListener to be assigned.
      */
     public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
         this.onItemClickListener = mItemClickListener;
     }
+    /**
+     * 'Setter' method for the OnItemLongClickListener
+     * @param mItemLongClickListener The ItemLongClickListener to be assigned.
+     */
+    public void setOnItemLongClickListener(final OnItemLongClickListener mItemLongClickListener) {
+        this.onItemLongClickListener = mItemLongClickListener;
+    }
+
 
     /**
      * Constructor.

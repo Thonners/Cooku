@@ -4,6 +4,7 @@
     android:id="@+id/item_award_card"
     android:layout_width="@dimen/item_awards_height"
     android:layout_height="@dimen/item_awards_height"
+    app:cardElevation="@dimen/cardview_default_elevation"
     app:cardCornerRadius="@dimen/item_awards_radius">
 
     <ImageView

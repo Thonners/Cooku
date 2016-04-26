@@ -41,6 +41,7 @@ public class MenuActivity extends AppCompatActivity {
     private CardView basketFooterButton ;
     private TextView basketFooterButtonTV ;
 
+    // onClick listener for the CardViews
     private MenuRVAdapter.OnItemClickListener onItemClickListener = new MenuRVAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
@@ -51,9 +52,23 @@ public class MenuActivity extends AppCompatActivity {
                 int itemID = Integer.parseInt(((TextView) view.findViewById(R.id.menu_item_id)).getText().toString());
                 // Launch ItemActivity
                 launchItemActivity(menu.getMenuItem(itemID));
-                // Add the item to the basket - Removed this functionality, swapped for launching ItemActivity onClick
-                //addItemToBasket(menu.getMenuItem(itemID));
             }
+        }
+    };
+    // onLongClick listener for the CardViews
+    private MenuRVAdapter.OnItemLongClickListener onItemLongClickListener = new MenuRVAdapter.OnItemLongClickListener() {
+        @Override
+        public void onItemLongClick(View view, int position) {
+            if (position == 0) {
+                Log.d(LOG_TAG,"OnLongClickListener callback received for bio. Treating as normal click.") ;
+                toggleBio(view);
+            } else {
+                // Get the item ID
+                int itemID = Integer.parseInt(((TextView) view.findViewById(R.id.menu_item_id)).getText().toString());
+                // Launch ItemActivity
+                showQuickAddPopup(menu.getMenuItem(itemID));
+            }
+
         }
     };
 
@@ -93,6 +108,7 @@ public class MenuActivity extends AppCompatActivity {
         MenuRVAdapter adapter = new MenuRVAdapter(this, menu);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
+        adapter.setOnItemLongClickListener(onItemLongClickListener);
 
         // Set the Chef background image
         ImageView chefImage = (ImageView) findViewById(R.id.chef_image);
@@ -224,5 +240,9 @@ public class MenuActivity extends AppCompatActivity {
         itemActivity.putExtra(ITEM_EXTRA, item) ;
         itemActivity.putExtra(BASKET_EXTRA, basket);
         startActivity(itemActivity);
+    }
+
+    private void showQuickAddPopup(ChefMenu.ChefMenuItem item) {
+        Log.d(LOG_TAG,"LongClicked on " + item.getTitle());
     }
 }
