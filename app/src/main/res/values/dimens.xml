@@ -3,6 +3,14 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Dialog Dimensions (as per Material Design guidelines) -->
+    <dimen name="dialog_content_padding">24dp</dimen>
+    <dimen name="dialog_title_padding">20dp</dimen>
+    <dimen name="dialog_button_padding">8dp</dimen>
+    <dimen name="dialog_button_height">36dp</dimen>
+    <dimen name="dialog_action_area_height">52dp</dimen>    <!-- i.e. button height + 2x button padding -->
+    <dimen name="dialog_elevation">24dp</dimen>
+
     <!-- Default dimensions for reuse -->
     <dimen name="card_height_big">128dp</dimen>
     <dimen name="card_height_regular">96dp</dimen>
