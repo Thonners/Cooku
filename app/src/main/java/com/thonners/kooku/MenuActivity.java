@@ -1,9 +1,12 @@
 package com.thonners.kooku;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -22,7 +25,7 @@ import android.widget.TextView;
  * @author M Thomas
  * @since 25/03/16
  */
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements QuickAddDialogFragment.QuickAddDialogListener {
 
     public static final String ITEM_EXTRA = "com.thonners.kooku.itemExtra";
     public static final String BASKET_EXTRA = "com.thonners.kooku.basketExtra";
@@ -71,6 +74,19 @@ public class MenuActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialogFragment){
+        Log.d(LOG_TAG,"Positive dialog button clicked.");
+    }
+    @Override
+    public void onDialogNeutralClick(DialogFragment dialogFragment){
+        Log.d(LOG_TAG,"Neutral dialog button clicked.");
+    }
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialogFragment){
+        Log.d(LOG_TAG,"Negative dialog button clicked.");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,5 +260,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void showQuickAddPopup(ChefMenu.ChefMenuItem item) {
         Log.d(LOG_TAG,"LongClicked on " + item.getTitle());
+        QuickAddDialogFragment dialog = QuickAddDialogFragment.newInstance(item) ;
+        dialog.show(getSupportFragmentManager(),"QuickAddDialogFragment");
     }
 }

@@ -7,6 +7,7 @@
         <item quantity="other">days</item>
     </plurals>
     <string name="mins">mins</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Warnings -->
     <string name="contains_nuts">Warning: this dish contains nuts or nut traces.</string>
@@ -31,6 +32,11 @@
     <string name="snackbar_message">%1$s added to your basket.</string>
     <string name="snackbar_action_message">REMOVE</string>
     <string name="snackbar_item_removed">%1$s removed from basket.</string>
+    <!-- Quick Add Dialog -->
+    <string name="dialog_add">Add</string>
+    <string name="dialog_checkout">Add + Checkout</string>
+    <string name="dialog_title">How many %1$s to add to basket?</string>
+    <string name="dialog_prompt">Hint: Click %1$s to add to basket, then go straight to checkout.</string>
 
     <!-- Item Page -->
     <string name="item_award_info">This dish is %1$s.</string>
@@ -45,4 +51,7 @@
     <!-- Footer Button Texts -->
     <string name="basket_text">View Basket</string>
     <string name="go_to_checkout">Go To Checkout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

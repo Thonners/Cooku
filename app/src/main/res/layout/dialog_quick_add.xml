@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.thonners.kooku.QuickAddDialogFragment">
+    <RelativeLayout
+        android:id="@+id/dialog_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <NumberPicker
+            android:id="@+id/dialog_number_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="128dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+
+        <!-- These look naff
+        <ImageView
+            android:id="@+id/dialog_minus_image"
+            android:layout_width="@dimen/dialog_image_button_size"
+            android:layout_height="@dimen/dialog_image_button_size"
+            android:padding="@dimen/dialog_button_padding"
+            android:layout_toStartOf="@+id/dialog_number_picker"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_remove_black_48dp"
+            android:tint="@color/colorPrimary"/>
+
+        <ImageView
+            android:id="@+id/dialog_plus_image"
+            android:layout_width="@dimen/dialog_image_button_size"
+            android:layout_height="@dimen/dialog_image_button_size"
+            android:padding="@dimen/dialog_button_padding"
+            android:layout_toEndOf="@+id/dialog_number_picker"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_add_black_48dp"
+            android:tint="@color/colorPrimary"/>
+        -->
+        <!-- Dont need this
+        <TextView
+            android:id="@+id/dialog_prompt"
+            style="@style/dialog_quick_add"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/dialog_number_picker"
+            />
+            -->
+    </RelativeLayout>
+</FrameLayout>

@@ -10,6 +10,9 @@
     <dimen name="dialog_button_height">36dp</dimen>
     <dimen name="dialog_action_area_height">52dp</dimen>    <!-- i.e. button height + 2x button padding -->
     <dimen name="dialog_elevation">24dp</dimen>
+    <dimen name="dialog_prompt_text_size">18sp</dimen>
+    <dimen name="dialog_image_button_size">72dp</dimen>
+    <dimen name="dialog_image_button_padding">36dp</dimen>
 
     <!-- Default dimensions for reuse -->
     <dimen name="card_height_big">128dp</dimen>
@@ -28,7 +31,7 @@
     <!-- Dimensions for the home page -->
     <dimen name="home_logo_text">64dp</dimen>
     <dimen name="start_button_v_size">48dp</dimen>
-    <dimen name="start_text_size">32dp</dimen>
+    <dimen name="start_text_size">32sp</dimen>
 
     <!-- Dimensions for the search page -->
     <dimen name="search_logo_text">32sp</dimen>
