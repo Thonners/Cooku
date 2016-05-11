@@ -1,5 +1,13 @@
 package com.thonners.kooku;
 
+/**
+ * Dialog fragment to offer quick-add of items to the basket.
+ *
+ * @author M Thomas
+ * @since 27/04/16
+ */
+
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -9,6 +17,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class QuickAddDialogFragment extends DialogFragment {
@@ -16,6 +25,7 @@ public class QuickAddDialogFragment extends DialogFragment {
     private static String DIALOG_ITEM = "com.thonners.kooku.dialogItem" ;
     private static int QUICK_ADD_NUMBER_LIMIT = 10 ;
 
+    private NumberPicker np ;
     private ChefMenu.ChefMenuItem item ;
 
     /**
@@ -36,11 +46,11 @@ public class QuickAddDialogFragment extends DialogFragment {
      */
     public interface QuickAddDialogListener {
         // Positive click is 'Add'
-        void onDialogPositiveClick(DialogFragment dialog);
+        void onDialogPositiveClick(ChefMenu.ChefMenuItem item, int numberToAdd);
         // Neutral click is 'Checkout'
-        void onDialogNeutralClick(DialogFragment dialog);
+        void onDialogNeutralClick(QuickAddDialogFragment dialog);
         // Netagtive click is 'Cancel'
-        void onDialogNegativeClick(DialogFragment dialog);
+        void onDialogNegativeClick(QuickAddDialogFragment dialog);
     }
 
     // Use this instance of the interface to deliver action events
@@ -83,17 +93,18 @@ public class QuickAddDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         // Create the view (Pass null as the parent view because its going in the dialog layout)
         View layout = inflater.inflate(R.layout.dialog_quick_add, null) ;
-        // Populate the text
-        TextView promptTextView = (TextView) layout.findViewById(R.id.dialog_prompt);
-        promptTextView.setText(promptText);
+        //((RelativeLayout) layout.findViewById(R.id.dialog_layout)).requestFocus() ;
+        // Populate the text // This has been removed to try a simpler dialog that looks better
+        //TextView promptTextView = (TextView) layout.findViewById(R.id.dialog_prompt);
+        //promptTextView.setText(promptText);
         // Set up the number picker
-        NumberPicker np = (NumberPicker) layout.findViewById(R.id.dialog_number_picker) ;
+        np = (NumberPicker) layout.findViewById(R.id.dialog_number_picker) ;
         np.setMinValue(1);
         np.setMaxValue(QUICK_ADD_NUMBER_LIMIT);
         np.setValue(1);
         np.setWrapSelectorWheel(true);
 
-                // Set the layout for the dialog
+        // Set the layout for the dialog
         builder.setView(layout)
                 // Set the title
                 .setTitle(titleText)
@@ -102,7 +113,8 @@ public class QuickAddDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // Add to the basket
-                        mListener.onDialogPositiveClick(QuickAddDialogFragment.this);
+                        //mListener.onDialogPositiveClick(QuickAddDialogFragment.this);
+                        positiveClicked();
                     }
                 })
                 .setNeutralButton(R.string.dialog_checkout, new DialogInterface.OnClickListener() {
@@ -122,6 +134,10 @@ public class QuickAddDialogFragment extends DialogFragment {
                 });
 
         return builder.create() ;
-}
+    }
+
+    private void positiveClicked() {
+        mListener.onDialogPositiveClick(item, np.getValue());
+    }
 
 }

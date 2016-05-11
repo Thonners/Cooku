@@ -76,7 +76,7 @@ public class ItemActivity extends AppCompatActivity {
         basketFooterButtonTV = (TextView) basketFooterButton.findViewById(R.id.basket_value) ;
 
         // Set/hide the basket footer button as appropriate
-        updateFooterButtonBasket();
+        basket.updateFooterButton(basketFooterButton, basketFooterButtonTV);
     }
 
     /**
@@ -106,32 +106,14 @@ public class ItemActivity extends AppCompatActivity {
         addItemToBasket();
     }
     private void addItemToBasket() {
-        Log.d(LOG_TAG, "Adding item: " + item.getTitle() + " to basket.");
-        // Add item to the basket
-        basket.addItem(item);
-        // Show snackbar
-        String snackbarMessage = String.format(getString(R.string.snackbar_message), item.getTitle()) ;
-        Snackbar snackbar = Snackbar
-                .make(coordinatorLayout, snackbarMessage, Snackbar.LENGTH_LONG)
-                .setAction(getString(R.string.snackbar_action_message), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Remove the item from the basket.
-                        basket.removeItem(item);
-                        // Show confirmation that it's been removed.
-                        String itemRemovedSnackbarMessage = String.format(getString(R.string.snackbar_item_removed), item.getTitle());
-                        Snackbar itemRemovedSnackbar = Snackbar.make(coordinatorLayout,itemRemovedSnackbarMessage,Snackbar.LENGTH_SHORT) ;
-                        itemRemovedSnackbar.show();
-                        // Update footer button
-                        updateFooterButtonBasket();
-                    }
-                });
-        snackbar.setActionTextColor(getResources().getColor(R.color.colorAccent));
+        // Get the appropriate snackbar from the basket class helper method
+        Snackbar snackbar = basket.addNOfItem(this, coordinatorLayout, basketFooterButton, basketFooterButtonTV, item, 1);
         // Show it
         snackbar.show();
 
         // Update footer button
-        updateFooterButtonBasket();
+        basket.updateFooterButton(basketFooterButton, basketFooterButtonTV);
+        //updateFooterButtonBasket();
     }
 
     private void updateFooterButtonBasket() {

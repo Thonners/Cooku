@@ -1,8 +1,14 @@
 package com.thonners.kooku;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Currency;
@@ -58,47 +64,70 @@ public class Basket implements Parcelable {
      * Method to increment item count by 1
      * @param item The item to be added to the basket.
      */
-	public void addItem(ChefMenu.ChefMenuItem item) {
-        int quantity = 0 ;
-        // Get old quantity if it exists
-        if (orders.containsKey(item)) quantity = orders.get(item) ;
-        // Increment quantity
-        quantity++ ;
-
-        // Amend order
-        addItemWithQuantity(item, quantity);
+	public void addOneOfItem(ChefMenu.ChefMenuItem item) {
+        addNOfItem(item, 1);
     }
 
-    public void removeItem(ChefMenu.ChefMenuItem item) {
+    /**
+     * Method to add 'N' of an item to the basket
+     * @param item  The item to add
+     * @param noToAdd   The number of servings to add
+     */
+    public void addNOfItem(ChefMenu.ChefMenuItem item, int noToAdd) {
+        int quantity = noToAdd ;
+        // Add old quantity to number of extras, if it already exists
+        if (orders.containsKey(item)) quantity += orders.get(item) ;
+
+        // Amend order
+        setItemQuantity(item, quantity);
+    }
+
+    /**
+     * Method to decrement the number of the item in the basket by one
+     * @param item  Item for which to decrement number in the basket
+     */
+    public void removeOneOfItem(ChefMenu.ChefMenuItem item) {
+        // Remove 1 of the item
+        removeNOfItem(item, 1);
+    }
+
+    /**
+     * Method to remove 'N' of an item from the basket.
+     * @param item  Item to remove from basket
+     * @param noToRemove    Number of servings of the item to remove
+     */
+    public void removeNOfItem(ChefMenu.ChefMenuItem item, int noToRemove) {
         // Check that the order exists.
         if (!orders.containsKey(item)) return ;
 
         // Get the current quantity
         int quantity = orders.get(item) ;
-        // Decrement by 1
-        quantity-- ;
+        // Decrement by the 'number to remove'
+        quantity -= noToRemove ;
+        // Force quantity to be at least 0
+        quantity = Math.max(0,quantity) ;
         // Amend order
-        addItemWithQuantity(item, quantity);
+        setItemQuantity(item, quantity);
     }
 
 	/**
-	*    Method to add an item to the basket
-	*    @param newItem The new menu item to be added to the basket.
-	*    @param quantity The number of orders of the menu item to be added to the basket.
+	*    Method to set the number of servings for an item in the basket
+	*    @param item The new menu item to be added to the basket.
+	*    @param quantity The number of servings of the menu item required in the basket.
 	*/
-	public void addItemWithQuantity(ChefMenu.ChefMenuItem newItem, int quantity) {
-		if (orders.containsKey(newItem)) {
+	public void setItemQuantity(ChefMenu.ChefMenuItem item, int quantity) {
+		if (orders.containsKey(item)) {
 			// If the item is already there, flag a warning - not sure how this will be implemented in practice.
-			Log.d(LOG_TAG, "Amending quantity of " + newItem.getTitle() + " to: " + quantity) ;
+			Log.d(LOG_TAG, "Amending quantity of " + item.getTitle() + " to: " + quantity) ;
 		} else {
 			// Make a note of what's being added
-			Log.d(LOG_TAG,"Adding " + quantity + " " + newItem.getTitle()) ;
+			Log.d(LOG_TAG,"Adding " + quantity + " " + item.getTitle()) ;
 		}
 		// Actually add/change the value in the HashMap
-		orders.put(newItem, quantity) ;
+		orders.put(item, quantity) ;
 
 		// Update the price
-		double newItemCost = newItem.getPrice() * quantity ;
+		double newItemCost = item.getPrice() * quantity ;
  		Log.d(LOG_TAG, "New item's cost = " + newItemCost + ". This is for " + quantity + " dishes.") ;
 		updateSubtotalPrice();
 		Log.d(LOG_TAG,"Total cost = " + subtotalPrice) ;
@@ -208,7 +237,50 @@ public class Basket implements Parcelable {
 		return subtotalPrice == 0.0 ;
 	}
 
+    /**
+     * Method to add the desired items to the basket, and return a snackbar, which should then be
+     * displayed by the calling activity, to inform the user that the item has been added.
+     * @param context   Calling activity context
+     * @param item      ChefMenuItem to be added to the basked
+     * @param quantity  The quantity to be added
+     * @return  The Snackbar, with appropriate message
+     */
+    public Snackbar addNOfItem(final Context context, final CoordinatorLayout coordinatorLayout, final CardView footerButton, final TextView footerButtonTV, final ChefMenu.ChefMenuItem item, final int quantity){
+        Log.d(LOG_TAG, "Adding item: " + item.getTitle() + " to basket. Quantity = " + quantity);
+        // Add item to the basket
+        addNOfItem(item, quantity);
+        // Create snackbar
+        String snackbarMessage = String.format(context.getResources().getQuantityString(R.plurals.snackbar_message,quantity), item.getTitle(), quantity);
+        Snackbar snackbar = Snackbar
+                .make(coordinatorLayout, snackbarMessage, Snackbar.LENGTH_LONG)
+                .setAction(context.getString(R.string.snackbar_action_message), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Remove the item from the basket.
+                        removeNOfItem(item, quantity);
+                        // Show confirmation that it's been removed.
+                        String itemRemovedSnackbarMessage = String.format(context.getString(R.string.snackbar_item_removed), item.getTitle());
+                        Snackbar itemRemovedSnackbar = Snackbar.make(coordinatorLayout,itemRemovedSnackbarMessage,Snackbar.LENGTH_SHORT) ;
+                        itemRemovedSnackbar.show();
+                        // Update footer button
+                        updateFooterButton(footerButton, footerButtonTV);
+                    }
+                });
+        snackbar.setActionTextColor(context.getResources().getColor(R.color.colorAccent));
 
+        return snackbar ;
+    }
+
+    public void updateFooterButton(CardView basketFooterButton, TextView textView) {
+        Log.d(LOG_TAG,"updateFooterButton called from Basket class");
+        // Hide the footer button if the basket is empty, otherwise force visible and refresh value
+        if (this.isEmpty()) {
+            basketFooterButton.setVisibility(View.GONE);
+        } else {
+            basketFooterButton.setVisibility(View.VISIBLE);
+            textView.setText("£ " + this.getSubtotalPrice());
+        }
+    }
 
     // --------------------------------- Parcelable Stuff ------------------------------------------
 

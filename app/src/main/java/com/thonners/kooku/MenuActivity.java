@@ -1,12 +1,9 @@
 package com.thonners.kooku;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -76,15 +73,16 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
     };
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialogFragment){
+    public void onDialogPositiveClick(ChefMenu.ChefMenuItem item, int numberToAdd){
         Log.d(LOG_TAG,"Positive dialog button clicked.");
+        addItemToBasket(item, numberToAdd);
     }
     @Override
-    public void onDialogNeutralClick(DialogFragment dialogFragment){
+    public void onDialogNeutralClick(QuickAddDialogFragment dialogFragment){
         Log.d(LOG_TAG,"Neutral dialog button clicked.");
     }
     @Override
-    public void onDialogNegativeClick(DialogFragment dialogFragment){
+    public void onDialogNegativeClick(QuickAddDialogFragment dialogFragment){
         Log.d(LOG_TAG,"Negative dialog button clicked.");
     }
 
@@ -145,7 +143,7 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
         basketFooterButtonTV = (TextView) basketFooterButton.findViewById(R.id.basket_value) ;
 
         // Set/hide the basket footer button as appropriate
-        updateFooterButtonBasket();
+        basket.updateFooterButton(basketFooterButton, basketFooterButtonTV);
     }
 
     /**
@@ -166,32 +164,16 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
 }
 
     private void addItemToBasket(final ChefMenu.ChefMenuItem item) {
-        Log.d(LOG_TAG, "Adding item: " + item.getTitle() + " to basket.");
-        // Add item to the basket
-        basket.addItem(item);
-        // Show snackbar
-        String snackbarMessage = String.format(getString(R.string.snackbar_message), item.getTitle()) ;
-        Snackbar snackbar = Snackbar
-                .make(coordinatorLayout, snackbarMessage, Snackbar.LENGTH_LONG)
-                .setAction(getString(R.string.snackbar_action_message), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Remove the item from the basket.
-                        basket.removeItem(item);
-                        // Show confirmation that it's been removed.
-                        String itemRemovedSnackbarMessage = String.format(getString(R.string.snackbar_item_removed), item.getTitle());
-                        Snackbar itemRemovedSnackbar = Snackbar.make(coordinatorLayout,itemRemovedSnackbarMessage,Snackbar.LENGTH_SHORT) ;
-                        itemRemovedSnackbar.show();
-                        // Update footer button
-                        updateFooterButtonBasket();
-                    }
-                });
-        snackbar.setActionTextColor(getResources().getColor(R.color.colorAccent));
+        addItemToBasket(item, 1);
+    }
+    private void addItemToBasket(final ChefMenu.ChefMenuItem item, int numberToAdd) {
+        // Get the appropriate snackbar from the basket class helper method
+        Snackbar snackbar = basket.addNOfItem(this, coordinatorLayout, basketFooterButton, basketFooterButtonTV, item, numberToAdd) ;
         // Show it
         snackbar.show();
 
         // Update footer button
-        updateFooterButtonBasket();
+        basket.updateFooterButton(basketFooterButton, basketFooterButtonTV);
     }
 
     public void fabClicked(View view) {

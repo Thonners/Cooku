@@ -29,7 +29,10 @@
     <string name="chef_bio_prompt">Touch to read more...</string>
     <string name="chef_bio_prompt_2">Touch again to close...</string>
     <string name="menu_divider">Menü</string>
-    <string name="snackbar_message">%1$s added to your basket.</string>
+    <plurals name="snackbar_message">
+        <item quantity="one">%1$s added to your basket.</item>
+        <item quantity="other">%2$dx %1$s added to your basket.</item>
+    </plurals>
     <string name="snackbar_action_message">REMOVE</string>
     <string name="snackbar_item_removed">%1$s removed from basket.</string>
     <!-- Quick Add Dialog -->
@@ -52,6 +55,4 @@
     <string name="basket_text">View Basket</string>
     <string name="go_to_checkout">Go To Checkout</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
