@@ -68,7 +68,7 @@ public class ChefManager {
      * Method to generate a group of example chefs. In reality, chef instances should be created from the return of an async task which has received the appropriate data from a Kooku server.
      */
     private void populateDemoChefs() {
-        // Create some demo chefs
+        // Create some demo chefs - Name, catagory, rating, time to deliver, image, menu
         Chef chef1 = new Chef(1, "Pablo", "Danish Pastries", 3, 45, context.getResources().getDrawable(R.drawable.demo_chef_danish), getDemoMenu(1));
         Chef chef2 = new Chef(2, "MC Thomma$", "Welsh Rarebit", 4, 25, context.getResources().getDrawable(R.drawable.demo_chef_rarebit),getDemoMenu(2));
         Chef chef3 = new Chef(3, "Mary Berry", "Cake", 5, 60, context.getResources().getDrawable(R.drawable.demo_chef_cake_1), getDemoMenu(3));
@@ -76,6 +76,12 @@ public class ChefManager {
         Chef chef5 = new Chef(5, "Betty", "Cupcakes", 3, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_1), getDemoMenu(5));
         Chef chef6 = new Chef(6, "Jeff", "Cupcakes", 5, 60, context.getResources().getDrawable(R.drawable.demo_cupcakes_2), getDemoMenu(6));
         Chef chef7 = new Chef(7, "Dodgy McDodgerson", "Cupcakes", 5, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(7));
+        Chef chef8 = new Chef(7, "Granny Lü", "Salted Goodies", 4, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(8));
+        Chef chef9 = new Chef(7, "Mum Sü", "Chocolate Treats", 3, 35, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(9));
+        Chef chef10 = new Chef(7, "Chef Stü", "Creative Cakes", 5, 60, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(10));
+        Chef chef11 = new Chef(7, "Derek", "Cake Mason", 4, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(11));
+        Chef chef12 = new Chef(7, "Ramadan", "Confectioner", 3, 55, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(12));
+        Chef chef13 = new Chef(7, "Sheila", "Cake Godess", 5, 40, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(13));
         // Add to array list
         chefs.put(chef1.getChefID(), chef1) ;
         chefs.put(chef2.getChefID(), chef2);
@@ -150,6 +156,47 @@ public class ChefManager {
                 menu.addMenuItem(1, "Cup MDMAkes", "Party Cakes", "12 Cupcakes laced with your favourite amphetamine, this batch is guaranteed to send you, and all your mates, on a trip you won't forget. The blend of hallucinogens with delicate icing is more potent than NASA's most inflammable rocket fuel.", 10, new ArrayList<String>() {{add("Mandy"); add("Flour"); add("Sugar");add("Eggs"); add("Magic");  }},false,false,false,false,true,false);
                 bioShort = "One trick pony - doesn't matter when it's the best trick in the world.";
                 bioLong = "My cupcakes are infused with a little magic. Illegal in 12 states, and guaranteed to take you higher than the moon, these cup-MDMAkes are the bomb. You will be back for more - to show how confident I am, I'll even send you a free batch if you're not.";
+                menu.addChefBios(bioShort, bioLong);
+                break;
+            case 8:
+                menu.addMenuItem(1, "Carrot cake (with pecan)", "My famous carrot cake.", "The exact recipe is a family secret. If you don't like pecans, I can leave them out.", 15, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Carrot"); add("Pecan");}},true,true,true,false,false,false);
+                menu.addMenuItem(2, "Brownie", "Salted Caramel", "I take an indulgent, fudgy chocolate brownie to the next level with a layer of salted caramel running through each bite.", 4.5, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Chocolate"); add("Caramel"); add("Salt");  }},true,true,true,false,false,false);
+                menu.addMenuItem(3, "Chocolate tart", "Hazelnut & salted caramel", "A buttery pastry with a subtle layer of caramel and just a hint of salt and studded with nuts. Enjoy the fudge filling!", 11, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Chocolate"); add("Butter");}},true,true,true,false,false,false);
+                bioShort = "I bake for those I love, but I also love to bake";
+                bioLong = "I am looking for more hungry customers when my grandchildren are full! There isn't much I haven't baked or dietary requirements I haven't tackled, so don't be shy - give me a try! If I'm not available, I'm probably killing it at the bingo.";
+                menu.addChefBios(bioShort, bioLong);
+                break;
+            case 9:
+                menu.addMenuItem(1, "Chocolate soufflé", "Hint of peanut", "My mother's favourite recipe - this light treat will round off a meal perfectly.", 7.6, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Chocolate"); add("Peanut"); add("Butter");  }},true,true,true,false,false,false);
+                menu.addMenuItem(2, "Brownie", "Carrot and almond milk", "I know the shredded carrot in this combo may baffle at first glance but it's a tried and tested winner! Hope you think so too.", 4, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Carrot"); add("Almond Milk");}},true,true,true,false,false,false);
+                bioShort = "Yummy Mummy";
+                bioLong = "I like to think of my kitchen as a zone of creativity and expression but my kids prefer cookies to soufflé, so I am stuck for eaters of my edibles! Equally, I'm always perfecting the \"basics\" but my kids are getting too fat so I have decided to bake for others too!";
+                menu.addChefBios(bioShort, bioLong);
+                break;
+            case 10:
+                menu.addMenuItem(1, "Skinny brownie with cumin", "Healthy Treat", "The subtle flavour of cumin takes the edge of the richness of the Peruvian cacao I use for this majestic treat.", 6, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Chocolate"); add("Cumin"); add("Eggs");  }},true,true,true,false,false,false);
+                menu.addMenuItem(2, "Chilli cheesecake", "Ricotta", "I stumbled upon this creation in the early hours of a morning and never thought it would work. But it does. Fantastic flavours. Ideal with a lime sorbet.", 9.8, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Chilli"); add("Ricotta"); add("Cream");  }},true,true,true,false,false,false);
+                menu.addMenuItem(3, "Coconut shortbread", "Long in flavour", "Made with organic butter and fresh coconut, this shortbread is decadence and simplicity combined.", 5, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Coconut"); add("Bread");  }},true,true,true,false,false,false);
+                bioShort = "Michelin-starred chef looking for testers.";
+                bioLong = "I work in a Michelin-starred restaurant during the day (and night). I spend my precious spare time testing and perfecting my own recipes for when I become head chef and / or start my own restaurant. Feedback welcome!";
+                menu.addChefBios(bioShort, bioLong);
+                break;
+            case 11:
+                menu.addMenuItem(1, "Birthday Bash Cake", "Birthday Sponge cake", "A delicious, light vanilla sponge birthday cake recipe. Quick and simple to make and perfect for decorating to make a birthday really special.", 12, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Margarine"); add("Eggs"); add("Vanilla");  }},true,true,true,false,false,false);
+                bioShort = "I like to build birthday cakes like castles.";
+                bioLong = "Start wide, with a rich dense base, get thinner as you progress to the top. At the very top there's some cream and a cherry. Delicious.";
+                menu.addChefBios(bioShort, bioLong);
+                break;
+            case 12:
+                menu.addMenuItem(1, "Confetti Birthday Cake", "Modular Cakes", "Cake that it can be baked, cooled, crumbled and mixed with frosting to make cake pops for kids' parties - which are definitely easier to distribute to smaller children!", 10, new ArrayList<String>() {{add("Flour"); add("Sugar");add(""); add(""); add("");  }},true,true,true,false,false,false);
+                bioShort = "Organic is my life.";
+                bioLong = "My confetti birthday cake is the ultimate birthday cake, whether you're baking for a children's birthday party or for a grown-up. It's super pretty but surprisingly simple to make. The pink icing is actually made with real strawberries, so I don't have to use any food colouring to achieve this dreamy colour. The sprinkles take it to the next level. This pastel-coloured pink cake is the perfect celebration cake and you'll make someone very, very happy with it!";
+                menu.addChefBios(bioShort, bioLong);
+                break;
+            case 13:
+                menu.addMenuItem(1, "Carrot Cake", "Simple carrot cake. The old-fashioned way.", "", 10, new ArrayList<String>() {{add("Flour"); add("Sugar");add("Ginger"); add("Nutmeg"); add("Cinnamon");  }},true,true,true,false,false,false);
+                bioShort = "Clean Kitchen Baker";
+                bioLong = "This has to be one of the best carrot cakes I've ever made. No joke. It's so light and moist and moreish and I even got asked to make another one straight after it was sampled. It's definitely on my must-make list again for next month. It's super easy, uses up plenty of leftover carrots sitting in my fridge and will last about 4 days (depending on your self control!) Enjoy…";
                 menu.addChefBios(bioShort, bioLong);
                 break;
         }
