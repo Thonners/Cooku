@@ -2,6 +2,7 @@ package com.thonners.kooku;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
     private final String LOG_TAG = "SearchResultsRVAdapter" ;
 
     private Context context ;
-    private ArrayList<Chef> chefs = new ArrayList<>();
+    private ArrayList<Chef> chefs ;
 
     private OnItemClickListener onItemClickListener ;
 
@@ -121,6 +122,7 @@ public class SearchResultsRVAdapter extends RecyclerView.Adapter<SearchResultsRV
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
+        Log.d(LOG_TAG,"Chefs size = " + chefs.size()) ;
         return chefs.size();
     }
 }

@@ -76,20 +76,26 @@ public class ChefManager {
         Chef chef5 = new Chef(5, "Betty", "Cupcakes", 3, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_1), getDemoMenu(5));
         Chef chef6 = new Chef(6, "Jeff", "Cupcakes", 5, 60, context.getResources().getDrawable(R.drawable.demo_cupcakes_2), getDemoMenu(6));
         Chef chef7 = new Chef(7, "Dodgy McDodgerson", "Cupcakes", 5, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(7));
-        Chef chef8 = new Chef(7, "Granny Lü", "Salted Goodies", 4, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(8));
-        Chef chef9 = new Chef(7, "Mum Sü", "Chocolate Treats", 3, 35, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(9));
-        Chef chef10 = new Chef(7, "Chef Stü", "Creative Cakes", 5, 60, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(10));
-        Chef chef11 = new Chef(7, "Derek", "Cake Mason", 4, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(11));
-        Chef chef12 = new Chef(7, "Ramadan", "Confectioner", 3, 55, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(12));
-        Chef chef13 = new Chef(7, "Sheila", "Cake Godess", 5, 40, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(13));
+        Chef chef8 = new Chef(8, "Granny Lü", "Salted Goodies", 4, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(8));
+        Chef chef9 = new Chef(9, "Mum Sü", "Chocolate Treats", 3, 35, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(9));
+        Chef chef10 = new Chef(10, "Chef Stü", "Creative Cakes", 5, 60, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(10));
+        Chef chef11 = new Chef(11, "Derek", "Cake Mason", 4, 20, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(11));
+        Chef chef12 = new Chef(12, "Ramadan", "Confectioner", 3, 55, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(12));
+        Chef chef13 = new Chef(13, "Sheila", "Cake Godess", 5, 40, context.getResources().getDrawable(R.drawable.demo_cupcakes_3), getDemoMenu(13));
         // Add to array list
-        chefs.put(chef1.getChefID(), chef1) ;
-        chefs.put(chef2.getChefID(), chef2);
-        chefs.put(chef3.getChefID(),chef3);
-        chefs.put(chef4.getChefID(), chef4);
-        chefs.put(chef5.getChefID(), chef5);
-        chefs.put(chef6.getChefID(),chef6);
-        chefs.put(chef7.getChefID(), chef7);
+        addChef(chef1.getChefID(), chef1);
+        addChef(chef2.getChefID(), chef2);
+        addChef(chef3.getChefID(), chef3);
+        addChef(chef4.getChefID(), chef4);
+        addChef(chef5.getChefID(), chef5);
+        addChef(chef6.getChefID(), chef6);
+        addChef(chef7.getChefID(), chef7);
+        addChef(chef8.getChefID(), chef8);
+        addChef(chef9.getChefID(), chef9);
+        addChef(chef10.getChefID(), chef10);
+        addChef(chef11.getChefID(), chef11);
+        addChef(chef12.getChefID(), chef12);
+        addChef(chef13.getChefID(), chef13);
     }
 
     /**
