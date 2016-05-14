@@ -107,7 +107,12 @@ public class Basket implements Parcelable {
         // Force quantity to be at least 0
         quantity = Math.max(0,quantity) ;
         // Amend order
-        setItemQuantity(item, quantity);
+        if (quantity == 0) {
+            // Completely remove from basket
+            orders.remove(item);
+        } else {
+            setItemQuantity(item, quantity);
+        }
     }
 
 	/**
