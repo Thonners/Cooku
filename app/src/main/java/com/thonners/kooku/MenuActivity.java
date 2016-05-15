@@ -78,8 +78,10 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
         addItemToBasket(item, numberToAdd);
     }
     @Override
-    public void onDialogNeutralClick(QuickAddDialogFragment dialogFragment){
+    public void onDialogNeutralClick(ChefMenu.ChefMenuItem item, int numberToAdd){
         Log.d(LOG_TAG,"Neutral dialog button clicked.");
+        addItemToBasket(item, numberToAdd);
+        basketButtonClicked();
     }
     @Override
     public void onDialogNegativeClick(QuickAddDialogFragment dialogFragment){

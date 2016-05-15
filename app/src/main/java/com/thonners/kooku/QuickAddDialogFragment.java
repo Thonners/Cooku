@@ -48,7 +48,7 @@ public class QuickAddDialogFragment extends DialogFragment {
         // Positive click is 'Add'
         void onDialogPositiveClick(ChefMenu.ChefMenuItem item, int numberToAdd);
         // Neutral click is 'Checkout'
-        void onDialogNeutralClick(QuickAddDialogFragment dialog);
+        void onDialogNeutralClick(ChefMenu.ChefMenuItem item, int numberToAdd);
         // Netagtive click is 'Cancel'
         void onDialogNegativeClick(QuickAddDialogFragment dialog);
     }
@@ -113,7 +113,6 @@ public class QuickAddDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // Add to the basket
-                        //mListener.onDialogPositiveClick(QuickAddDialogFragment.this);
                         positiveClicked();
                     }
                 })
@@ -121,8 +120,7 @@ public class QuickAddDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
                         // Add to basket and checkout - handled by MenuActivity
-                        mListener.onDialogNeutralClick(QuickAddDialogFragment.this);
-
+                        neutralClicked() ;
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -138,6 +136,9 @@ public class QuickAddDialogFragment extends DialogFragment {
 
     private void positiveClicked() {
         mListener.onDialogPositiveClick(item, np.getValue());
+    }
+    private void neutralClicked() {
+        mListener.onDialogNeutralClick(item, np.getValue());
     }
 
 }
