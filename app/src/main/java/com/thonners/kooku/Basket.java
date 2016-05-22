@@ -36,8 +36,8 @@ public class Basket implements Parcelable {
     private double subtotalPrice = 0.0 ;
     private double totalPrice = 0.0 ;
     private DeliveryManager.DeliveryMethod deliveryMethod ;
-	private HashMap<ChefMenu.ChefMenuItem, Integer> orders = new HashMap<>() ;
-    private ArrayList<ChefMenu.ChefMenuItem> menuItems ;
+	private HashMap<ChefMenuItem, Integer> orders = new HashMap<>() ;
+    private ArrayList<ChefMenuItem> menuItems ;
 
 	/**
 	*    Constructor
@@ -51,11 +51,11 @@ public class Basket implements Parcelable {
     private void populateMenuItems() {
         // Clear the list to ensure there are no duplicates
         menuItems = new ArrayList<>() ;
-        for (ChefMenu.ChefMenuItem item : orders.keySet()) {
+        for (ChefMenuItem item : orders.keySet()) {
             menuItems.add(item) ;
         }
     }
-    public ArrayList<ChefMenu.ChefMenuItem> getMenuItems() {
+    public ArrayList<ChefMenuItem> getMenuItems() {
         populateMenuItems();
         return menuItems ;
     }
@@ -64,7 +64,7 @@ public class Basket implements Parcelable {
      * Method to increment item count by 1
      * @param item The item to be added to the basket.
      */
-	public void addOneOfItem(ChefMenu.ChefMenuItem item) {
+	public void addOneOfItem(ChefMenuItem item) {
         addNOfItem(item, 1);
     }
 
@@ -73,7 +73,7 @@ public class Basket implements Parcelable {
      * @param item  The item to add
      * @param noToAdd   The number of servings to add
      */
-    public void addNOfItem(ChefMenu.ChefMenuItem item, int noToAdd) {
+    public void addNOfItem(ChefMenuItem item, int noToAdd) {
         int quantity = noToAdd ;
         // Add old quantity to number of extras, if it already exists
         if (orders.containsKey(item)) quantity += orders.get(item) ;
@@ -86,7 +86,7 @@ public class Basket implements Parcelable {
      * Method to decrement the number of the item in the basket by one
      * @param item  Item for which to decrement number in the basket
      */
-    public void removeOneOfItem(ChefMenu.ChefMenuItem item) {
+    public void removeOneOfItem(ChefMenuItem item) {
         // Remove 1 of the item
         removeNOfItem(item, 1);
     }
@@ -96,7 +96,7 @@ public class Basket implements Parcelable {
      * @param item  Item to remove from basket
      * @param noToRemove    Number of servings of the item to remove
      */
-    public void removeNOfItem(ChefMenu.ChefMenuItem item, int noToRemove) {
+    public void removeNOfItem(ChefMenuItem item, int noToRemove) {
         // Check that the order exists.
         if (!orders.containsKey(item)) return ;
 
@@ -120,7 +120,7 @@ public class Basket implements Parcelable {
 	*    @param item The new menu item to be added to the basket.
 	*    @param quantity The number of servings of the menu item required in the basket.
 	*/
-	public void setItemQuantity(ChefMenu.ChefMenuItem item, int quantity) {
+	public void setItemQuantity(ChefMenuItem item, int quantity) {
 		if (orders.containsKey(item)) {
 			// If the item is already there, flag a warning - not sure how this will be implemented in practice.
 			Log.d(LOG_TAG, "Amending quantity of " + item.getTitle() + " to: " + quantity) ;
@@ -143,7 +143,7 @@ public class Basket implements Parcelable {
 	*/
 	private void updateSubtotalPrice() {
         double price = 0.0 ;
-        for (ChefMenu.ChefMenuItem item : orders.keySet()) {
+        for (ChefMenuItem item : orders.keySet()) {
             double itemPrice = item.getPrice() * orders.get(item) ;
             price += itemPrice ;
         }
@@ -213,7 +213,7 @@ public class Basket implements Parcelable {
      * As ChefMenuItems are parcelable, this can be passed over an intent.
      * @return HashMap of basket's orders, with the quantity (value) of each ChefMenuItem (key).
      */
-    public HashMap<ChefMenu.ChefMenuItem, Integer> getOrders() {
+    public HashMap<ChefMenuItem, Integer> getOrders() {
         return orders ;
     }
 
@@ -250,7 +250,7 @@ public class Basket implements Parcelable {
      * @param quantity  The quantity to be added
      * @return  The Snackbar, with appropriate message
      */
-    public Snackbar addNOfItem(final Context context, final CoordinatorLayout coordinatorLayout, final CardView footerButton, final TextView footerButtonTV, final ChefMenu.ChefMenuItem item, final int quantity){
+    public Snackbar addNOfItem(final Context context, final CoordinatorLayout coordinatorLayout, final CardView footerButton, final TextView footerButtonTV, final ChefMenuItem item, final int quantity){
         Log.d(LOG_TAG, "Adding item: " + item.getTitle() + " to basket. Quantity = " + quantity);
         // Add item to the basket
         addNOfItem(item, quantity);
@@ -309,6 +309,6 @@ public class Basket implements Parcelable {
     };
 
     private Basket(Parcel in) {
-        orders = in.readHashMap(ChefMenu.ChefMenuItem.class.getClassLoader());
+        orders = in.readHashMap(ChefMenuItem.class.getClassLoader());
     }
 }

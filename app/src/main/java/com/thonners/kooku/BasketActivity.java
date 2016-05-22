@@ -11,14 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.FieldPosition;
-import java.text.Format;
-import java.text.NumberFormat;
-import java.text.ParsePosition;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.HashMap;
-import java.util.StringTokenizer;
 
 
 public class BasketActivity extends AppCompatActivity {
@@ -26,8 +20,9 @@ public class BasketActivity extends AppCompatActivity {
     private final String LOG_TAG = "BasketActivity" ;
 
     private Basket basket ;
-    private HashMap<ChefMenu.ChefMenuItem, Integer> orders ;
-    private ArrayList<ChefMenu.ChefMenuItem> menuItems ;
+    private BasketManager basketManager ;
+    private HashMap<ChefMenuItem, Integer> orders ;
+    private ArrayList<ChefMenuItem> menuItems ;
     private DeliveryManager deliveryManager ;
 
     private RecyclerView recyclerView ;
@@ -57,6 +52,8 @@ public class BasketActivity extends AppCompatActivity {
         orders = basket.getOrders() ;
         menuItems = basket.getMenuItems() ;
 
+        // Get a BasketManager
+        basketManager = new BasketManager(this);
         // Get the DeliveryManager
         deliveryManager = new DeliveryManager(this, basket) ;
 
@@ -120,6 +117,8 @@ public class BasketActivity extends AppCompatActivity {
 }
 
     public void checkoutClicked(View view) {
+        // Save basket (practice)
+        basketManager.saveBasket(basket);
         // Launch CheckoutActivity
         Log.d(LOG_TAG, "Checkout clicked, launching CheckoutActivity...");
         Intent checkoutActivity = new Intent(this, CheckoutActivity.class);

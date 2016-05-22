@@ -3,11 +3,9 @@ package com.thonners.kooku;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -35,7 +33,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
 
     private Context context ;
     private ChefMenu menu ;
-    private ArrayList<ChefMenu.ChefMenuItem> menuItems = new ArrayList<>();
+    private ArrayList<ChefMenuItem> menuItems = new ArrayList<>();
 
     private OnItemClickListener onItemClickListener ;
     private OnItemLongClickListener onItemLongClickListener ;
@@ -169,7 +167,7 @@ public class MenuRVAdapter extends RecyclerView.Adapter<MenuRVAdapter.ViewHolder
         } else if (viewHolder instanceof VHItem) {
             VHItem vH = (VHItem) viewHolder ;
             // Get Menu
-            final ChefMenu.ChefMenuItem menuItem = menuItems.get(position-2);
+            final ChefMenuItem menuItem = menuItems.get(position-2);
             // Populate details
             vH.tvItemID.setText(menuItem.getItemID() + "");
             vH.tvItemTitle.setText(menuItem.getTitle());

@@ -73,12 +73,12 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
     };
 
     @Override
-    public void onDialogPositiveClick(ChefMenu.ChefMenuItem item, int numberToAdd){
+    public void onDialogPositiveClick(ChefMenuItem item, int numberToAdd){
         Log.d(LOG_TAG,"Positive dialog button clicked.");
         addItemToBasket(item, numberToAdd);
     }
     @Override
-    public void onDialogNeutralClick(ChefMenu.ChefMenuItem item, int numberToAdd){
+    public void onDialogNeutralClick(ChefMenuItem item, int numberToAdd){
         Log.d(LOG_TAG,"Neutral dialog button clicked.");
         addItemToBasket(item, numberToAdd);
         basketButtonClicked();
@@ -165,10 +165,10 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
     return(super.onOptionsItemSelected(item));
 }
 
-    private void addItemToBasket(final ChefMenu.ChefMenuItem item) {
+    private void addItemToBasket(final ChefMenuItem item) {
         addItemToBasket(item, 1);
     }
-    private void addItemToBasket(final ChefMenu.ChefMenuItem item, int numberToAdd) {
+    private void addItemToBasket(final ChefMenuItem item, int numberToAdd) {
         // Get the appropriate snackbar from the basket class helper method
         Snackbar snackbar = basket.addNOfItem(this, coordinatorLayout, basketFooterButton, basketFooterButtonTV, item, numberToAdd) ;
         // Show it
@@ -235,14 +235,14 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
      * more info about the item clicked.
      * @param item The item for which to launch the ItemActivity.
      */
-    private void launchItemActivity(ChefMenu.ChefMenuItem item){
+    private void launchItemActivity(ChefMenuItem item){
         Intent itemActivity = new Intent(this, ItemActivity.class) ;
         itemActivity.putExtra(ITEM_EXTRA, item) ;
         itemActivity.putExtra(BASKET_EXTRA, basket);
         startActivity(itemActivity);
     }
 
-    private void showQuickAddPopup(ChefMenu.ChefMenuItem item) {
+    private void showQuickAddPopup(ChefMenuItem item) {
         Log.d(LOG_TAG,"LongClicked on " + item.getTitle());
         QuickAddDialogFragment dialog = QuickAddDialogFragment.newInstance(item) ;
         dialog.show(getSupportFragmentManager(),"QuickAddDialogFragment");

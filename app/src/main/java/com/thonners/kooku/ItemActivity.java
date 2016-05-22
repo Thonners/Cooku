@@ -24,7 +24,7 @@ public class ItemActivity extends AppCompatActivity {
 
     private final String LOG_TAG = "ItemActivity" ;
 
-    private ChefMenu.ChefMenuItem item ;
+    private ChefMenuItem item ;
     private Chef chef ;
     private Basket basket ;
     private CoordinatorLayout coordinatorLayout ;

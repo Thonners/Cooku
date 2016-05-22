@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -40,8 +39,8 @@ public class BasketRVAdapter extends RecyclerView.Adapter<BasketRVAdapter.ViewHo
 
     private Context context ;
     private Basket basket ;
-    private HashMap<ChefMenu.ChefMenuItem, Integer> orders ;
-    private ArrayList<ChefMenu.ChefMenuItem> menuItems ;
+    private HashMap<ChefMenuItem, Integer> orders ;
+    private ArrayList<ChefMenuItem> menuItems ;
     private boolean surchargeRequired = false;
     private double deliveryCharge ;
 
@@ -154,7 +153,7 @@ public class BasketRVAdapter extends RecyclerView.Adapter<BasketRVAdapter.ViewHo
         } else if (viewHolder instanceof VHItem) {
             VHItem vH = (VHItem) viewHolder ;
             // Get Menu
-            final ChefMenu.ChefMenuItem menuItem = menuItems.get(position);
+            final ChefMenuItem menuItem = menuItems.get(position);
             // Populate details
             String quantity = String.format(context.getString(R.string.quantity_suffix), orders.get(menuItem));
             vH.tvItemQuantity.setText(quantity);

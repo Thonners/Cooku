@@ -17,8 +17,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class QuickAddDialogFragment extends DialogFragment {
 
@@ -26,14 +24,14 @@ public class QuickAddDialogFragment extends DialogFragment {
     private static int QUICK_ADD_NUMBER_LIMIT = 10 ;
 
     private NumberPicker np ;
-    private ChefMenu.ChefMenuItem item ;
+    private ChefMenuItem item ;
 
     /**
      * Method to instantiate the dialog, whilst allowing for a ChefMenuItem to be passed as an argument.
      * @param item The ChefMenuItem for which the dialog box is being shown.
      * @return An instance of a QuickAddDialogFragment, with the ChefMenuItem in a bundle.
      */
-    public static QuickAddDialogFragment newInstance(ChefMenu.ChefMenuItem item) {
+    public static QuickAddDialogFragment newInstance(ChefMenuItem item) {
         QuickAddDialogFragment quickAddDialogFragment = new QuickAddDialogFragment();
         Bundle args = new Bundle();
         args.putParcelable(DIALOG_ITEM,item);
@@ -46,9 +44,9 @@ public class QuickAddDialogFragment extends DialogFragment {
      */
     public interface QuickAddDialogListener {
         // Positive click is 'Add'
-        void onDialogPositiveClick(ChefMenu.ChefMenuItem item, int numberToAdd);
+        void onDialogPositiveClick(ChefMenuItem item, int numberToAdd);
         // Neutral click is 'Checkout'
-        void onDialogNeutralClick(ChefMenu.ChefMenuItem item, int numberToAdd);
+        void onDialogNeutralClick(ChefMenuItem item, int numberToAdd);
         // Netagtive click is 'Cancel'
         void onDialogNegativeClick(QuickAddDialogFragment dialog);
     }
