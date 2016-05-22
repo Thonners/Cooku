@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -27,7 +28,9 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
     public static final String ITEM_EXTRA = "com.thonners.kooku.itemExtra";
     public static final String BASKET_EXTRA = "com.thonners.kooku.basketExtra";
 
-    private final String LOG_TAG = "MenuActivity" ;
+    private static final String LOG_TAG = "MenuActivity" ;
+    // Stuff for starting an item activity for result
+    private static final int ITEM_QUANTITY_REQUEST = 1 ;
 
     private ChefManager chefManager;
     private Chef chef ;
@@ -239,7 +242,17 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
         Intent itemActivity = new Intent(this, ItemActivity.class) ;
         itemActivity.putExtra(ITEM_EXTRA, item) ;
         itemActivity.putExtra(BASKET_EXTRA, basket);
-        startActivity(itemActivity);
+        startActivityForResult(itemActivity,ITEM_QUANTITY_REQUEST);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ITEM_QUANTITY_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Log.d(LOG_TAG,"result returned.");
+                basket = data.getParcelableExtra(BASKET_EXTRA) ;
+                basket.updateFooterButton(basketFooterButton,basketFooterButtonTV);
+            }
+        }
     }
 
     private void showQuickAddPopup(ChefMenuItem item) {

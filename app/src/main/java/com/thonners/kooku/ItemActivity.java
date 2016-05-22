@@ -1,5 +1,6 @@
 package com.thonners.kooku;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -87,14 +88,20 @@ public class ItemActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-        case android.R.id.home:
-            onBackPressed();
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return(super.onOptionsItemSelected(item));
     }
-
-    return(super.onOptionsItemSelected(item));
-}
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra(MenuActivity.BASKET_EXTRA,basket) ;
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
+    }
 
 
     /**

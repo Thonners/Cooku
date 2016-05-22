@@ -239,7 +239,8 @@ public class Basket implements Parcelable {
      * @return Whether basket total is zero.
      */
 	public boolean isEmpty() {
-		return subtotalPrice == 0.0 ;
+		updateSubtotalPrice();
+        return subtotalPrice == 0.0 ;
 	}
 
     /**
@@ -280,6 +281,7 @@ public class Basket implements Parcelable {
         Log.d(LOG_TAG,"updateFooterButton called from Basket class");
         // Hide the footer button if the basket is empty, otherwise force visible and refresh value
         if (this.isEmpty()) {
+            Log.d(LOG_TAG,"basket isEmpty() returned true");
             basketFooterButton.setVisibility(View.GONE);
         } else {
             basketFooterButton.setVisibility(View.VISIBLE);
