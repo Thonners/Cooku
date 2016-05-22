@@ -60,7 +60,7 @@
 
 
     <!-- Dimensions for basket page -->
-    <dimen name="basket_accounting_padding">18dp</dimen>
+    <dimen name="basket_accounting_padding">8dp</dimen>
     <dimen name="basket_delivery_drop_down_icon_size">12dp</dimen>
 
 </resources>

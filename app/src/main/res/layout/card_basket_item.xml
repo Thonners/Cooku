@@ -33,7 +33,8 @@
             <!-- TODO: Ensure that the details textview is GONE if it is empty, to ensure proper alignement of the title -->
             <TextView
                 android:id="@+id/basket_item_details"
-                style="@style/basket_item_text_view"/>
+                style="@style/basket_item_text_view"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <TextView

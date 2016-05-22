@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_number_edit_text_cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/card_number_edit_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Add your card number"
+            android:textSize="18dp"
+            android:padding="12dp"
+            android:layout_margin="6dp"/>
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_credit_card"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="8dp"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/expiry_cvv_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/card_number_edit_text_cv"
+        android:visibility="gone">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/expiry_cv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+            <EditText
+                android:id="@+id/expiry_edit_text"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textAlignment="center"
+                android:layout_alignParentStart="true"
+                android:hint="Expiry mm/yy"
+                android:layout_margin="6dp"
+                />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvv_cv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_toEndOf="@+id/expiry_cv">
+            <EditText
+                android:id="@+id/cvv_edit_text"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textAlignment="center"
+                android:hint="CVV"
+                android:layout_margin="6dp"
+                />
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/expiry_cvv_layout">
+
+        <TextView
+            android:id="@+id/scan_card_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan your card"
+            android:textSize="18sp"
+            android:layout_margin="4dp"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_camera"
+            android:tint="@android:color/black"
+            android:layout_marginStart="4dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/scan_card_prompt"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -20,6 +20,8 @@ import java.util.Locale;
 
 public class ChefMenu {
 
+    private int chefID ;
+
     private final HashMap<Integer, ChefMenuItem> menuItems = new HashMap<>();
 
     private String chefBioShort ;
@@ -28,7 +30,8 @@ public class ChefMenu {
     /**
      * Constructor.
      */
-    public ChefMenu() {
+    public ChefMenu(int chefID) {
+        this.chefID = chefID ;
     }
 
     /**

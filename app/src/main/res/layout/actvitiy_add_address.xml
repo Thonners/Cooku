@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_address_full"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/et_line_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address Line 1"
+                android:textSize="18sp"
+                android:padding="12dp"
+                android:layout_margin="6dp"/>
+            <EditText
+                android:id="@+id/et_line_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address Line 2"
+                android:textSize="18sp"
+                android:padding="12dp"
+                android:layout_margin="6dp"/>
+            <EditText
+                android:id="@+id/et_line_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address Line 3"
+                android:textSize="18sp"
+                android:padding="12dp"
+                android:layout_margin="6dp"/>
+            <EditText
+                android:id="@+id/et_postcode_full"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Postcode"
+                android:textSize="18sp"
+                android:padding="12dp"
+                android:layout_margin="6dp"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_postcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_below="@+id/card_address_full">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/et_postcode"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Enter Postcode"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:layout_margin="6dp"/>
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_postcode_lookup"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:layout_margin="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Look up address"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_margin="4dp"/>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/manual_address_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Address Manually"
+            android:textSize="18sp"
+            android:layout_margin="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/card_postcode"/>
+</RelativeLayout>

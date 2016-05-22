@@ -43,17 +43,49 @@
                 app:expandedTitleMarginEnd="64dp"
                 >
 
-                <ImageView
-                    android:id="@+id/item_image"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/chef_appbar_height"
-                    android:scaleType="centerCrop"
-                    android:fitsSystemWindows="true"
-                    app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.7"
-                    android:transitionName="tImage"
-                    />
+                    android:layout_height="@dimen/chef_appbar_height">
 
+                    <ImageView
+                        android:id="@+id/item_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/chef_appbar_height"
+                        android:scaleType="centerCrop"
+                        android:fitsSystemWindows="true"
+                        app:layout_collapseMode="parallax"
+                        app:layout_collapseParallaxMultiplier="0.7"
+                        android:transitionName="tImage"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignBaseline="@+id/item_image"
+                        android:padding="4dp">
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/ic_star"
+                            android:tint="@android:color/white"/>
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/ic_star"
+                            android:tint="@android:color/white"/>
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/ic_star"
+                            android:tint="@android:color/white"/>
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/ic_star"
+                            android:tint="@android:color/white"/>
+                    </LinearLayout>
+                </RelativeLayout>
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/item_main_toolbar"
                     android:layout_width="match_parent"
