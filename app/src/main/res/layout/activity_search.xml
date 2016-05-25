@@ -41,6 +41,15 @@
         android:imeOptions="actionSearch"
         android:singleLine="true"/>
 
+    <ImageView
+        android:id="@+id/search_filters"
+        android:layout_width="@dimen/search_bar_ic_size"
+        android:layout_height="@dimen/search_bar_ic_size"
+        android:layout_margin="@dimen/search_bar_ic_margin"
+        android:src="@drawable/ic_list_black_48dp"
+        android:layout_toRightOf="@+id/search_bar"
+        android:onClick="filterClicked"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/search_results_recycler_view"
         android:scrollbars="vertical"

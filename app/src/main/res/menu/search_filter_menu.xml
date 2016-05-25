@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- NOTE: To add another menu item, make sure to increase the size of the boolean[] filters array in SearchActivity -->
+    <item
+        android:id="@+id/filter_veggie"
+        android:title="Vegetarian"
+        android:titleCondensed="Veggie"
+        android:checkable="true"
+        android:visible="true"
+        android:orderInCategory="0" />
+    <item
+        android:id="@+id/filter_vegan"
+        android:title="Vegan"
+        android:titleCondensed="Vegan"
+        android:checkable="true"
+        android:visible="true"
+        android:orderInCategory="1" />
+    <item
+        android:id="@+id/filter_nut_free"
+        android:title="Nut Free"
+        android:checkable="true"
+        android:visible="true"
+        android:orderInCategory="2" />
+    <item
+        android:id="@+id/filter_gluten_free"
+        android:title="Gluten Free"
+        android:checkable="true"
+        android:visible="true"
+        android:orderInCategory="3" />
+    <item
+        android:id="@+id/filter_halal"
+        android:title="Halal"
+        android:checkable="true"
+        android:visible="true"
+        android:orderInCategory="4" />
+    <item
+        android:id="@+id/filter_dairy_free"
+        android:title="Dairy Free"
+        android:checkable="true"
+        android:visible="true"
+        android:orderInCategory="5" />
+    <item
+        android:id="@+id/filter_egg_free"
+        android:title="Egg Free"
+        android:checkable="true"
+        android:visible="true"
+        android:orderInCategory="6" />
+    <item
+        android:id="@+id/filter_low_fat"
+        android:title="Low Fat"
+        android:checkable="true"
+        android:visible="true"
+        android:orderInCategory="7" />
+</menu>

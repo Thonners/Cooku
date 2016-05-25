@@ -6,9 +6,12 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -27,6 +30,9 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView ;
     private RecyclerView.Adapter rcAdapter;
     private RecyclerView.LayoutManager rcLayoutManager;
+
+    // Filter menu
+    private boolean[] filters = new boolean[8] ; // Order: Veggie, Vegan, Nut Free, Gluten Free, Halal, Dairy Free, Egg Free, Low Fat
 
     private ChefManager chefManager;
 
@@ -106,6 +112,54 @@ public class SearchActivity extends AppCompatActivity {
         ActivityCompat.startActivity(this, chefPageIntent,options.toBundle());
     }
 
+    /**
+     * Method to handle the filter button being clicked.
+     * @param view The filter button
+     */
+    public void filterClicked(View view) {
+        PopupMenu filterMenu = new PopupMenu(this,view);
+        filterMenu.inflate(R.menu.search_filter_menu);
+        filterMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                // Toggle the status
+                item.setChecked(!item.isChecked()) ;
+
+                switch (item.getItemId()) {
+                    case R.id.filter_veggie:
+                        // Vegetarian filter
+                        Log.d(LOG_TAG,"Veggie filter selected: " + R.id.filter_veggie);
+                        filters[0] = !filters[0] ;
+                        break ;
+                    case R.id.filter_vegan:
+                        // Vegan filter
+                        Log.d(LOG_TAG,"Vegan filter selected");
+                        filters[1] = !filters[1] ;
+                        break ;
+                }
+
+
+                return true ;
+            }
+        });
+        filterMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {
+                Log.d(LOG_TAG,"onDismiss called");
+                // Refresh the results based on the filters
+            }
+        });
+
+        // setChecked the already active options
+        Menu menu = filterMenu.getMenu() ;
+        for (int i = 0 ; i < menu.size() ; i++) {
+            menu.getItem(i).setChecked(filters[i]) ;
+        }
+
+        // Show the menu
+        filterMenu.show();
+    }
 
 
 

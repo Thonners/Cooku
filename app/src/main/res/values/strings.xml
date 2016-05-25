@@ -24,6 +24,7 @@
     <string name="currency_icon">£</string>
     <string name="asap">A.S.A.P.</string>
     <string name="location">Location</string>
+    <string name="dialog_search_title">Select filters to apply to search results:</string>
 
     <!-- Chef Menu Page -->
     <string name="chef_bio_prompt">Touch to read more...</string>
