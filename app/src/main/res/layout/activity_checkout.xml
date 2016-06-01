@@ -29,6 +29,7 @@
                 android:padding="12dp"
                 android:layout_margin="6dp"/>
             <android.support.v4.view.ViewPager
+                android:id="@+id/checkout_address_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="128dp">
 
@@ -64,6 +65,7 @@
                 android:padding="12dp"
                 android:layout_margin="6dp"/>
             <android.support.v4.view.ViewPager
+                android:id="@+id/checkout_payment_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="128dp">
 

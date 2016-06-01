@@ -76,6 +76,14 @@
         <item name="android:padding">@dimen/card_primary_text_padding</item>
     </style>
 
+    <style name="address_viewer_text_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/card_secondary_text_size</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:padding">@dimen/card_primary_text_padding</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
     <!-- Footer Button Styles -->
     <style name="footer_button" parent="CardView">
         <item name="android:layout_width">match_parent</item>

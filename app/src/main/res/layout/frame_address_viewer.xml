@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/address_line_1"
+        style="@style/address_viewer_text_view"/>
+    <TextView
+        android:id="@+id/address_line_2"
+        style="@style/address_viewer_text_view"/>
+    <TextView
+        android:id="@+id/address_line_3"
+        style="@style/address_viewer_text_view"/>
+    <TextView
+        android:id="@+id/address_line_4"
+        style="@style/address_viewer_text_view"/>
+    <TextView
+        android:id="@+id/address_postcode"
+        style="@style/address_viewer_text_view"/>
+
+</LinearLayout>

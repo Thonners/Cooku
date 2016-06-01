@@ -113,7 +113,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     /**
-     * Method to handle the filter button being clicked.
+     * Method to show the PopupMenu filter menu when the filter button is clicked.
+     * Method also contains the logic to ensure that the filter selection is persistent, and survives
+     * re-opening the menu.
      * @param view The filter button
      */
     public void filterClicked(View view) {
@@ -126,6 +128,8 @@ public class SearchActivity extends AppCompatActivity {
                 // Toggle the status
                 item.setChecked(!item.isChecked()) ;
 
+                // For each filter, toggle the boolean[] filters value if the filter is pressed.
+                // When the menu closes, updateResults() will be called by the OnDismissListener.
                 switch (item.getItemId()) {
                     case R.id.filter_veggie:
                         // Vegetarian filter
@@ -137,10 +141,39 @@ public class SearchActivity extends AppCompatActivity {
                         Log.d(LOG_TAG,"Vegan filter selected");
                         filters[1] = !filters[1] ;
                         break ;
+                    case R.id.filter_nut_free:
+                        // Nut free filter
+                        Log.d(LOG_TAG,"Nut free filter selected: " + R.id.filter_veggie);
+                        filters[2] = !filters[2] ;
+                        break ;
+                    case R.id.filter_gluten_free:
+                        // Gluten free filter
+                        Log.d(LOG_TAG,"Gluten Free filter selected");
+                        filters[3] = !filters[3] ;
+                        break ;
+                    case R.id.filter_halal:
+                        // Halal filter
+                        Log.d(LOG_TAG,"Halal filter selected: " + R.id.filter_veggie);
+                        filters[4] = !filters[4] ;
+                        break ;
+                    case R.id.filter_dairy_free:
+                        // Dairy free filter
+                        Log.d(LOG_TAG,"Dairy free filter selected");
+                        filters[5] = !filters[5] ;
+                        break ;
+                    case R.id.filter_egg_free:
+                        // Egg free filter
+                        Log.d(LOG_TAG,"Egg free filter selected: " + R.id.filter_veggie);
+                        filters[6] = !filters[6] ;
+                        break ;
+                    case R.id.filter_low_fat:
+                        // Low fat filter
+                        Log.d(LOG_TAG,"Low fat filter selected");
+                        filters[7] = !filters[7] ;
+                        break ;
                 }
-
-
-                return true ;
+                // The menu interaction was handled.
+                return false ;
             }
         });
         filterMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
@@ -148,6 +181,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onDismiss(PopupMenu menu) {
                 Log.d(LOG_TAG,"onDismiss called");
                 // Refresh the results based on the filters
+                updateResults();
             }
         });
 
@@ -161,6 +195,12 @@ public class SearchActivity extends AppCompatActivity {
         filterMenu.show();
     }
 
+    /**
+     * Method to update the recommended chefs results based on the filters selected by the user.
+     */
+    private void updateResults() {
+        // Update the search/recommended results based on search filters.
+    }
 
 
 }
