@@ -35,6 +35,7 @@ public class AddressManager {
     public AddressManager(Context context) {
         mContext = context ;
         addressDirectory = new File(mContext.getFilesDir(), ADDRESS_DIRECTORY) ;
+        if (!addressDirectory.isDirectory()) addressDirectory.mkdirs() ;
     }
 
     /**
@@ -56,7 +57,21 @@ public class AddressManager {
                 if (address.createdSuccessfully()) addresses.add(address) ;
             }
         }
+        Log.d(LOG_TAG,"getAddresses() will return " + addresses.size() + " addresses.") ;
         return addresses ;
+    }
+
+    public void addAddress(boolean setAsDefaultAddress, String[] newAddressData) {
+        // Find the previously maximum address ID
+        int maxAddressID = -1 ; // Initialise to -1, so that if no addresses are found, after incrementing first one will be ID = 0. If address 0 is found, next will be 1, etc.
+        for (Address address : getAddresses()) {
+            maxAddressID = Math.max(maxAddressID,address.getAddressID()) ;
+        }
+        // Increment max ID for use in the new address
+        maxAddressID++ ;
+        Address newAddress = new Address(maxAddressID, setAsDefaultAddress, newAddressData) ;
+        saveAddress(newAddress);
+
     }
 
     /**
@@ -122,20 +137,40 @@ public class AddressManager {
      */
     public static class Address {
 
+        // Indices for the various fields in arrays. Potentially move the whole thing to enum later?
+        public static final int INDEX_LINE_1 = 0 ;
+        public static final int INDEX_LINE_2 = 1 ;
+        public static final int INDEX_CITY = 2 ;
+        public static final int INDEX_COUNTY = 3 ;
+        public static final int INDEX_POSTCODE = 4 ;
+        public static final int INDEX_SIZE = 5; // Always one larger than the largest index - the size of the array required
+
         private static final String LOG_TAG = "Address" ;
 
         private int addressID ;
         private boolean isDefaultAddress ;
-        private String[] address = new String[5] ;
+        private String[] address = new String[INDEX_SIZE] ;
 
         public Address(int addressID, boolean setAsDefaultAddress, String line1, String line2, String line3, String line4, String postCode) {
             this.addressID = addressID;
             this.isDefaultAddress = setAsDefaultAddress;
-            this.address[0] = line1;
-            this.address[1] = line2;
-            this.address[2] = line3;
-            this.address[3] = line4;
-            this.address[4] = postCode;
+            this.address[INDEX_LINE_1] = line1;
+            this.address[INDEX_LINE_2] = line2;
+            this.address[INDEX_CITY] = line3;
+            this.address[INDEX_COUNTY] = line4;
+            this.address[INDEX_POSTCODE] = postCode;
+        }
+
+        /**
+         * Constructor for String[] of address details
+         * @param addressID Unique address ID number
+         * @param setAsDefaultAddress Use this address as default
+         * @param address String array containing the address data
+         */
+        public Address(int addressID, boolean setAsDefaultAddress, String[] address) {
+            this.addressID = addressID;
+            this.isDefaultAddress = setAsDefaultAddress;
+            this.address = address ;
         }
 
         public Address(File addressFile){
@@ -198,12 +233,19 @@ public class AddressManager {
             return isDefaultAddress;
         }
 
-        public String getAddressSaveString() {
-            String saveString = isDefaultAddress + "";
+        public String getAddressPresentationString() {
+            String presentationString = "" ;
             // Loop through all strings in address array to make it more robust/easier to add/remove layers in future
             for (int i = 0 ; i < address.length ; i++) {
-                saveString += "\n" + address[i] ;
+                presentationString += "\n" + address[i] ;
             }
+            return presentationString ;
+        }
+
+        public String getAddressSaveString() {
+            String saveString = isDefaultAddress + "";
+            saveString += "\n" + getAddressPresentationString() ;
+
             return saveString ;
         }
 

@@ -12,7 +12,8 @@
         android:layout_centerHorizontal="true"
         app:cardBackgroundColor="@color/colorPrimary"
         android:layout_margin="12dp"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:onClick="getAddressFromLocationClicked">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,8 +22,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="@dimen/card_primary_text_padding"
                 android:textColor="@android:color/white"
-                android:text="Use My Current Location"
+                android:text="@string/address_location_lookup"
                 android:textSize="18sp"
                 android:layout_gravity="center_vertical"/>
             <ImageView
@@ -48,7 +50,7 @@
                 android:id="@+id/et_line_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address Line 1"
+                android:hint="@string/address_line1"
                 android:textSize="18sp"
                 android:padding="12dp"
                 android:layout_margin="6dp"/>
@@ -56,7 +58,7 @@
                 android:id="@+id/et_line_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address Line 2"
+                android:hint="@string/address_line2"
                 android:textSize="18sp"
                 android:padding="12dp"
                 android:layout_margin="6dp"/>
@@ -64,7 +66,15 @@
                 android:id="@+id/et_line_three"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address Line 3"
+                android:hint="@string/address_line3"
+                android:textSize="18sp"
+                android:padding="12dp"
+                android:layout_margin="6dp"/>
+            <EditText
+                android:id="@+id/et_line_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address_line4"
                 android:textSize="18sp"
                 android:padding="12dp"
                 android:layout_margin="6dp"/>
@@ -72,7 +82,7 @@
                 android:id="@+id/et_postcode_full"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Postcode"
+                android:hint="@string/address_postcode"
                 android:textSize="18sp"
                 android:padding="12dp"
                 android:layout_margin="6dp"/>
@@ -94,7 +104,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Enter Postcode"
+            android:hint="@string/address_postcode_hint"
             android:textSize="18sp"
             android:padding="12dp"
             android:layout_margin="6dp"/>
@@ -104,12 +114,13 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 app:cardBackgroundColor="@color/colorPrimary"
-                android:layout_margin="4dp">
+                android:layout_margin="4dp"
+                android:onClick="getAddressFromPostcodeClicked">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Look up address"
+                    android:text="@string/address_postcode_search"
                     android:textSize="18sp"
                     android:textColor="@color/colorAccent"
                     android:layout_margin="4dp"/>
@@ -122,9 +133,23 @@
             android:id="@+id/manual_address_prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enter Address Manually"
+            android:text="@string/address_manual"
             android:textSize="18sp"
             android:layout_margin="4dp"
+            android:padding="12dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/card_postcode"/>
+            android:layout_below="@+id/card_postcode"
+            android:onClick="manualAddressEntryClicked"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/address_save_fab"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@android:drawable/ic_menu_save"
+        android:tint="@color/colorPrimary"
+        android:visibility="gone"
+        android:onClick="saveClicked"/>
 </RelativeLayout>

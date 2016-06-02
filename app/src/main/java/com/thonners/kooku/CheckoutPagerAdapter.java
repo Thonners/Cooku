@@ -6,6 +6,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -61,6 +62,7 @@ public class CheckoutPagerAdapter extends PagerAdapter {
             if (position < addresses.size()) {
                 layout = (ViewGroup) inflater.inflate(R.layout.frame_address_viewer, collection, false);
                 collection.addView(layout);
+                populateAddressView(layout, addresses.get(position));
                 return layout;
             } else if (position == addresses.size()) {
                 layout = (ViewGroup) inflater.inflate(R.layout.frame_address_add, collection, false);
@@ -120,5 +122,14 @@ public class CheckoutPagerAdapter extends PagerAdapter {
             // TODO: After successfully implementing addresses
         }
         return "Error" ;
+    }
+
+    private void populateAddressView(ViewGroup layout, AddressManager.Address address) {
+        /*String[] addressData = address.getAddress() ;
+        for (int i = 0 ; i < addressData.length ; i++) {
+
+        }*/
+        TextView textView = (TextView) layout.findViewById(R.id.address_line_1) ;
+        textView.setText(address.getAddressPresentationString());
     }
 }

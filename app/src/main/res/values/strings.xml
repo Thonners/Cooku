@@ -52,6 +52,23 @@
     <string name="quantity_suffix">%1$d x</string>
     <string name="total_price">Total:</string>
 
+    <!-- New Address Page -->
+    <string name="address_location_lookup">Use Current Location</string>
+    <string name="address_line1"> Address Line 1 (Required)</string>
+    <string name="address_line2"> Address Line 2</string>
+    <string name="address_line3"> City (Required)</string>
+    <string name="address_line4"> County</string>
+    <string name="address_postcode"> Postcode (Required)</string>
+    <string name="address_postcode_hint">Enter Postcode</string>
+    <string name="address_postcode_search">Look-up address</string>
+    <string name="address_manual">Enter Address Manually</string>
+    <string name="dialog_save_address_title">Save address information?</string>
+    <string name="dialog_save_address_message">The address information you\'ve entered has not yet been saved.\nDo you wish to save the address information before returning?</string>
+    <string name="dialog_save_address_save">SAVE</string>
+    <string name="dialog_save_address_discard">DISCARD</string>
+    <string name="dialog_save_address_continue_editing">CONTINUE EDITING</string>
+    <string name="error_not_enough_info">Not enough address information entered yet.\nPopulate all \'required\' fields before saving.</string>
+
     <!-- Footer Button Texts -->
     <string name="basket_text">View Basket</string>
     <string name="go_to_checkout">Go To Checkout</string>
