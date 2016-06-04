@@ -26,7 +26,8 @@
         <activity android:name=".BasketActivity" />
         <activity android:name=".ItemActivity" />
         <activity android:name=".CheckoutActivity" />
-        <activity android:name=".AddAddressActivity"></activity>
+        <activity android:name=".AddAddressActivity" />
+        <activity android:name=".OrderTrackingActivity"></activity>
     </application>
 
 </manifest>

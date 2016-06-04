@@ -143,8 +143,8 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/address_save_fab"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/fab_default_size"
+        android:layout_height="@dimen/fab_default_size"
         android:layout_margin="12dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"

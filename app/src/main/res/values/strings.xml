@@ -52,6 +52,9 @@
     <string name="quantity_suffix">%1$d x</string>
     <string name="total_price">Total:</string>
 
+    <!-- Checkout Page -->
+    <string name="place_order">Place Order</string>
+
     <!-- New Address Page -->
     <string name="address_location_lookup">Use Current Location</string>
     <string name="address_line1"> Address Line 1 (Required)</string>

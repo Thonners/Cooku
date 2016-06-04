@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 public class CheckoutActivity extends AppCompatActivity {
 
@@ -111,5 +112,14 @@ public class CheckoutActivity extends AppCompatActivity {
             default:
                 Log.d(LOG_TAG, "An unexpected activity returned here. Request code: " + requestCode) ;
         }
+    }
+
+    public void placeOrderClicked(View view) {
+        Log.d(LOG_TAG, "Place order has been clicked!") ;
+        //TODO: Manage the order
+        // Launch order tracking intent
+        Intent orderTrackerIntent = new Intent(this, OrderTrackingActivity.class);
+        orderTrackerIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(orderTrackerIntent);
     }
 }
