@@ -2,7 +2,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_default_size">56dp</dimen>     <!-- default size according to Android style guide -->
+    <dimen name="fab_default_size">56dp
+    </dimen>     <!-- default size according to Android style guide -->
     <dimen name="fab_default_ic_size">24dp</dimen>
     <dimen name="fab_default_z">6dp</dimen>
     <dimen name="fab_pressed_z">12dp</dimen>
@@ -12,7 +13,8 @@
     <dimen name="dialog_title_padding">20dp</dimen>
     <dimen name="dialog_button_padding">8dp</dimen>
     <dimen name="dialog_button_height">36dp</dimen>
-    <dimen name="dialog_action_area_height">52dp</dimen>    <!-- i.e. button height + 2x button padding -->
+    <dimen name="dialog_action_area_height">52dp
+    </dimen>    <!-- i.e. button height + 2x button padding -->
     <dimen name="dialog_elevation">24dp</dimen>
     <dimen name="dialog_prompt_text_size">18sp</dimen>
     <dimen name="dialog_image_button_size">72dp</dimen>
@@ -73,4 +75,5 @@
     <dimen name="order_status_card_focused_radius">196dp</dimen>
     <dimen name="order_status_card_default_z">4dp</dimen>
     <dimen name="order_status_card_focused_z">18dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

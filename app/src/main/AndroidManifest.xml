@@ -27,7 +27,12 @@
         <activity android:name=".ItemActivity" />
         <activity android:name=".CheckoutActivity" />
         <activity android:name=".AddAddressActivity" />
-        <activity android:name=".OrderTrackingActivity"></activity>
+        <activity android:name=".OrderTrackingActivity" />
+        <activity android:name=".FeedbackActivity" />
+        <activity
+            android:name=".ChefSignup1"
+            android:label="@string/title_activity_chef_signup1"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

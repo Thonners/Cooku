@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.thonners.kooku.ChefSignup1"
+    tools:showIn="@layout/activity_chef_signup1">
+
+    <TextView
+        android:id="@+id/chef_signup_city_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter your city:"/>
+
+    <EditText
+        android:id="@+id/chef_signup_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/chef_signup_name_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your name:"/>
+
+    <EditText
+        android:id="@+id/chef_signup_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/chef_signup_email_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email:"/>
+
+    <EditText
+        android:id="@+id/chef_signup_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/chef_signup_phone_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone number:"/>
+
+    <EditText
+        android:id="@+id/chef_signup_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/chef_signup_address_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter your address:"/>
+
+    <EditText
+        android:id="@+id/chef_signup_address_line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address Line 1"/>
+
+    <EditText
+        android:id="@+id/chef_signup_address_line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address Line 2"/>
+
+    <EditText
+        android:id="@+id/chef_signup_address_line3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="City"/>
+
+    <EditText
+        android:id="@+id/chef_signup_address_line4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="County"/>
+
+    <EditText
+        android:id="@+id/chef_signup_address_postcode"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:hint="Postcode"/>
+
+
+
+</LinearLayout>

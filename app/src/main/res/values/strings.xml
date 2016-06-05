@@ -75,5 +75,6 @@
     <!-- Footer Button Texts -->
     <string name="basket_text">View Basket</string>
     <string name="go_to_checkout">Go To Checkout</string>
+    <string name="title_activity_chef_signup1">Sign-up!</string>
 
 </resources>
