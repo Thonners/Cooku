@@ -71,8 +71,10 @@
     <dimen name="basket_delivery_drop_down_icon_size">12dp</dimen>
 
     <!-- Dimensions for order tracking page -->
-    <dimen name="order_status_card_default_radius">56dp</dimen>
-    <dimen name="order_status_card_focused_radius">196dp</dimen>
+    <dimen name="order_status_card_default_radius">28dp</dimen>
+    <dimen name="order_status_card_focused_radius">56dp</dimen>
+    <dimen name="order_status_card_default_text_size">12sp</dimen>
+    <dimen name="order_status_card_focused_text_size">24sp</dimen>
     <dimen name="order_status_card_default_z">4dp</dimen>
     <dimen name="order_status_card_focused_z">18dp</dimen>
     <dimen name="fab_margin">16dp</dimen>

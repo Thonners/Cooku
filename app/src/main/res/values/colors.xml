@@ -10,4 +10,8 @@
     <color name="vegan_purple">#CC33BB</color>
     <color name="organic_green">#007700</color>
 
+    <!-- Star Colours -->
+    <color name="star_grey">#666666</color>
+    <color name="star_gold">#FFD700</color>
+
 </resources>

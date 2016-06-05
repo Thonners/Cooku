@@ -8,6 +8,7 @@
     </plurals>
     <string name="mins">mins</string>
     <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
 
     <!-- Warnings -->
     <string name="contains_nuts">Warning: this dish contains nuts or nut traces.</string>
@@ -55,6 +56,27 @@
     <!-- Checkout Page -->
     <string name="place_order">Place Order</string>
 
+    <!-- Order tracking page -->
+    <string name="order_tracking_top_text">Order Status:</string>
+    <string-array name="order_statuses">
+        <item>Awaiting confirmation from %1$s</item>
+        <item>Your food is ready to be shipped</item>
+        <item>Your food is on its way!</item>
+        <item>Delivered. Enjoy!</item>
+    </string-array>
+    <string name="order_tracking_rate">Rate your food</string>
+
+    <!-- Review page -->
+    <string name="review_question">How was your order from %1$s?</string>
+    <string name="review_delivered">Delivered: %1$s</string>
+    <string name="review_title">Review: (Optional)</string>
+    <string name="review_hint">Leave a short review of your experience.</string>
+    <string name="review_dialog_title">Submit your rating without a review?</string>
+    <string name="review_dialog_message">Fancy sharing your thoughts on your experience?\nReviews help the chefs to improve and inform other consumers about what you loved.\n\nLeave 5 reviews to earn a 10% discount on your subsequent order!</string>
+    <string name="review_dialog_positive">ADD REVIEW</string>
+    <string name="review_dialog_negative">RATING ONLY</string>
+
+
     <!-- New Address Page -->
     <string name="address_location_lookup">Use Current Location</string>
     <string name="address_line1"> Address Line 1 (Required)</string>
@@ -76,5 +98,6 @@
     <string name="basket_text">View Basket</string>
     <string name="go_to_checkout">Go To Checkout</string>
     <string name="title_activity_chef_signup1">Sign-up!</string>
+    <string name="title_activity_review">ReviewActivity</string>
 
 </resources>

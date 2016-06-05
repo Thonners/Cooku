@@ -32,6 +32,10 @@
         <activity
             android:name=".ChefSignup1"
             android:label="@string/title_activity_chef_signup1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReviewActivity"
+            android:label="@string/title_activity_review"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

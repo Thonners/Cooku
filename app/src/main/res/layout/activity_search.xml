@@ -23,8 +23,10 @@
 
     <ImageView
         android:id="@+id/search_mag_icon"
-        android:layout_width="@dimen/search_bar_ic_size"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/search_bar_ic_size"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         android:layout_margin="@dimen/search_bar_ic_margin"
         android:layout_below="@+id/logo"
         android:layout_toLeftOf="@+id/search_bar"
