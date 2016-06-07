@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ReviewActivity extends AppCompatActivity {
 
@@ -79,7 +80,7 @@ public class ReviewActivity extends AppCompatActivity {
     private void setRating(int newRating) {
         if(!ratingEntered) {
             ratingEntered = true;
-            footerButton.setVisibility(View.VISIBLE);
+            footerButton.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
         }
         rating = newRating;
         updateStarColours();
@@ -103,6 +104,11 @@ public class ReviewActivity extends AppCompatActivity {
     public void submitRatingClicked(View view) {
         // Submit the rating
         Log.d(LOG_TAG, "Rating to be submitted: " + rating) ;
+        // Check rating left, if not show toast
+        if (!ratingEntered) {
+            Toast.makeText(ReviewActivity.this, getString(R.string.review_rating_required), Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (reviewLeft()) {
             // Review has been left, so submit the rating & review
             Log.d(LOG_TAG, "Review to be submitted: " + etReview.getText().toString()) ;

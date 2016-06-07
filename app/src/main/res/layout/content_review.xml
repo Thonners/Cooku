@@ -14,9 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/footer_button_height"
         android:elevation="@dimen/footer_button_elevation"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/star_grey"
         android:layout_alignParentBottom="true"
-        android:visibility="invisible"
         android:onClick="submitRatingClicked">
         <TextView
             android:layout_width="wrap_content"

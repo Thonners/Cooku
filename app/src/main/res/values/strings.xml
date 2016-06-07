@@ -75,6 +75,7 @@
     <string name="review_dialog_message">Fancy sharing your thoughts on your experience?\nReviews help the chefs to improve and inform other consumers about what you loved.\n\nLeave 5 reviews to earn a 10% discount on your subsequent order!</string>
     <string name="review_dialog_positive">ADD REVIEW</string>
     <string name="review_dialog_negative">RATING ONLY</string>
+    <string name="review_rating_required">Please select a rating before submitting!</string>
 
 
     <!-- New Address Page -->
