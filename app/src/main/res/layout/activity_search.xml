@@ -30,7 +30,7 @@
         android:layout_margin="@dimen/search_bar_ic_margin"
         android:layout_below="@+id/logo"
         android:layout_toLeftOf="@+id/search_bar"
-        android:background="@drawable/ic_search_1"/>
+        android:background="@android:drawable/ic_search_category_default"/>
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="@dimen/search_bar_h_size"

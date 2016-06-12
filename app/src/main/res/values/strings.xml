@@ -40,7 +40,7 @@
     <!-- Quick Add Dialog -->
     <string name="dialog_add">Add</string>
     <string name="dialog_checkout">Add + Checkout</string>
-    <string name="dialog_title">How many %1$s to add to basket?</string>
+    <string name="dialog_title">Add how many %1$s to basket?</string>
     <string name="dialog_prompt">Hint: Click %1$s to add to basket, then go straight to checkout.</string>
 
     <!-- Item Page -->

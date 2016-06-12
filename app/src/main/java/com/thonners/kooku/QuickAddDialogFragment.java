@@ -14,14 +14,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 public class QuickAddDialogFragment extends DialogFragment {
 
     private static String DIALOG_ITEM = "com.thonners.kooku.dialogItem" ;
     private static int QUICK_ADD_NUMBER_LIMIT = 10 ;
+
+    private static String LOG_TAG = "QuickAddDialogFragment" ;
 
     private NumberPicker np ;
     private ChefMenuItem item ;
@@ -83,7 +87,6 @@ public class QuickAddDialogFragment extends DialogFragment {
         this.item = getArguments().getParcelable(DIALOG_ITEM) ;
         // Create the prompt string
         String titleText = String.format(getString(R.string.dialog_title),item.getTitle());
-        String promptText = String.format(getString(R.string.dialog_prompt),getString(R.string.dialog_checkout));
 
         // Create the dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -91,10 +94,7 @@ public class QuickAddDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         // Create the view (Pass null as the parent view because its going in the dialog layout)
         View layout = inflater.inflate(R.layout.dialog_quick_add, null) ;
-        //((RelativeLayout) layout.findViewById(R.id.dialog_layout)).requestFocus() ;
-        // Populate the text // This has been removed to try a simpler dialog that looks better
-        //TextView promptTextView = (TextView) layout.findViewById(R.id.dialog_prompt);
-        //promptTextView.setText(promptText);
+
         // Set up the number picker
         np = (NumberPicker) layout.findViewById(R.id.dialog_number_picker) ;
         np.setMinValue(1);
@@ -102,10 +102,15 @@ public class QuickAddDialogFragment extends DialogFragment {
         np.setValue(1);
         np.setWrapSelectorWheel(true);
 
+        // Create a text view for the title, so its style can be set. Use a layout to allow setting of a style
+        TextView titleTextView = (TextView) inflater.inflate(R.layout.dialog_quick_add_title_text_view, null) ;
+        titleTextView.setText(titleText);
+
         // Set the layout for the dialog
         builder.setView(layout)
                 // Set the title
-                .setTitle(titleText)
+                .setCustomTitle(titleTextView)
+           //     .setTitle(titleText)
                 // Add action buttons
                 .setPositiveButton(R.string.dialog_add, new DialogInterface.OnClickListener() {
                     @Override
@@ -129,7 +134,11 @@ public class QuickAddDialogFragment extends DialogFragment {
                     }
                 });
 
-        return builder.create() ;
+
+
+        Dialog dialog =  builder.create() ;
+
+        return dialog ;
     }
 
     private void positiveClicked() {

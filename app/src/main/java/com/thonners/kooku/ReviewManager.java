@@ -24,7 +24,7 @@ public class ReviewManager {
 
     /**
      * Method to submit a rating and review to the server
-     * @param itemID    The itemid being reviewed
+     * @param itemID    The ID of the item being reviewed
      * @param rating    The rating (out of 5)
      * @param review    The review
      */

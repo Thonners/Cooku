@@ -40,6 +40,7 @@
     <dimen name="start_text_size">32sp</dimen>
 
     <!-- Dimensions for the search page -->
+    <dimen name="search_card_image_height">128dp</dimen>
     <dimen name="search_logo_text">32sp</dimen>
     <dimen name="search_bar_h_size">256dp</dimen>
     <dimen name="search_bar_v_size">48dp</dimen>

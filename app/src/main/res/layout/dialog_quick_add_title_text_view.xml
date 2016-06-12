@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Empty text view, with the appropriate style set, to be used as the custom title view in the quick-add dialog -->
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_title_text_view"
+    style="@style/dialog_title"/>
