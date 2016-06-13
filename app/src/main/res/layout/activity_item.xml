@@ -87,7 +87,7 @@
                     </LinearLayout>
                 </RelativeLayout>
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/item_main_toolbar"
+                    android:id="@+id/item_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"

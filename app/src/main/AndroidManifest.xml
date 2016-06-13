@@ -22,9 +22,9 @@
         <activity
             android:name=".MenuActivity"
             android:parentActivityName=".SearchActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ItemActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BasketActivity" />
         <activity android:name=".CheckoutActivity" />
         <activity android:name=".AddAddressActivity" />

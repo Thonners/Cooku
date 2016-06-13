@@ -28,14 +28,14 @@ public class ReviewManager {
      * @param rating    The rating (out of 5)
      * @param review    The review
      */
-    public void submitReview(int itemID, int rating, String review) {
+    public void submitReview(int itemID, int rating, String username, String review) {
         // Submit the review to the server
         Log.d(LOG_TAG,"Submitting review for itemID: " + itemID + ". Rating = " + rating + ", Review = " + review);
         // If it's the first review, create the array list
         if (!reviews.containsKey(itemID)) reviews.put(itemID, new ArrayList<Review>());
         // Add the review to the ArrayList
         ArrayList<Review> reviewList = reviews.get(itemID) ;
-        reviewList.add(new Review(itemID, rating, review));
+        reviewList.add(new Review(itemID, rating, username, review));
     }
 
     /**
@@ -43,9 +43,9 @@ public class ReviewManager {
      * @param itemID The itemID being rated
      * @param rating The rating (out of 5)
      */
-    public void submitRating(int itemID, int rating) {
+    public void submitRating(int itemID, int rating, String username) {
         // Submit a rating and review, but with a blank review.
-        submitReview(itemID,rating,"");
+        submitReview(itemID,rating,"",  username);
     }
 
     /**
@@ -54,6 +54,7 @@ public class ReviewManager {
      * @return ArrayList<Review> The reviews for the itemID
      */
     public ArrayList<Review> getReviews(int itemID) {
+        createDemoReviews(itemID);
         return reviews.get(itemID) ;
     }
 
@@ -96,11 +97,31 @@ public class ReviewManager {
         mean = Math.floor(mean * 2.0) / 2.0 ;
         return mean ;
     }
+
+    /**
+     * Simple method to create two demo reviews for whatever itemID is required.
+     * @param itemID
+     */
+    private void createDemoReviews(int itemID) {
+        String sampleName1 = "Harry Potter" ;
+        String sampleName2 = "Ginny Weasley" ;
+        String sampleText1 = "Ooo, this dish was really tasty.\nLots more sample text.\nPretend that this is a useful review. Thanks!\nWill definitely be buying again!" ;
+        String sampleText2 = "Very nice indeed. Really enjoyed my meal.\n\nWill be buying 3 rounds next time to give to my parents and brother!" ;
+        int sampleRating1 = 5 ;
+        int sampleRating2 = 4 ;
+        submitReview(itemID, sampleRating1, sampleName1, sampleText1);
+        submitReview(itemID, sampleRating2, sampleName2, sampleText2);
+    }
+
+
+
     /**
      * Class to store ratings and reviews of items
      */
     public class Review {
 
+        private String username ;// Username to be associated with the review. Probably won't be used when the reviews are being downloaded.
+        private int userID ;    // Unique ID number for the user submitting the review
         private int itemID ;
         private int rating ;
         private String review ;
@@ -111,7 +132,8 @@ public class ReviewManager {
          * @param rating The rating (out of 5)
          * @param review The review
          */
-        public Review(int itemID, int rating, String review) {
+        public Review(int itemID, int rating, String username, String review) {
+            this.username = username ;
             this.itemID = itemID ;
             this.rating = rating ;
             this.review = review ;
