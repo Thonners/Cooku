@@ -13,7 +13,6 @@
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -22,9 +21,11 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MenuActivity"
-            android:parentActivityName=".SearchActivity" />
+            android:parentActivityName=".SearchActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
+        <activity android:name=".ItemActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity android:name=".BasketActivity" />
-        <activity android:name=".ItemActivity" />
         <activity android:name=".CheckoutActivity" />
         <activity android:name=".AddAddressActivity" />
         <activity android:name=".OrderTrackingActivity" />
