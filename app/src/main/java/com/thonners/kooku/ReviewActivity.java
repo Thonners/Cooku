@@ -116,5 +116,11 @@ public class ReviewActivity extends AppCompatActivity {
             // Prompt for a review
             Log.d(LOG_TAG, "Review not left yet.") ;
         }
+        // Show thankyou toast
+        Toast.makeText(ReviewActivity.this, getString(R.string.review_submitted_toast_text), Toast.LENGTH_LONG).show();
+        // Relaunch home page after clearing stack
+        Intent relaunch = new Intent(this, SearchActivity.class) ;
+        relaunch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK) ;
+        startActivity(relaunch);
     }
 }

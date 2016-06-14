@@ -76,6 +76,7 @@
     <string name="review_dialog_positive">ADD REVIEW</string>
     <string name="review_dialog_negative">RATING ONLY</string>
     <string name="review_rating_required">Please select a rating before submitting!</string>
+    <string name="review_submitted_toast_text">Thank you for submitting your rating!</string>
 
 
     <!-- New Address Page -->
