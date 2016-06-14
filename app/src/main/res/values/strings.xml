@@ -10,6 +10,12 @@
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
 
+    <!-- Menu Options -->
+    <string name="menu_favourite">Favourite</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_account">My Account</string>
+
     <!-- Warnings -->
     <string name="contains_nuts">Warning: this dish contains nuts or nut traces.</string>
     <string name="contains_alcohol">This dish contains alcohol.</string>
