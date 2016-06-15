@@ -47,22 +47,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/chef_appbar_height">
 
-                    <ImageView
-                        android:id="@+id/item_image"
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/item_image_view_pager"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/chef_appbar_height"
-                        android:scaleType="centerCrop"
+                        android:layout_height="match_parent"
                         android:fitsSystemWindows="true"
                         app:layout_collapseMode="parallax"
-                        app:layout_collapseParallaxMultiplier="0.7"
-                        android:transitionName="tImage"
-                        />
-
+                        app:layout_collapseParallaxMultiplier="0.7" />
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_alignBaseline="@+id/item_image"
+                        android:layout_alignBaseline="@+id/item_image_view_pager"
                         android:padding="4dp">
                         <ImageView
                             android:layout_width="12dp"

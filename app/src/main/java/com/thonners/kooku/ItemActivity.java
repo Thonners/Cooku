@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -51,6 +52,12 @@ public class ItemActivity extends AppCompatActivity {
 
         // Get the item
         item = getIntent().getExtras().getParcelable(MenuActivity.ITEM_EXTRA) ;
+
+        //Set the images
+        ItemImagePagerAdapter imagePagerAdapter = new ItemImagePagerAdapter(this);
+        ViewPager itemImageViewPager = (ViewPager) findViewById(R.id.item_image_view_pager) ;
+        itemImageViewPager.setAdapter(imagePagerAdapter);
+
         // Get the basket
         basket = getIntent().getExtras().getParcelable(MenuActivity.BASKET_EXTRA) ;
 

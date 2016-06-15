@@ -18,6 +18,9 @@ import java.util.StringTokenizer;
  * Class to manage the basket:
  * Saving and restoring baskets if closing the app or switching between chefs
  *
+ * TODO: Actually implement saving/restoring baskets.
+ * ** Not currently in use **
+ *
  * @author M Thomas
  * @since 21/05/16.
  */
