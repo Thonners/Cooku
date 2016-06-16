@@ -28,14 +28,14 @@ public class ReviewManager {
      * @param rating    The rating (out of 5)
      * @param review    The review
      */
-    public void submitReview(int itemID, int rating, String username, String review) {
+    public void submitReview(int itemID, int rating, String username, String reviewTitle, String review) {
         // Submit the review to the server
-        Log.d(LOG_TAG,"Submitting review for itemID: " + itemID + ". Rating = " + rating + ", Review = " + review);
+        Log.d(LOG_TAG,"Submitting review for itemID: " + itemID + ". Username = " + username + "ReviewTitle = " + reviewTitle + "Rating = " + rating + ", Review = " + review);
         // If it's the first review, create the array list
         if (!reviews.containsKey(itemID)) reviews.put(itemID, new ArrayList<Review>());
         // Add the review to the ArrayList
         ArrayList<Review> reviewList = reviews.get(itemID) ;
-        reviewList.add(new Review(itemID, rating, username, review));
+        reviewList.add(new Review(itemID, rating, username, reviewTitle, review));
     }
 
     /**
@@ -45,7 +45,7 @@ public class ReviewManager {
      */
     public void submitRating(int itemID, int rating, String username) {
         // Submit a rating and review, but with a blank review.
-        submitReview(itemID,rating,"",  username);
+        submitReview(itemID,rating,"", "", username);
     }
 
     /**
@@ -105,12 +105,14 @@ public class ReviewManager {
     private void createDemoReviews(int itemID) {
         String sampleName1 = "Harry Potter" ;
         String sampleName2 = "Ginny Weasley" ;
+        String sampleTitle1 = "Smashing Pumpkins" ;
+        String sampleTitle2 = "Delicious Deserts!" ;
         String sampleText1 = "Ooo, this dish was really tasty.\nLots more sample text.\nPretend that this is a useful review. Thanks!\nWill definitely be buying again!" ;
         String sampleText2 = "Very nice indeed. Really enjoyed my meal.\n\nWill be buying 3 rounds next time to give to my parents and brother!" ;
         int sampleRating1 = 5 ;
         int sampleRating2 = 4 ;
-        submitReview(itemID, sampleRating1, sampleName1, sampleText1);
-        submitReview(itemID, sampleRating2, sampleName2, sampleText2);
+        submitReview(itemID, sampleRating1, sampleName1, sampleTitle1, sampleText1);
+        submitReview(itemID, sampleRating2, sampleName2, sampleTitle2, sampleText2);
     }
 
 
@@ -124,18 +126,22 @@ public class ReviewManager {
         private int userID ;    // Unique ID number for the user submitting the review
         private int itemID ;
         private int rating ;
+        private String reviewTitle ;
         private String review ;
 
         /**
          * Constructor
          * @param itemID The unique ID of the item to which the rating/review belongs
+         * @param username The username of the user who left the review
          * @param rating The rating (out of 5)
+         * @param reviewTitle The title of the review, left by the user
          * @param review The review
          */
-        public Review(int itemID, int rating, String username, String review) {
+        public Review(int itemID, int rating, String username, String reviewTitle, String review) {
             this.username = username ;
             this.itemID = itemID ;
             this.rating = rating ;
+            this.reviewTitle = reviewTitle ;
             this.review = review ;
         }
 
@@ -145,6 +151,22 @@ public class ReviewManager {
 
         public String getReview() {
             return review ;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public String getReviewTitle() {
+            return reviewTitle;
+        }
+
+        public int getUserID() {
+            return userID;
+        }
+
+        public int getItemID() {
+            return itemID;
         }
     }
 }

@@ -51,6 +51,7 @@
 
     <!-- Item Page -->
     <string name="item_award_info">This dish is %1$s.</string>
+    <string name="review_divider">Üser Reviews</string>
 
     <!-- Basket Page -->
     <string name="subtotal">Subtotal:</string>

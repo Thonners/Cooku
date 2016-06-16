@@ -57,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/scrim_top_height"
                     android:background="@drawable/scrim_top"
+                    android:fitsSystemWindows="true"
                     app:layout_collapseMode="pin"/>
 
                 <View

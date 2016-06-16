@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -79,6 +81,23 @@ public class ItemActivity extends AppCompatActivity {
             tvContains.setText(containsString);
         }
 
+        // Get the reviews' RecyclerView
+        RecyclerView reviewsRV = (RecyclerView) findViewById(R.id.item_reviews) ;
+
+        // Use this setting to improve performance given that changes
+        // in content do not change the layout size of the RecyclerView
+        reviewsRV.setHasFixedSize(true);
+        reviewsRV.setNestedScrollingEnabled(true);
+
+        // Use a StaggeredGridLayoutManager - set span to 1, to make it just a vertical list, but maintains possibility to increase number of rows later (tablet?)
+        RecyclerView.LayoutManager rcLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        reviewsRV.setLayoutManager(rcLayoutManager);
+
+        // Set the adapter
+        ReviewManager reviewManager = new ReviewManager();
+        ItemReviewRVAdapter adapter = new ItemReviewRVAdapter(this, reviewManager.getReviews(item.getItemID()));
+        reviewsRV.setAdapter(adapter);
+
         // Get the basket & its views, and hide it
         basketFooterButton = (CardView) findViewById(R.id.footer_button_basket) ;
         basketFooterButton.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +130,12 @@ public class ItemActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.item_add:
+                Log.d(LOG_TAG,"Add menu button clicked. Adding item to basket.") ;
+                addItemToBasket();
+                break;
+            case R.id.item_favourite:
+                Log.d(LOG_TAG,"Favourite menu button clicked. Adding item to basket.") ;
         }
         return(super.onOptionsItemSelected(item));
     }
