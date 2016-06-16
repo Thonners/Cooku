@@ -42,6 +42,9 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
     private RecyclerView.LayoutManager rcLayoutManager;
     private Basket basket = new Basket() ;
     private boolean showFullBio = false ;
+    // Favourite Admin
+    private boolean isFav ;
+    private MenuItem favouriteMenuItem ;
     // Basket footer button values
     private CardView basketFooterButton ;
     private TextView basketFooterButtonTV ;
@@ -174,6 +177,11 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
         case android.R.id.home:
             onBackPressed();
             return true;
+            case R.id.item_favourite:
+                Log.d(LOG_TAG,"Favourite menu button clicked. Adding item to favourites (Not actually implemented yet).") ;
+                favouriteMenuItem = item ;
+                toggleFavourite() ;
+                break;
     }
 
     return(super.onOptionsItemSelected(item));
@@ -199,6 +207,20 @@ public class MenuActivity extends AppCompatActivity implements QuickAddDialogFra
         snackbar.show();
     }
 
+    /**
+     * Method to toggle whether the chef should be 'favourited' or not
+     */
+    private void toggleFavourite() {
+        // Toggle 'favourite' status
+        isFav = !isFav ;
+        // Switch menu icon as appropriate
+        if (isFav){
+            favouriteMenuItem.setIcon(getResources().getDrawable(R.drawable.ic_favorite_white_48dp));
+        } else {
+            favouriteMenuItem.setIcon(getResources().getDrawable(R.drawable.ic_favorite_border_white_48dp));
+        }
+
+    }
     private void toggleBio(View cardView) {
         // Toggle whether to show full bio
         showFullBio = !showFullBio ;

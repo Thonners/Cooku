@@ -11,10 +11,13 @@
     <string name="submit">Submit</string>
 
     <!-- Menu Options -->
-    <string name="menu_favourite">Favourite</string>
+    <string name="menu_favourite">Add to Favourites</string>
+    <string name="menu_favourite_short">Favourite</string>
     <string name="menu_search">Search</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_account">My Account</string>
+    <string name="menu_add">Add to basket</string>
+    <string name="menu_add_short">Add</string>
 
     <!-- Warnings -->
     <string name="contains_nuts">Warning: this dish contains nuts or nut traces.</string>
@@ -76,7 +79,8 @@
     <!-- Review page -->
     <string name="review_question">How was your order from %1$s?</string>
     <string name="review_delivered">Delivered: %1$s</string>
-    <string name="review_title">Review: (Optional)</string>
+    <string name="review_header">Review: (Optional)</string>
+    <string name="review_title_hint">Review Title</string>
     <string name="review_hint">Leave a short review of your experience.</string>
     <string name="review_dialog_title">Submit your rating without a review?</string>
     <string name="review_dialog_message">Fancy sharing your thoughts on your experience?\nReviews help the chefs to improve and inform other consumers about what you loved.\n\nLeave 5 reviews to earn a 10% discount on your subsequent order!</string>

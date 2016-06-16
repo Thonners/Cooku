@@ -34,6 +34,9 @@ public class ItemActivity extends AppCompatActivity {
     private Chef chef ;
     private Basket basket ;
     private CoordinatorLayout coordinatorLayout ;
+    // For favourite status. In practice will be handled by FavouritesManager
+    private boolean isFav = false ;
+    private MenuItem favouriteMenuItem ;
     // Basket footer button values
     private CardView basketFooterButton ;
     private TextView basketFooterButtonTV ;
@@ -135,7 +138,10 @@ public class ItemActivity extends AppCompatActivity {
                 addItemToBasket();
                 break;
             case R.id.item_favourite:
-                Log.d(LOG_TAG,"Favourite menu button clicked. Adding item to basket.") ;
+                Log.d(LOG_TAG,"Favourite menu button clicked. Adding item to favourites (Not actually implemented yet).") ;
+                favouriteMenuItem = item ;
+                toggleFavourite() ;
+                break;
         }
         return(super.onOptionsItemSelected(item));
     }
@@ -165,6 +171,21 @@ public class ItemActivity extends AppCompatActivity {
         // Update footer button
         basket.updateFooterButton(basketFooterButton, basketFooterButtonTV);
         //updateFooterButtonBasket();
+    }
+
+    /**
+     * Method to toggle whether an item should be 'favourited' or not
+     */
+    private void toggleFavourite() {
+        // Toggle 'favourite' status
+        isFav = !isFav ;
+        // Switch menu icon as appropriate
+        if (isFav){
+            favouriteMenuItem.setIcon(getResources().getDrawable(R.drawable.ic_favorite_white_48dp));
+        } else {
+            favouriteMenuItem.setIcon(getResources().getDrawable(R.drawable.ic_favorite_border_white_48dp));
+        }
+
     }
 
     private void updateFooterButtonBasket() {
