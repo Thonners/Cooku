@@ -43,45 +43,67 @@
                 app:expandedTitleMarginEnd="64dp"
                 >
 
-                <RelativeLayout
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/item_image_view_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/chef_appbar_height">
+                    android:layout_height="@dimen/chef_appbar_height"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7" />
 
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/item_image_view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fitsSystemWindows="true"
-                        app:layout_collapseMode="parallax"
-                        app:layout_collapseParallaxMultiplier="0.7" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/scrim_top_height"
+                    android:background="@drawable/scrim_top"
+                    app:layout_collapseMode="pin"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/scrim_bottom_height"
+                    android:layout_gravity="bottom"
+                    android:layout_alignBottom="@+id/item_image_view_pager"
+                    android:background="@drawable/scrim_bottom"/>
+
+
                     <LinearLayout
+                        android:id="@+id/item_rating_layout"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="bottom|start"
+                        android:layout_marginBottom="4dp"
                         android:orientation="horizontal"
-                        android:layout_alignBaseline="@+id/item_image_view_pager"
-                        android:padding="4dp">
+                        app:layout_collapseMode="parallax"
+                        app:layout_collapseParallaxMultiplier="0.7" >
                         <ImageView
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
-                            android:src="@drawable/ic_star"
-                            android:tint="@android:color/white"/>
+                            android:id="@+id/item_rating_star_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_star_black_24dp"
+                            android:tint="@color/star_gold"/>
                         <ImageView
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
-                            android:src="@drawable/ic_star"
-                            android:tint="@android:color/white"/>
+                            android:id="@+id/item_rating_star_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_star_black_24dp"
+                            android:tint="@color/star_gold"/>
                         <ImageView
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
-                            android:src="@drawable/ic_star"
-                            android:tint="@android:color/white"/>
+                            android:id="@+id/item_rating_star_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_star_black_24dp"
+                            android:tint="@color/star_gold"/>
                         <ImageView
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
-                            android:src="@drawable/ic_star"
-                            android:tint="@android:color/white"/>
+                            android:id="@+id/item_rating_star_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_star_black_24dp"
+                            android:tint="@color/star_gold"/>
+                        <ImageView
+                            android:id="@+id/item_rating_star_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_star_black_24dp"
+                            android:tint="@color/star_gold"/>
                     </LinearLayout>
-                </RelativeLayout>
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/item_toolbar"
                     android:layout_width="match_parent"

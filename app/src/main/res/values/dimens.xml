@@ -21,6 +21,8 @@
     <dimen name="dialog_image_button_padding">36dp</dimen>
 
     <!-- Default dimensions for reuse -->
+    <dimen name="scrim_top_height">128dp</dimen>
+    <dimen name="scrim_bottom_height">164dp</dimen>
     <dimen name="card_height_big">128dp</dimen>
     <dimen name="card_height_regular">96dp</dimen>
     <dimen name="card_margin">4dp</dimen>

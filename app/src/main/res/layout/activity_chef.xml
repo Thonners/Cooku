@@ -52,6 +52,21 @@
                     android:transitionName="tImage"
                     />
 
+                <View
+                    android:id="@+id/scrim_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/scrim_top_height"
+                    android:background="@drawable/scrim_top"
+                    app:layout_collapseMode="pin"/>
+
+                <View
+                    android:id="@+id/scrim_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/scrim_bottom_height"
+                    android:layout_gravity="bottom"
+                    android:layout_alignBottom="@+id/item_image_view_pager"
+                    android:background="@drawable/scrim_bottom"/>
+
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/chef_toolbar"
                     android:layout_width="match_parent"
