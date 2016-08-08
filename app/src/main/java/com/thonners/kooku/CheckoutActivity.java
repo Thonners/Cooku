@@ -26,7 +26,7 @@ public class CheckoutActivity extends AppCompatActivity {
         @Override
         public void addNewCardClicked() {
             Log.d(LOG_TAG, "Add new card clicked");
-
+            launchNewCardActivity();
         }
     };
 
@@ -36,6 +36,7 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
         // Show the back/up button. Will be intercepted and forced to behave like back button in onMenuItemSelected.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_checkout));
 
         // Get the view pagers
         pagerAddress = (ViewPager) findViewById(R.id.checkout_address_view_pager) ;
@@ -89,8 +90,8 @@ public class CheckoutActivity extends AppCompatActivity {
      * Start the activity for result so that the address view pager can be refreshed when it returns.
      */
     private void launchNewCardActivity() {
-        //Intent newAddressIntent = new Intent(this, AddCardActivity.class);
-        //startActivityForResult(newAddressIntent,NEW_CARD_REQUEST);
+        Intent newAddressIntent = new Intent(this, AddCardActivity.class);
+        startActivityForResult(newAddressIntent,NEW_CARD_REQUEST);
     }
 
     @Override

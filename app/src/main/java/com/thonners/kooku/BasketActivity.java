@@ -46,6 +46,7 @@ public class BasketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_basket);
         // Show the back/up button. Will be intercepted and forced to behave like back button in onMenuItemSelected.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_basket));
 
         // Get Intent extras
         basket = getIntent().getExtras().getParcelable(Basket.BASKET_ORDERS_EXTRA) ;

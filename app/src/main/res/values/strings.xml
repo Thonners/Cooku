@@ -1,6 +1,6 @@
 <resources>
     <!-- Universal Strings -->
-    <string name="app_name">Kookü</string>
+    <string name="app_name">püd</string>
     <string name="price">£ %1$f.2</string>
     <plurals name="days">
         <item quantity="one">day</item>
@@ -9,6 +9,14 @@
     <string name="mins">mins</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
+
+    <!-- Titles -->
+    <string name="title_basket">Basket</string>
+    <string name="title_checkout">Checkout</string>
+    <string name="title_new_address">Add new address</string>
+    <string name="title_new_card">Add new card</string>
+    <string name="title_order_status">Order Status:</string>
+    <string name="title_review">Review</string>
 
     <!-- Menu Options -->
     <string name="menu_favourite">Add to Favourites</string>
@@ -65,9 +73,11 @@
 
     <!-- Checkout Page -->
     <string name="place_order">Place Order</string>
+    <string name="add_new_address">Add new address</string>
+    <string name="add_new_payment_method">Add new card</string>
 
     <!-- Order tracking page -->
-    <string name="order_tracking_top_text">Order Status:</string>
+    <string name="order_tracking_top_text">Order Status:</string> <!-- delete when safe: replaced by title_order_status -->
     <string-array name="order_statuses">
         <item>Awaiting confirmation from %1$s</item>
         <item>Your food is ready to be shipped</item>
@@ -90,7 +100,16 @@
     <string name="review_submitted_toast_text">Thank you for submitting your rating!</string>
 
 
+    <!-- New Address/Card Dialogs -->
+    <string name="dialog_save_title">Save %1$s information?</string>
+    <string name="dialog_save_message">The %1$s information you\'ve entered has not yet been saved.\nDo you wish to save the %2$s information before returning?</string>
+    <string name="dialog_save_save">SAVE</string>
+    <string name="dialog_save_discard">DISCARD</string>
+    <string name="dialog_save_continue_editing">CONTINUE EDITING</string>
+    <string name="error_not_enough_info">Not enough information entered yet.\nPopulate all \'required\' fields before saving.</string>
+
     <!-- New Address Page -->
+    <string name="address">address</string>
     <string name="address_location_lookup">Use Current Location</string>
     <string name="address_line1"> Address Line 1 (Required)</string>
     <string name="address_line2"> Address Line 2</string>
@@ -100,12 +119,9 @@
     <string name="address_postcode_hint">Enter Postcode</string>
     <string name="address_postcode_search">Look-up address</string>
     <string name="address_manual">Enter Address Manually</string>
-    <string name="dialog_save_address_title">Save address information?</string>
-    <string name="dialog_save_address_message">The address information you\'ve entered has not yet been saved.\nDo you wish to save the address information before returning?</string>
-    <string name="dialog_save_address_save">SAVE</string>
-    <string name="dialog_save_address_discard">DISCARD</string>
-    <string name="dialog_save_address_continue_editing">CONTINUE EDITING</string>
-    <string name="error_not_enough_info">Not enough address information entered yet.\nPopulate all \'required\' fields before saving.</string>
+
+    <!-- New Card Page -->
+    <string name="card">card</string>
 
     <!-- Footer Button Texts -->
     <string name="basket_text">View Basket</string>

@@ -34,6 +34,7 @@ public class ReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle(R.string.title_review);
 
         // Get the views
         mainImageView = (ImageView) findViewById(R.id.review_main_image);

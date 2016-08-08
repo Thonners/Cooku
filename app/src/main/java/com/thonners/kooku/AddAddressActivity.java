@@ -40,6 +40,7 @@ public class AddAddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_address);
         // Show the back/up button. Will be intercepted and forced to behave like back button in onMenuItemSelected.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_new_address));
 
         // Initialise AddressManager
         addressManager = new AddressManager(this);
@@ -97,13 +98,14 @@ public class AddAddressActivity extends AppCompatActivity {
      * Options are to save, discard, or continue editing
      */
     private void showSaveDialog() {
+        String address= getResources().getString(R.string.address) ;
         // Build the dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this) ;
         // Set the text
-        builder.setTitle(R.string.dialog_save_address_title);
-        builder.setMessage(R.string.dialog_save_address_message);
+        builder.setTitle(String.format(getResources().getString(R.string.dialog_save_title),address));
+        builder.setMessage(String.format(getResources().getString(R.string.dialog_save_message),address,address));
         // Create the buttons
-        builder.setPositiveButton(R.string.dialog_save_address_save, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.dialog_save_save, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (saveAddress()) {
@@ -112,7 +114,7 @@ public class AddAddressActivity extends AppCompatActivity {
                 }
             }
         })
-                .setNegativeButton(R.string.dialog_save_address_discard, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.dialog_save_discard, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // Set the addressSaved variable to true so that it won't stop the activity exiting
@@ -120,7 +122,7 @@ public class AddAddressActivity extends AppCompatActivity {
                         onBackPressed();
                     }
                 })
-                .setNeutralButton(R.string.dialog_save_address_continue_editing, new DialogInterface.OnClickListener() {
+                .setNeutralButton(R.string.dialog_save_continue_editing, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();

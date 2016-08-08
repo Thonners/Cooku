@@ -37,6 +37,9 @@ public class OrderTrackingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_tracking);
 
+        // Set the title
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_order_status));
+
         // Get the text view
         statusTextView = (TextView) findViewById(R.id.order_tracking_status) ;
         // Get the possible order statuses

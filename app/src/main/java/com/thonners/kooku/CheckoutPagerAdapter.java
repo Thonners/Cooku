@@ -29,6 +29,10 @@ public class CheckoutPagerAdapter extends PagerAdapter {
     private AddressManager addressManager ;
     private ArrayList<AddressManager.Address> addresses ;
 
+    // Card stuff
+    private CreditCardManager cardManager ;
+    private ArrayList<CreditCardManager.Card> cards ;
+
     // Interfaces
     private OnAddNewClickedListener onAddNewClickedListener ;
     public interface OnAddNewClickedListener {
@@ -47,7 +51,8 @@ public class CheckoutPagerAdapter extends PagerAdapter {
             addressManager = new AddressManager(context);
             addresses = addressManager.getAddresses();
         } else if (pagerType == CARD_PAGER) {
-            // TODO: After successfully implementing addresses
+            cardManager = new CreditCardManager(context) ;
+            cards = cardManager.getCards();
         } else {
             // Something's gone wrong.
         }
@@ -65,10 +70,11 @@ public class CheckoutPagerAdapter extends PagerAdapter {
                 populateAddressView(layout, addresses.get(position));
                 return layout;
             } else if (position == addresses.size()) {
-                layout = (ViewGroup) inflater.inflate(R.layout.frame_address_add, collection, false);
+                layout = (ViewGroup) inflater.inflate(R.layout.frame_checkout_add_new, collection, false);
+                ((TextView) layout.findViewById(R.id.add_new_text_view)).setText(mContext.getResources().getString(R.string.add_new_address));
                 collection.addView(layout);
                 // Attach onClickListener to the card
-                CardView addNewAddressCV = (CardView) layout.findViewById(R.id.address_add_new) ;
+                CardView addNewAddressCV = (CardView) layout.findViewById(R.id.checkout_add_new) ;
                 addNewAddressCV.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -80,10 +86,25 @@ public class CheckoutPagerAdapter extends PagerAdapter {
                 return layout;
             }
         } else if (pagerType == CARD_PAGER) {
-            // TODO: After successfully implementing addresses
-            if (position < addresses.size()) {
+            // TODO: Learn about storing cards securely
+            if (position < cards.size()) {
                 layout = (ViewGroup) inflater.inflate(R.layout.frame_card_viewer, collection, false);
                 collection.addView(layout);
+                return layout;
+            } else if (position == cards.size()) {
+                layout = (ViewGroup) inflater.inflate(R.layout.frame_checkout_add_new, collection, false);
+                ((TextView) layout.findViewById(R.id.add_new_text_view)).setText(mContext.getResources().getString(R.string.add_new_payment_method));
+                collection.addView(layout);
+                // Attach onClickListener to the card
+                CardView addNewCardCV = (CardView) layout.findViewById(R.id.checkout_add_new) ;
+                addNewCardCV.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (onAddNewClickedListener != null) {
+                            onAddNewClickedListener.addNewCardClicked();
+                        }
+                    }
+                });
                 return layout;
             }
         }
@@ -102,8 +123,7 @@ public class CheckoutPagerAdapter extends PagerAdapter {
         if (pagerType == ADDRESS_PAGER) {
             return addresses.size() + 1 ;
         } else if (pagerType == CARD_PAGER) {
-            // TODO: After successfully implementing addresses
-            //return cards.size() + 1 ;
+            return cards.size() + 1 ;
         }
         // Will only get here if something's gone wrong with the pagerType
         return 0 ;
@@ -119,16 +139,12 @@ public class CheckoutPagerAdapter extends PagerAdapter {
         if (pagerType == ADDRESS_PAGER) {
             return "Address: " + position ;
         } else if (pagerType == CARD_PAGER) {
-            // TODO: After successfully implementing addresses
+            return "Card: " + position ;
         }
         return "Error" ;
     }
 
     private void populateAddressView(ViewGroup layout, AddressManager.Address address) {
-        /*String[] addressData = address.getAddress() ;
-        for (int i = 0 ; i < addressData.length ; i++) {
-
-        }*/
         TextView textView = (TextView) layout.findViewById(R.id.address_line_1) ;
         textView.setText(address.getAddressPresentationString());
     }
