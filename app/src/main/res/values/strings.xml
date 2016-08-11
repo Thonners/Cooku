@@ -1,4 +1,10 @@
 <resources>
+    <!-- API keys -->
+    <!-- getaddresses.io -->
+    <string name="getaddresses_url_prefix">https://api.getAddress.io/v2/uk/</string>
+    <string name="getaddresses_api_password">slIKq17rNkyBzYtsS0qe-g5192</string>
+    <string name="getaddresses_api_username">api-key</string>
+
     <!-- Universal Strings -->
     <string name="app_name">püd</string>
     <string name="price">£ %1$f.2</string>

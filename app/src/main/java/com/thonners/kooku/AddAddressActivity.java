@@ -194,4 +194,9 @@ public class AddAddressActivity extends AppCompatActivity {
         saveAddress();
     }
 
+    private AddressManager.Address getAddressFromPostcode(String postcode){
+        // Launch A-sync task to look up address from getAddresses.io
+        return null ;
+    }
+
 }
