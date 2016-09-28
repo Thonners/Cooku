@@ -49,6 +49,12 @@
     <string name="asap">A.S.A.P.</string>
     <string name="location">Location</string>
     <string name="dialog_search_title">Select filters to apply to search results:</string>
+    <string-array name="nav_bar_list">
+        <item>Login</item>
+        <item>Manage Addresses</item>
+        <item>Manage Payment Methods</item>
+        <item>Settings</item>
+    </string-array>
 
     <!-- Chef Menu Page -->
     <string name="chef_bio_prompt">Touch to read more...</string>
