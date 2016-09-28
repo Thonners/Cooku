@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Kooku.iml" filepath="$PROJECT_DIR$/Kooku.iml" />
+      <module fileurl="file:///mnt/hdd/home/mathonwy/AndroidStudioProjects/Kooku/Kooku.iml" filepath="/mnt/hdd/home/mathonwy/AndroidStudioProjects/Kooku/Kooku.iml" />
       <module fileurl="file:///mnt/hdd/home/mathonwy/AndroidStudioProjects/Kooku/app/app.iml" filepath="/mnt/hdd/home/mathonwy/AndroidStudioProjects/Kooku/app/app.iml" />
     </modules>
   </component>
