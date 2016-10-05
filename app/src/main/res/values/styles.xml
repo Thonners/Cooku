@@ -1,6 +1,16 @@
 <resources>
 
     <!-- Text View Styles. -->
+    <style name="nav_bar_item">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
     <style name="results_text_view_primary">
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:layout_width">wrap_content</item>

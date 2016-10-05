@@ -3,6 +3,7 @@ package com.thonners.kooku;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -21,15 +22,21 @@ import javax.net.ssl.HttpsURLConnection;
  * @author M Thomas
  * @since 11/08/16
  */
+
+
 public class AddressLookupASyncTask extends AsyncTask<String, Void, ArrayList<AddressManager.Address>> {
 
     private String url ;
 
 
     @Override
-    protected AddressManager.Address doInBackground(String... params) {
+    protected ArrayList<AddressManager.Address> doInBackground(String... params) {
 
-        String apiKey = ;
+        ArrayList<AddressManager.Address> addresses = new ArrayList<>();
+        return addresses;
+    }
+        /*
+        String apiKey = "";
         String postcode = URLEncoder.encode("ID1 1QD", "UTF-8");
         String baseUrl = "https://api.ideal-postcodes.co.uk/v1/postcodes/";
 
@@ -51,8 +58,6 @@ public class AddressLookupASyncTask extends AsyncTask<String, Void, ArrayList<Ad
         }
         in.close();
 
-
-
     }
 
     @Override
@@ -63,5 +68,5 @@ public class AddressLookupASyncTask extends AsyncTask<String, Void, ArrayList<Ad
     @Override
     protected void onPreExecute() {
 
-    }
+    }  //*/
 }

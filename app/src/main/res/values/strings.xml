@@ -49,11 +49,17 @@
     <string name="asap">A.S.A.P.</string>
     <string name="location">Location</string>
     <string name="dialog_search_title">Select filters to apply to search results:</string>
+    <string name="nav_bar_title">My Account</string>
+    <string name="nav_bar_login">Log in</string>
     <string-array name="nav_bar_list">
-        <item>Login</item>
+        <item>Find Food</item>
+        <item>My Orders</item>
+        <item>My Details</item>
         <item>Manage Addresses</item>
         <item>Manage Payment Methods</item>
-        <item>Settings</item>
+        <item>Promo Code / Share</item>
+        <item>About</item>
+        <item>Logout</item>
     </string-array>
 
     <!-- Chef Menu Page -->

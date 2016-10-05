@@ -53,6 +53,7 @@
     <dimen name="card_corner_radius">4dp</dimen>
     <dimen name="result_text_size">18sp</dimen> <!-- TODO: Move these to the style XML -->
     <dimen name="result_text_padding">8dp</dimen>
+    <dimen name="nav_bar_item_height">18dp</dimen>
 
     <!-- Dimensions for the chef page -->
     <dimen name="chef_appbar_height">300dp</dimen>
@@ -81,4 +82,5 @@
     <dimen name="order_status_card_default_z">4dp</dimen>
     <dimen name="order_status_card_focused_z">18dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>
