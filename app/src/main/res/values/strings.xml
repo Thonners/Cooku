@@ -147,4 +147,7 @@
     <string name="title_activity_chef_signup1">Sign-up!</string>
     <string name="title_activity_review">ReviewActivity</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

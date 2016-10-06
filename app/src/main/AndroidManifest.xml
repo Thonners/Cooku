@@ -64,7 +64,7 @@
             android:name="io.card.payment.CardIOActivity"
             android:configChanges="keyboardHidden|orientation" />
         <activity android:name="io.card.payment.DataEntryActivity" />
-        <activity android:name=".SearchNavActivity"></activity>
+        <activity android:name=".RootActivity"></activity>
     </application>
 
 </manifest>

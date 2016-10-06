@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         // Start the intent of the next activity
         Log.d(LOG_TAG, getString(R.string.get_started) + " clicked!");
         //Intent startSearch = new Intent(this, SearchActivity.class) ; // Original Activity based workflow
-        Intent startSearch = new Intent(this, SearchNavActivity.class) ; // New Fragments / Nav Bar workflow
+        Intent startSearch = new Intent(this, RootActivity.class) ; // New Fragments / Nav Bar workflow
         startActivity(startSearch);
     }
 
